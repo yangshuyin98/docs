@@ -44,7 +44,7 @@ export default defineConfig({
         items: [
           { text: 'spring', link: '/backEnd/spring' },
           { text: 'java', link: '/backEnd/java' },
-          { text: 'else', link: '/item-3' },]
+          { text: 'else', link: '/backEnd/cfd' },]
       }
     ],
     //nav结束
