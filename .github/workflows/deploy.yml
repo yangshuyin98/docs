@@ -18,15 +18,18 @@ jobs:
           node-version: 20
           cache: pnpm
 
-      # Corepack 关键配置
+      # Corepack 核心配置
       - name: Initialize Corepack
         run: |
           corepack enable
           corepack prepare pnpm@10.6.3 --activate
           echo "~/.nvm/versions/node/v20*/bin" >> $GITHUB_PATH
+          echo "~/.cache/node/corepack/bin" >> $GITHUB_PATH
 
-      - name: Verify pnpm
-        run: pnpm -v
+      - name: Verify pnpm path
+        run: |
+          which pnpm
+          pnpm -v
 
       - name: Cache dependencies
         uses: actions/cache@v3
