@@ -14,25 +14,34 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Setup Node.js
+      - name: Setup Node.js 20
         uses: actions/setup-node@v3
         with:
           node-version: 20
+          cache: pnpm # 修改缓存类型为 pnpm
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Install pnpm
+        run: corepack prepare pnpm@10.6.3 --activate
 
       - name: Cache dependencies
         uses: actions/cache@v3
-        id: yarn-cache
+        id: pnpm-cache
         with:
           path: |
+            ~/.pnpm-store
             **/node_modules
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-
+
       - name: Install dependencies
-        if: steps.yarn-cache.outputs.cache-hit != 'true'
-        run: yarn --frozen-lockfile
+        run: pnpm install --frozen-lockfile
 
       - name: Build
-        run: npm run build
+        run: pnpm docs:build # 使用 pnpm 执行构建命令
 
       - name: Deploy
         uses: crazy-max/ghaction-github-pages@v3
