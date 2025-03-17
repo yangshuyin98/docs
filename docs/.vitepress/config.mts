@@ -33,10 +33,11 @@ export default defineConfig({
       {
         text: '前端',
         items: [
-          { text: 'vue', link: '/item-1' },
-          { text: 'JavaScript', link: '/item-2' },
-          { text: 'vue', link: '/item-3' },
-          { text: 'else', link: '/item-3' },]
+          { text: 'vue', link: '/frontEnd/vue/vue' },
+          { text: 'JavaScript', link: '/frontEnd/JavaScript/JavaScript' },
+          { text: 'vue', link: '/frontEnd/vue/vue2' },
+          { text: 'else', link: '/frontEnd/else/else.md' },]
+          
       },
       {
         text: '后端',
