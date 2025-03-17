@@ -36,6 +36,7 @@ export default defineConfig({
           { text: 'vue', link: '/frontEnd/vue/vue' },
           { text: 'JavaScript', link: '/frontEnd/JavaScript/JavaScript' },
           { text: 'vue', link: '/frontEnd/vue/vue2' },
+          { text: 'vue', link: '/frontEnd/vue/vue2' },
           { text: 'else', link: '/frontEnd/else/else.md' },]
           
       },
