@@ -42,6 +42,19 @@ export default defineConfig({
           
       },
       {
+        text: '笔记',
+        items: [
+          { text: 'vue', link: '/frontEnd/vue/vue' },
+          { text: 'JavaScript', link: '/frontEnd/JavaScript/JavaScript' },
+          { text: 'vue', link: '/frontEnd/vue/vue2' },
+          { text: 'vue', link: '/frontEnd/vue/vue2' },
+          { text: 'note', link: '/notes/note' },
+          { text: 'GitHub', link: '/notes/GitHub上删除项目中的个别文件' },]
+          
+      },
+
+      
+      {
         text: '后端',
         items: [
           { text: 'spring', link: '/backEnd/spring' },
