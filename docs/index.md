@@ -14,16 +14,16 @@ hero:
     alt: 背景图
   actions:
     - theme: brand
-      text: 什么是 VitePress?
+      text: VitePress+Github Pages详细v1.6.3
       link: vitepress/VitePress+Github Pages详细v1.6.3
     - theme: brand
-      text: 快速开始
+      text: VitePress部署v1.6.3
       link: /vitepress/VitePress部署v1.6.3
     - theme: alt    
-      text: API Examples
+      text: 基于目录为VitePress生成侧边栏
       link: /vitepress/基于目录为VitePress生成侧边栏
     - theme: alt  
-      text: VitePress+Github Pages详细
+      text: dist部署
       link: /vitepress/dist部署
 
       

@@ -42,8 +42,8 @@ export default defineConfig({
       {
         text: '后端',
         items: [
-          { text: 'java', link: '/item-1' },
-          { text: 'python', link: '/item-2' },
+          { text: 'spring', link: '/backEnd/spring' },
+          { text: 'java', link: '/backEnd/java' },
           { text: 'else', link: '/item-3' },]
       }
     ],
