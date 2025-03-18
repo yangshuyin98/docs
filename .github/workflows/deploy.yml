@@ -30,8 +30,11 @@ jobs:
             cache: pnpm                                         # 启用 pnpm 缓存以加速依赖安装
       - name: Setup Pages
         uses: actions/configure-pages@v5  # 使用 GitHub 官方的动作来自动配置 Pages
+
       - name: Install dependencies
-        run: pnpm install         # 执行 pnpm install 命令安装依赖        
+        run: pnpm install         # 执行 pnpm install 命令安装依赖   
+        env:
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1  
       - name: Build with VitePress    # 使用 VitePress 构建项目
         run: |
           pnpm run docs:build         
@@ -44,11 +47,7 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
-    steps:  
-    - name: Install deps
-      run: pnpm install
-      env:
-        PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1       
+    steps:         
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
       with:
