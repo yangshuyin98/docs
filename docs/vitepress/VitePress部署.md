@@ -203,7 +203,7 @@ jobs:
            # 获取完整的历史记录，用于生成正确的 lastUpdated 时间（如果需要）
            # 设置 pnpm 环境
       - name: Setup pnpm
-        uses: pnpm/action-setup@v2  # 使用 pnpm 官方的动作来设置 pnpm
+        uses: pnpm/action-setup@v3 # 使用 pnpm 官方的动作来设置 pnpm
         with:
           version: 10.6.3 # 指定要安装的 pnpm 版本
           
@@ -211,7 +211,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3  # 使用 GitHub 官方的 Node.js 设置动作
         with:
-          node-version: 22.14.0   # 使用 Node.js 18 版本
+          node-version: "22"  # 使用 Node LTS 版本
           cache: pnpm       # 启用 pnpm 缓存以加速依赖安装
            # 配置 GitHub Pages 环境
       - name: Setup Pages
