@@ -1,8 +1,7 @@
 name: Deploy VitePress site to Pages
 on:
   push:
-    branches:
-      - main
+    branches: [main]    
   workflow_dispatch:
 permissions:
   contents: write 
@@ -16,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3  
+        uses: actions/checkout@v4 
         with:
           fetch-depth: 0 
       - name: Setup pnpm
@@ -38,8 +37,8 @@ jobs:
       - name: Build with VitePress    # 使用 VitePress 构建项目
         run: |
           pnpm run docs:build         
-          touch .nojekyll  
-           # 上传构建后的文件作为工作流 artifact（中间产物）
+          touch docs/.vitepress/dist/.nojekyll 
+      # 上传构建后的文件作为工作流                   artifact（中间产物）
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3   # 使用 GitHub 官方的动作上传文件
         with:
