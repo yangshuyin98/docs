@@ -49,6 +49,7 @@ jobs:
         run: |
           pnpm run docs:build         
           touch .nojekyll 
+          touch docs/.vitepress/dist/.nojekyll  # 精确路径
       
 
 
