@@ -1,12 +1,12 @@
 import { defineConfig } from 'vitepress'
 import { type DefaultTheme } from 'vitepress'
 
-
 export default defineConfig({
   base: "/docs/",
   title: "modern的Vitepress文档",
   description: "一个vitepress站点",
-  themeConfig: {    // 👉设置主题配置    
+  themeConfig: {    // 👉设置主题配置 
+     
     outlineTitle: '文章目录',
     outline: [2, 6],
     logo: '/logo.svg',
@@ -77,25 +77,26 @@ export default defineConfig({
         ]
       },
     ],
+    
     //nav结束
-    sidebar: {
-       
-      '/document/vitepress/zh/guide/': { base: '/document/vitepress/zh/guide/', items: sidebarGuide() },
-      '/document/vitepress/zh/reference/': { base: '/document/vitepress/zh/reference/', items: sidebarReference(), },
-      '/blogs/': [
-        { text: '编程日志', link: '/blogs/coding-001' },
-        { text: '美食记录', link: '/blogs/food-001/' },
-        { text: '园艺笔记', link: '/blogs/garden-001/' },
-        { text: "健康生活", link: "/blogs/health-001" },
-        { text: "生活随笔", link: "/blogs/life-001" },
-        { text: "影视评论", link: "/blogs/movie-001" },
-        { text: "音乐分享", link: "/blogs/music-001" },
-        { text: "摄影作品", link: "/blogs/photo-001" },
-        { text: "读书笔记", link: "/blogs/reading-001" },
-        { text: "旅行日记", link: "/blogs/travel-001" },
-      ],
+    // sidebar: {
+    //   '/document/vitepress/zh/guide/': { base: '/document/vitepress/zh/guide/', items: sidebarGuide() },
+    //   '/document/vitepress/zh/reference/': { base: '/document/vitepress/zh/reference/', items: sidebarReference(), },
+    //   '/blogs/': [
+    //     { text: '编程日志', link: '/blogs/coding-001' },
+    //     { text: '美食记录', link: '/blogs/food-001/' },
+    //     { text: '园艺笔记', link: '/blogs/garden-001/' },
+    //     { text: "健康生活", link: "/blogs/health-001" },
+    //     { text: "生活随笔", link: "/blogs/life-001" },
+    //     { text: "影视评论", link: "/blogs/movie-001" },
+    //     { text: "音乐分享", link: "/blogs/music-001" },
+    //     { text: "摄影作品", link: "/blogs/photo-001" },
+    //     { text: "读书笔记", link: "/blogs/reading-001" },
+    //     { text: "旅行日记", link: "/blogs/travel-001" },
+    //   ],
 
-    }, //sidebar 结束
+
+    // }, //sidebar 结束
     //侧边栏结束    
     lastUpdated: {
       text: 'Last Updated',
