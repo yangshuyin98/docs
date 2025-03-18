@@ -1,56 +1,20 @@
-name: Deploy GitHub Pages
-
+name: Deploy
 on:
   push:
     branches:
       - main
-
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Setup Node.js 20
-        uses: actions/setup-node@v3
-        with:
-          node-version: 20
-          cache: pnpm
-
-      # Corepack 核心配置
-      - name: Initialize Corepack
-        run: |
-          corepack enable
-          corepack prepare pnpm@10.6.3 --activate
-          echo "~/.nvm/versions/node/v20*/bin" >> $GITHUB_PATH
-          echo "~/.cache/node/corepack/bin" >> $GITHUB_PATH
-
-      - name: Verify pnpm path
-        run: |
-          which pnpm
-          pnpm -v
-
-      - name: Cache dependencies
-        uses: actions/cache@v3
-        id: pnpm-cache
-        with:
-          path: |
-            ~/.pnpm-store
-            **/node_modules
-          key: ${{ runner.os }}-pnpm-${{ hashFiles('pnpm-lock.yaml') }}
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Build
-        run: pnpm docs:build
-
-      - name: Deploy
-        uses: crazy-max/ghaction-github-pages@v3
-        with:
-          target-branch: gh-pages
-          build_dir: docs/.vitepress/dist
-          fqdn: cleaner.love
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - uses: actions/checkout@v2
+    - name: Install dependencies
+      run: pnpm install
+    - name: Build
+      run: pnpm run docs:build
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./docs/.vitepress/dist
+        publish_branch: gh-pages
