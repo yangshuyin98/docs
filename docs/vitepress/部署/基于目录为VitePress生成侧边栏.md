@@ -20,6 +20,7 @@ Vue3的文档就是用VitePress搭建的。
 
 ~~~text
 npm install -D vitepress-plugin-autobar
+npm install -D vitepress-plugin-autobar
 ~~~
 
 # API
