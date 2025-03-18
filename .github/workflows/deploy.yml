@@ -31,11 +31,11 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4  # 升级到最新版
         with:
-          node-version: '20'  # LTS 版本
+          node-version: '22'  # LTS 版本
           cache: pnpm
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile  # 确保锁文件一致性
+        run: pnpm install
 
       - name: Build with VitePress
         run: |

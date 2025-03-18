@@ -343,3 +343,100 @@ jobs:
 
 
 ***最后，就部署完毕了***
+
+在GitHub Actions的生态中，我们经常会遇到需要在不同工作流之间传递和使用文件的情况。然而，官方的actions/download-artifact并不能满足这种跨工作流下载工件的需求。为此，一个名为dawidd6/action-download-artifact@v3的开源项目应运而生，它能帮助你轻松地从指定的工作流和提交信息中获取并提取上传的工件。
+————————————————
+
+                            版权声明：本文为博主原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接和本声明。
+
+原文链接：https://blog.csdn.net/gitblog_00010/article/details/139036629
+
+第三方 action
+
+需要 token 权限问题
+
+```
+
+name: Deploy VitePress site to Pages
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+permissions:
+  contents: write 
+  pages: write        
+  id-token: write    
+
+concurrency:
+  group: gh-pages   
+  cancel-in-progress: false 
+
+jobs:
+
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3  
+        with:
+          fetch-depth: 0 
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 10.6.3 # 指定要安装的 pnpm 版本
+      - name: Setup Node
+        uses: actions/setup-node@v3  # 使用 GitHub 官方的 Node.js 设置动作
+        with:
+            node-version: 22.14.0   # 使用 Node.js 18 版本
+            cache: pnpm       # 启用 pnpm 缓存以加速依赖安装
+      - name: Setup Pages
+        uses: actions/configure-pages@v5  # 使用 GitHub 官方的动作来自动配置 Pages
+      - name: Install dependencies
+        run: pnpm install        # 执行 pnpm install 命令安装依赖
+
+        # 使用 VitePress 构建项目
+      - name: Build with VitePress
+        run: |
+          pnpm run docs:build         
+          touch .nojekyll  
+           # 上传构建后的文件作为工作流 artifact（中间产物）
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3   # 使用 GitHub 官方的动作上传文件
+        with:
+             path: docs/.vitepress/dist # 指定上传的路径，当前是根目录，如果是docs需要加docs/的前缀
+
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3 
+
+    - name: Install pnpm
+      uses: pnpm/action-setup@v3
+
+    - name: Set node version to ${{ matrix.node_version }}
+      uses: actions/setup-node@v4
+      with:
+         node-version: ${{ matrix.node_version }}  
+
+    - name: Install deps
+      run: pnpm install
+      env:
+        PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1    
+
+
+    - name: Install dependencies
+      run: pnpm install
+    - name: Build
+      run: pnpm run docs:build
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        
+
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./docs/.vitepress/dist
+        publish_branch: gh-pages
+```
+
