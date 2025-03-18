@@ -1,4 +1,4 @@
-import{_ as a,c as n,o as i,ag as p}from"./chunks/framework.oP1PDRBo.js";const c=JSON.parse('{"title":"10分钟使用VitePress + 自动部署github pages 建立自己的博客","description":"","frontmatter":{"title":"10分钟使用VitePress + 自动部署github pages 建立自己的博客","date":"2024-02-10T00:00:00.000Z","tags":["健康","生活方式"],"categories":["健康生活"],"sticky":3},"headers":[],"relativePath":"vitepress/VitePress部署.md","filePath":"vitepress/VitePress部署.md"}'),l={name:"vitepress/VitePress部署.md"};function e(t,s,h,k,d,o){return i(),n("div",null,s[0]||(s[0]=[p(`<h1 id="github的action自动部署到github-pages中" tabindex="-1">github的action自动部署到github-pages中 <a class="header-anchor" href="#github的action自动部署到github-pages中" aria-label="Permalink to &quot;github的action自动部署到github-pages中&quot;">​</a></h1><p>难度：★★★☆☆</p><p>使用<code>github</code>的<code>action</code>自动部署到<code>github-pages</code>中</p><p>创建部署的<code>deploy.yml</code>文件，在项目的根目录下面</p><h2 id="_1-修改config-mjs" tabindex="-1">1.修改config.mjs <a class="header-anchor" href="#_1-修改config-mjs" aria-label="Permalink to &quot;1.修改config.mjs&quot;">​</a></h2><p>需要在config.mjs里面配置base，名称为github仓库名称，注意不要忘记改之前的icon</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>base: &quot;/blogs/&quot;</span></span></code></pre></div><p>修改package.json, 添加<code> &quot;packageManager&quot;: &quot;pnpm@10.6.3&quot;</code>, 版本号要与后面yaml中的pnpm版本号一致</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>{</span></span>
+import{_ as a,c as n,o as i,ag as p}from"./chunks/framework.oP1PDRBo.js";const r=JSON.parse('{"title":"10分钟使用VitePress + 自动部署github pages 建立自己的博客","description":"","frontmatter":{"title":"10分钟使用VitePress + 自动部署github pages 建立自己的博客","date":"2024-02-10T00:00:00.000Z","tags":["健康","生活方式"],"categories":["健康生活"],"sticky":3},"headers":[],"relativePath":"vitepress/VitePress部署.md","filePath":"vitepress/VitePress部署.md"}'),e={name:"vitepress/VitePress部署.md"};function l(t,s,h,c,o,k){return i(),n("div",null,s[0]||(s[0]=[p(`<h1 id="github的action自动部署到github-pages中" tabindex="-1">github的action自动部署到github-pages中 <a class="header-anchor" href="#github的action自动部署到github-pages中" aria-label="Permalink to &quot;github的action自动部署到github-pages中&quot;">​</a></h1><p>难度：★★★☆☆</p><p>使用<code>github</code>的<code>action</code>自动部署到<code>github-pages</code>中</p><p>创建部署的<code>deploy.yml</code>文件，在项目的根目录下面</p><h2 id="_1-修改config-mjs" tabindex="-1">1.修改config.mjs <a class="header-anchor" href="#_1-修改config-mjs" aria-label="Permalink to &quot;1.修改config.mjs&quot;">​</a></h2><p>需要在config.mjs里面配置base，名称为github仓库名称，注意不要忘记改之前的icon</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>base: &quot;/blogs/&quot;</span></span></code></pre></div><p>修改package.json, 添加<code> &quot;packageManager&quot;: &quot;pnpm@10.6.3&quot;</code>, 版本号要与后面yaml中的pnpm版本号一致</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>{</span></span>
 <span class="line"><span>  &quot;devDependencies&quot;: {</span></span>
 <span class="line"><span>    &quot;@types/node&quot;: &quot;^22.13.10&quot;,</span></span>
 <span class="line"><span>    &quot;vitepress&quot;: &quot;^1.6.3&quot;</span></span>
@@ -40,7 +40,13 @@ import{_ as a,c as n,o as i,ag as p}from"./chunks/framework.oP1PDRBo.js";const c
 <span class="line"><span>git commit -m &quot;first commit&quot;</span></span>
 <span class="line"><span>git branch -M main</span></span>
 <span class="line"><span>git remote add origin https://github.com/yangshuyin98/blogs.git</span></span>
-<span class="line"><span>git push -u origin main</span></span></code></pre></div><p>git push origin main</p><p>git commit -m &quot;更新文件&quot;</p><p>git commit -m &quot;更新文件&quot;</p><p>git add .</p><p>git push origin main</p><h5 id="_6-选择github-actions" tabindex="-1">6.选择github actions <a class="header-anchor" href="#_6-选择github-actions" aria-label="Permalink to &quot;6.选择github actions&quot;">​</a></h5><p>Actions→</p><p>Get started with GitHub Actions→</p><p>Skip this and set up a workflow yourself →</p><h5 id="_7-设置工作流" tabindex="-1">7.设置工作流 <a class="header-anchor" href="#_7-设置工作流" aria-label="Permalink to &quot;7.设置工作流&quot;">​</a></h5><p>重命名并设置deploy.yml脚本 脚本文件：参考的vitepress官方文档：<a href="https://vitepress.dev/guide/deploy#github-pages" target="_blank" rel="noreferrer">https://vitepress.dev/guide/deploy#github-pages</a> **这里发现参考资料里面的node包有问题,换成我们的</p><div class="language-yaml vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">yaml</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># 定义工作流名称为“部署 VitePress 站点到 Pages”</span></span>
+<span class="line"><span>git push -u origin main</span></span></code></pre></div><p>git push origin main</p><p>git commit -m &quot;更新文件&quot;</p><p>git commit -m &quot;更新文件&quot;</p><p>git add .</p><p>git push origin main</p><h5 id="_6-选择github-actions" tabindex="-1">6.选择github actions <a class="header-anchor" href="#_6-选择github-actions" aria-label="Permalink to &quot;6.选择github actions&quot;">​</a></h5><h2 id="关于发布源" tabindex="-1"><a href="https://docs.github.com/zh/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site#about-publishing-sources" target="_blank" rel="noreferrer">关于发布源</a> <a class="header-anchor" href="#关于发布源" aria-label="Permalink to &quot;[关于发布源](https://docs.github.com/zh/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site#about-publishing-sources)&quot;">​</a></h2><p>可以指定要用作发布源的分支和文件夹。 源分支可以是存储库中的任何分支，源文件夹可以是源分支上的存储库根目录 (<code>/</code>)，也可以是源分支上的 <code>/docs</code> 文件夹。 将更改推送到源分支时，源文件夹中的更改将发布到 GitHub Pages 站点。</p><h2 id="从分支进行发布" tabindex="-1"><a href="https://docs.github.com/zh/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site#publishing-from-a-branch" target="_blank" rel="noreferrer">从分支进行发布</a> <a class="header-anchor" href="#从分支进行发布" aria-label="Permalink to &quot;[从分支进行发布](https://docs.github.com/zh/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site#publishing-from-a-branch)&quot;">​</a></h2><ol><li>确保你要用作发布源的分支已经存在于你的存储库中。</li><li>在 GitHub 上，导航到站点的仓库。</li><li>在存储库名称下，单击 “设置”。 如果看不到“设置”选项卡，请选择“”下拉菜单，然后单击“设置”。</li><li>在边栏的“代码和自动化”部分中，单击“ Pages”。</li><li>在“生成和部署”的“源”下，选择“从分支进行部署”。</li><li>在“生成和部署”下，使用分支下拉菜单并选择发布源。</li><li>(可选）使用文件夹下拉菜单选择发布源的文件夹。</li><li>单击“ <strong>保存</strong>”。</li></ol><p>Actions→</p><p>Get started with GitHub Actions→</p><p>Skip this and set up a workflow yourself →</p><h5 id="_7-设置工作流" tabindex="-1">7.设置工作流 <a class="header-anchor" href="#_7-设置工作流" aria-label="Permalink to &quot;7.设置工作流&quot;">​</a></h5><ul><li>确保仓库设置中已启用GitHub Pages服务</li><li>首次部署需要在仓库设置中选择&quot;GitHub Actions&quot;作为发布源</li><li>自动生成<code>.nojekyll</code>文件已保留，防止Jekyll处理构建产物</li></ul><p>重命名并设置deploy.yml脚本 脚本文件：参考的vitepress官方文档：<a href="https://vitepress.dev/guide/deploy#github-pages" target="_blank" rel="noreferrer">https://vitepress.dev/guide/deploy#github-pages</a> **这里发现参考资料里面的node包有问题,换成我们的</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span># 将 peaceiris/actions-gh-pages 替换为官方方案</span></span>
+<span class="line"><span>- name: Deploy</span></span>
+<span class="line"><span>  uses: actions/deploy-pages@v4  # 官方维护</span></span></code></pre></div><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>- name: Deploy</span></span>
+<span class="line"><span>  uses: peaceiris/actions-gh-pages@v3  # 来自 https://github.com/peaceiris/actions-gh-pages</span></span></code></pre></div><ul><li><strong>用途</strong>：将构建产物推送到 <code>gh-pages</code> 分支</li><li><strong>维护方</strong>：社区开发者 peaceiris</li><li><strong>特点</strong>：非官方方案但流行（有 3k+ stars），存在潜在的权限管理风险</li></ul><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span># pnpm 安装仍需保留第三方方案</span></span>
+<span class="line"><span>- name: Setup pnpm</span></span>
+<span class="line"><span>  uses: pnpm/action-setup@v3</span></span></code></pre></div><div class="language-diff vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">diff</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#B31D28;--shiki-dark:#FDAEB7;">- uses: actions/download-artifact@v3</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">+ uses: actions/download-artifact@v4</span></span></code></pre></div><div class="language-yaml vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">yaml</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># 定义工作流名称为“部署 VitePress 站点到 Pages”</span></span>
 <span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">name</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">Deploy VitePress site to Pages</span></span>
 <span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># 触发工作流的事件</span></span>
 <span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">on</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:</span></span>
@@ -80,7 +86,7 @@ import{_ as a,c as n,o as i,ag as p}from"./chunks/framework.oP1PDRBo.js";const c
 <span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">           # 获取完整的历史记录，用于生成正确的 lastUpdated 时间（如果需要）</span></span>
 <span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">           # 设置 pnpm 环境</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">      - </span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">name</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">Setup pnpm</span></span>
-<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">        uses</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">pnpm/action-setup@v2</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">  # 使用 pnpm 官方的动作来设置 pnpm</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">        uses</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">pnpm/action-setup@v3</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # 使用 pnpm 官方的动作来设置 pnpm</span></span>
 <span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">        with</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:</span></span>
 <span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">          version</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">10.6.3</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # 指定要安装的 pnpm 版本</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">          </span></span>
@@ -88,7 +94,7 @@ import{_ as a,c as n,o as i,ag as p}from"./chunks/framework.oP1PDRBo.js";const c
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">      - </span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">name</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">Setup Node</span></span>
 <span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">        uses</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">actions/setup-node@v3</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">  # 使用 GitHub 官方的 Node.js 设置动作</span></span>
 <span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">        with</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:</span></span>
-<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">          node-version</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">22.14.0</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">   # 使用 Node.js 18 版本</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">          node-version</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;22&quot;</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">  # 使用 Node LTS 版本</span></span>
 <span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">          cache</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">pnpm</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">       # 启用 pnpm 缓存以加速依赖安装</span></span>
 <span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">           # 配置 GitHub Pages 环境</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">      - </span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">name</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">Setup Pages</span></span>
@@ -155,7 +161,7 @@ import{_ as a,c as n,o as i,ag as p}from"./chunks/framework.oP1PDRBo.js";const c
 <span class="line"><span>      - name: Setup pnpm</span></span>
 <span class="line"><span>        uses: pnpm/action-setup@v2 # 安装pnpm并添加到环境变量</span></span>
 <span class="line"><span>        with:</span></span>
-<span class="line"><span>          version: 8.6.12 # 指定需要的 pnpm 版本</span></span>
+<span class="line"><span>          version: 10.6.3 # 指定需要的 pnpm 版本</span></span>
 <span class="line"><span>      - name: Setup Node</span></span>
 <span class="line"><span>        uses: actions/setup-node@v3</span></span>
 <span class="line"><span>        with:</span></span>
@@ -185,4 +191,87 @@ import{_ as a,c as n,o as i,ag as p}from"./chunks/framework.oP1PDRBo.js";const c
 <span class="line"><span>    steps:</span></span>
 <span class="line"><span>      - name: Deploy to GitHub Pages</span></span>
 <span class="line"><span>        id: deployment  # 指定id</span></span>
-<span class="line"><span>        uses: actions/deploy-pages@v4 # 将之前的构建产物部署到github pages中</span></span></code></pre></div><h3 id="总结" tabindex="-1">总结： <a class="header-anchor" href="#总结" aria-label="Permalink to &quot;总结：&quot;">​</a></h3><p>这段代码逻辑清晰，配置合理，符合 GitHub Actions 的最佳实践。它能够正确地构建 VitePress 站点并部署到 GitHub Pages，同时通过并发控制和权限设置确保了部署的安全性和稳定性。如果项目需求没有特殊变化，这段代码可以直接使用。</p><p><img src="https://i-blog.csdnimg.cn/direct/29287e1d427840aba685302b147fec05.png" alt="在这里插入图片描述"></p><p>8.点击确定，耐心等待15秒左右，就可以了，接下来查看我们的域名：</p><p><img src="https://i-blog.csdnimg.cn/direct/c7436a384b364d3cb1cd97fc6410a13f.png" alt="在这里插入图片描述"></p><p><em><strong>最后，就部署完毕了</strong></em></p>`,52)]))}const g=a(l,[["render",e]]);export{c as __pageData,g as default};
+<span class="line"><span>        uses: actions/deploy-pages@v4 # 将之前的构建产物部署到github pages中</span></span></code></pre></div><h3 id="总结" tabindex="-1">总结： <a class="header-anchor" href="#总结" aria-label="Permalink to &quot;总结：&quot;">​</a></h3><p>这段代码逻辑清晰，配置合理，符合 GitHub Actions 的最佳实践。它能够正确地构建 VitePress 站点并部署到 GitHub Pages，同时通过并发控制和权限设置确保了部署的安全性和稳定性。如果项目需求没有特殊变化，这段代码可以直接使用。</p><p><img src="https://i-blog.csdnimg.cn/direct/29287e1d427840aba685302b147fec05.png" alt="在这里插入图片描述"></p><p>8.点击确定，耐心等待15秒左右，就可以了，接下来查看我们的域名：</p><p><img src="https://i-blog.csdnimg.cn/direct/c7436a384b364d3cb1cd97fc6410a13f.png" alt="在这里插入图片描述"></p><p><em><strong>最后，就部署完毕了</strong></em></p><p>在GitHub Actions的生态中，我们经常会遇到需要在不同工作流之间传递和使用文件的情况。然而，官方的actions/download-artifact并不能满足这种跨工作流下载工件的需求。为此，一个名为dawidd6/action-download-artifact@v3的开源项目应运而生，它能帮助你轻松地从指定的工作流和提交信息中获取并提取上传的工件。 ————————————————</p><p>第三方 action</p><p>需要 token 权限问题</p><p><strong>权限问题</strong>：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span># 将 peaceiris/actions-gh-pages 替换为官方方案</span></span>
+<span class="line"><span>- name: Deploy</span></span>
+<span class="line"><span>  uses: actions/deploy-pages@v4  # 官方维护</span></span></code></pre></div><p><code>peaceiris/actions-gh-pages</code> 需要 <code>contents: write</code> 权限，</p><p>而官方方案只需 <code>pages: write</code></p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span></span></span>
+<span class="line"><span>name: Deploy VitePress site to Pages</span></span>
+<span class="line"><span>on:</span></span>
+<span class="line"><span>  push:</span></span>
+<span class="line"><span>    branches:</span></span>
+<span class="line"><span>      - main</span></span>
+<span class="line"><span>  workflow_dispatch:</span></span>
+<span class="line"><span>permissions:</span></span>
+<span class="line"><span>  contents: write </span></span>
+<span class="line"><span>  pages: write        </span></span>
+<span class="line"><span>  id-token: write    </span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>concurrency:</span></span>
+<span class="line"><span>  group: gh-pages   </span></span>
+<span class="line"><span>  cancel-in-progress: false </span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>jobs:</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  setup:</span></span>
+<span class="line"><span>    runs-on: ubuntu-latest</span></span>
+<span class="line"><span>    steps:</span></span>
+<span class="line"><span>      - name: Checkout</span></span>
+<span class="line"><span>        uses: actions/checkout@v3  </span></span>
+<span class="line"><span>        with:</span></span>
+<span class="line"><span>          fetch-depth: 0 </span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      - name: Setup pnpm</span></span>
+<span class="line"><span>        uses: pnpm/action-setup@v3</span></span>
+<span class="line"><span>        with:</span></span>
+<span class="line"><span>          version: 10.6.3 # 指定要安装的 pnpm 版本</span></span>
+<span class="line"><span>      - name: Setup Node</span></span>
+<span class="line"><span>        uses: actions/setup-node@v3  # 使用 GitHub 官方的 Node.js 设置动作</span></span>
+<span class="line"><span>        with:</span></span>
+<span class="line"><span>            node-version: 22.14.0   # 使用 Node.js 18 版本</span></span>
+<span class="line"><span>            cache: pnpm       # 启用 pnpm 缓存以加速依赖安装</span></span>
+<span class="line"><span>      - name: Setup Pages</span></span>
+<span class="line"><span>        uses: actions/configure-pages@v5  # 使用 GitHub 官方的动作来自动配置 Pages</span></span>
+<span class="line"><span>      - name: Install dependencies</span></span>
+<span class="line"><span>        run: pnpm install        # 执行 pnpm install 命令安装依赖</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        # 使用 VitePress 构建项目</span></span>
+<span class="line"><span>      - name: Build with VitePress</span></span>
+<span class="line"><span>        run: |</span></span>
+<span class="line"><span>          pnpm run docs:build         </span></span>
+<span class="line"><span>          touch .nojekyll  </span></span>
+<span class="line"><span>           # 上传构建后的文件作为工作流 artifact（中间产物）</span></span>
+<span class="line"><span>      - name: Upload artifact</span></span>
+<span class="line"><span>        uses: actions/upload-pages-artifact@v3   # 使用 GitHub 官方的动作上传文件</span></span>
+<span class="line"><span>        with:</span></span>
+<span class="line"><span>             path: docs/.vitepress/dist # 指定上传的路径，当前是根目录，如果是docs需要加docs/的前缀</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  deploy:</span></span>
+<span class="line"><span>    runs-on: ubuntu-latest</span></span>
+<span class="line"><span>    steps:</span></span>
+<span class="line"><span>    - uses: actions/checkout@v3 </span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    - name: Install pnpm</span></span>
+<span class="line"><span>      uses: pnpm/action-setup@v3</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    - name: Set node version to \${{ matrix.node_version }}</span></span>
+<span class="line"><span>      uses: actions/setup-node@v4</span></span>
+<span class="line"><span>      with:</span></span>
+<span class="line"><span>         node-version: \${{ matrix.node_version }}  </span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    - name: Install deps</span></span>
+<span class="line"><span>      run: pnpm install</span></span>
+<span class="line"><span>      env:</span></span>
+<span class="line"><span>        PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1    </span></span>
+<span class="line"><span></span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    - name: Install dependencies</span></span>
+<span class="line"><span>      run: pnpm install</span></span>
+<span class="line"><span>    - name: Build</span></span>
+<span class="line"><span>      run: pnpm run docs:build</span></span>
+<span class="line"><span>    - name: Deploy</span></span>
+<span class="line"><span>      uses: peaceiris/actions-gh-pages@v3</span></span>
+<span class="line"><span>      with:</span></span>
+<span class="line"><span>        </span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        github_token: \${{ secrets.GITHUB_TOKEN }}</span></span>
+<span class="line"><span>        publish_dir: ./docs/.vitepress/dist</span></span>
+<span class="line"><span>        publish_branch: gh-pages</span></span></code></pre></div>`,70)]))}const g=a(e,[["render",l]]);export{r as __pageData,g as default};
