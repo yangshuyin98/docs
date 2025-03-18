@@ -140,7 +140,7 @@ name: Deploy VitePress site to Pages
 on:
  # 当代码推送到 master 分支时触发
   push:
-    branches: [master]
+    branches: [main]
     # 允许用户在 GitHub UI 手动触发工作流
   workflow_dispatch:
 # 设置tokenn访问权限
@@ -190,7 +190,7 @@ jobs:
       # 安装项目依赖
      - name: Install dependencies
         run: pnpm install        # 执行 pnpm install 命令安装依赖
-        run: pnpm install --frozen-lockfile #并通过 --frozen-lockfile 确保锁文件未被修改。
+       
         # 使用 VitePress 构建项目
       - name: Build with VitePress
         run: |
