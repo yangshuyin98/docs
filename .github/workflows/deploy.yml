@@ -23,11 +23,7 @@ jobs:
         with:
             version: 10.6.3                                          # 指定要安装的 pnpm 版本
           
-      - name: Build with VitePress
-        run: |
-              npm run docs:build
-              mkdir -p docs/.vitepress/dist  # 确保目录存在
-              touch docs/.vitepress/dist/.nojekyll
+    
      
       - name: Setup Node
         uses: actions/setup-node@v4                              # 使用 GitHub 官方的 Node.js 设置动作
