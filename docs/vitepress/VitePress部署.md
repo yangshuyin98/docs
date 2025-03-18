@@ -347,13 +347,35 @@ jobs:
 在GitHub Actions的生态中，我们经常会遇到需要在不同工作流之间传递和使用文件的情况。然而，官方的actions/download-artifact并不能满足这种跨工作流下载工件的需求。为此，一个名为dawidd6/action-download-artifact@v3的开源项目应运而生，它能帮助你轻松地从指定的工作流和提交信息中获取并提取上传的工件。
 ————————————————
 
-                            版权声明：本文为博主原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接和本声明。
 
-原文链接：https://blog.csdn.net/gitblog_00010/article/details/139036629
+
+
 
 第三方 action
 
 需要 token 权限问题
+
+**权限问题**：
+
+```
+# 将 peaceiris/actions-gh-pages 替换为官方方案
+- name: Deploy
+  uses: actions/deploy-pages@v4  # 官方维护
+
+```
+
+
+
+```
+# pnpm 安装仍需保留第三方方案
+- name: Setup pnpm
+  uses: pnpm/action-setup@v3
+
+```
+
+`peaceiris/actions-gh-pages` 需要 `contents: write` 权限，
+
+而官方方案只需 `pages: write`
 
 ```
 
