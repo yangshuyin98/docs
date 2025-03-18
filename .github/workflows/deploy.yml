@@ -12,26 +12,26 @@ permissions:
 
 concurrency:
   group: gh-pages
-  cancel-in-progress: true  # 更合理的默认值
+  cancel-in-progress: true
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3  # 升级到最新版本
+        uses: actions/checkout@v4  # 升级到v4
         with:
           fetch-depth: 0
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v3
         with:
-          version: 10.6.3  # 建议使用稳定版本
+          version: 10.6.3
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3  # 升级到最新版
+        uses: actions/setup-node@v4  # 升级到v4
         with:
-          node-version: '22'  # LTS 版本
+          node-version: '22'
           cache: pnpm
 
       - name: Install dependencies
@@ -40,29 +40,20 @@ jobs:
       - name: Build with VitePress
         run: |
           pnpm run docs:build
-          touch docs/.vitepress/dist/.nojekyll  # 更精确的路径
+          touch docs/.vitepress/dist/.nojekyll
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v4   # 4之前废，升级到最新版本
+        uses: actions/upload-pages-artifact@v3  # 保持v3或使用最新兼容版本
         with:
           path: docs/.vitepress/dist
 
   deploy:
-            needs: build
-            runs-on: ubuntu-latest
-            steps:
-              - name: Checkout
-                uses: actions/checkout@v4
-              
-              - name: Download artifact
-                uses: actions/download-artifact@v4   # 4之前废，升级到最新版本
-                with:
-                  name: pages-artifact
-        
-              - name: Deploy
-                uses: peaceiris/actions-gh-pages@v3
-                with:
-                  github_token: ${{ secrets.GITHUB_TOKEN }}
-                  publish_dir: ./docs/.vitepress/dist
-                  force_orphan: true  # 确保干净历史
-        
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deploy
+        uses: actions/deploy-pages@v4  # 使用官方部署Action
