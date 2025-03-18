@@ -17,6 +17,7 @@ export default {
 然后将打包后的dist下的文件推送到你的远程仓库。vitepress官网给我们提供了一个脚本文件`deploy.sh`,我们只需要改下远程仓库即可
 
 ~~~text
+
 #!/usr/bin/env sh
 # 忽略错误
 set -e
