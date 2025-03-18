@@ -133,6 +133,35 @@ Skip this and set up a workflow yourself →
 
 
 
+```
+# 将 peaceiris/actions-gh-pages 替换为官方方案
+- name: Deploy
+  uses: actions/deploy-pages@v4  # 官方维护
+```
+
+```
+- name: Deploy
+  uses: peaceiris/actions-gh-pages@v3  # 来自 https://github.com/peaceiris/actions-gh-pages
+
+```
+
+- **用途**：将构建产物推送到 `gh-pages` 分支
+- **维护方**：社区开发者 peaceiris
+- **特点**：非官方方案但流行（有 3k+ stars），存在潜在的权限管理风险
+
+```
+# pnpm 安装仍需保留第三方方案
+- name: Setup pnpm
+  uses: pnpm/action-setup@v3
+```
+
+
+
+```diff
+- uses: actions/download-artifact@v3
++ uses: actions/download-artifact@v4
+```
+
 ```yaml
 # 定义工作流名称为“部署 VitePress 站点到 Pages”
 name: Deploy VitePress site to Pages
@@ -291,7 +320,7 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v2 # 安装pnpm并添加到环境变量
         with:
-          version: 8.6.12 # 指定需要的 pnpm 版本
+          version: 10.6.3 # 指定需要的 pnpm 版本
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
@@ -365,13 +394,6 @@ jobs:
 ```
 
 
-
-```
-# pnpm 安装仍需保留第三方方案
-- name: Setup pnpm
-  uses: pnpm/action-setup@v3
-
-```
 
 `peaceiris/actions-gh-pages` 需要 `contents: write` 权限，
 

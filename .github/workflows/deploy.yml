@@ -48,11 +48,21 @@ jobs:
           path: docs/.vitepress/dist
 
   deploy:
-    needs: build  # 显式声明依赖关系
-    environment: 
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v4  # 使用官方部署方案
+            needs: build
+            runs-on: ubuntu-latest
+            steps:
+              - name: Checkout
+                uses: actions/checkout@v4
+              
+              - name: Download artifact
+                uses: actions/download-artifact@v4   # 4之前废，升级到最新版本
+                with:
+                  name: pages-artifact
+        
+              - name: Deploy
+                uses: peaceiris/actions-gh-pages@v3
+                with:
+                  github_token: ${{ secrets.GITHUB_TOKEN }}
+                  publish_dir: ./docs/.vitepress/dist
+                  force_orphan: true  # 确保干净历史
+        
