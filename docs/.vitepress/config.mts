@@ -2,7 +2,7 @@ import { defineConfig } from 'vitepress'
 import { type DefaultTheme } from 'vitepress'
 
 export default defineConfig({
-  outDir: '../dist',  // 改为输出到根目录的 dist 文件夹
+  
   base: "/docs/",
   title: "modern的Vitepress文档",
   description: "一个vitepress站点",
