@@ -150,8 +150,6 @@ Skip this and set up a workflow yourself →
 脚本文件：参考的vitepress官方文档：https://vitepress.dev/guide/deploy#github-pages
 **这里发现参考资料里面的node包有问题,换成我们的
 
-
-
 ```
 # 将 peaceiris/actions-gh-pages 替换为官方方案
 - name: Deploy
@@ -173,6 +171,116 @@ Skip this and set up a workflow yourself →
 - name: Setup pnpm
   uses: pnpm/action-setup@v3
 ```
+
+```yaml
+name: Deploy VitePress site to Pages
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+permissions:
+  contents: write 
+  pages: write        
+  id-token: write    
+
+concurrency:
+  group: gh-pages   
+  cancel-in-progress: false 
+
+jobs:
+
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3  
+        with:
+          fetch-depth: 0 
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 10.6.3 # 指定要安装的 pnpm 版本
+      - name: Setup Node
+        uses: actions/setup-node@v3  # 使用 GitHub 官方的 Node.js 设置动作
+        with:
+            node-version: 22.14.0   # 使用 Node.js 18 版本
+            cache: pnpm       # 启用 pnpm 缓存以加速依赖安装
+      - name: Setup Pages
+        uses: actions/configure-pages@v5  # 使用 GitHub 官方的动作来自动配置 Pages
+      - name: Install dependencies
+        run: pnpm install        # 执行 pnpm install 命令安装依赖
+
+        # 使用 VitePress 构建项目
+      - name: Build with VitePress
+        run: |
+          pnpm run docs:build         
+          touch .nojekyll  
+           # 上传构建后的文件作为工作流 artifact（中间产物）
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3   # 使用 GitHub 官方的动作上传文件
+        with:
+             path: docs/.vitepress/dist # 指定上传的路径，当前是根目录，如果是docs需要加docs/的前缀
+
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3 
+
+    - name: Install pnpm
+      uses: pnpm/action-setup@v3
+
+    - name: Set node version to ${{ matrix.node_version }}
+      uses: actions/setup-node@v4
+      with:
+         node-version: ${{ matrix.node_version }}  
+
+    - name: Install deps
+      run: pnpm install
+      env:
+        PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1    
+
+
+    - name: Install dependencies
+      run: pnpm install
+    - name: Build
+      run: pnpm run docs:build
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        
+
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./docs/.vitepress/dist
+        publish_branch: gh-pages
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
