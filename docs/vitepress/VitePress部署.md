@@ -119,6 +119,21 @@ git push  origin main
 
 ##### 6.选择github actions
 
+## [关于发布源](https://docs.github.com/zh/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site#about-publishing-sources)
+
+ 可以指定要用作发布源的分支和文件夹。 源分支可以是存储库中的任何分支，源文件夹可以是源分支上的存储库根目录 (`/`)，也可以是源分支上的 `/docs` 文件夹。 将更改推送到源分支时，源文件夹中的更改将发布到 GitHub Pages 站点。
+
+## [从分支进行发布](https://docs.github.com/zh/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site#publishing-from-a-branch)
+
+1. 确保你要用作发布源的分支已经存在于你的存储库中。
+2. 在 GitHub 上，导航到站点的仓库。
+3. 在存储库名称下，单击 “设置”。 如果看不到“设置”选项卡，请选择“”下拉菜单，然后单击“设置”。
+4. 在边栏的“代码和自动化”部分中，单击“ Pages”。
+5. 在“生成和部署”的“源”下，选择“从分支进行部署”。
+6. 在“生成和部署”下，使用分支下拉菜单并选择发布源。
+7. (可选）使用文件夹下拉菜单选择发布源的文件夹。
+8. 单击“ **保存**”。
+
 Actions→
 
 Get started with GitHub Actions→
@@ -126,6 +141,10 @@ Get started with GitHub Actions→
 Skip this and set up a workflow yourself →
 
 ##### 7.设置工作流
+
+- 确保仓库设置中已启用GitHub Pages服务
+- 首次部署需要在仓库设置中选择"GitHub Actions"作为发布源
+- 自动生成`.nojekyll`文件已保留，防止Jekyll处理构建产物
 
 重命名并设置deploy.yml脚本
 脚本文件：参考的vitepress官方文档：https://vitepress.dev/guide/deploy#github-pages
