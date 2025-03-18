@@ -10,7 +10,7 @@ export default defineConfig({
      
     outlineTitle: '文章目录',
     outline: [2, 6],
-    logo: '/logo.svg',
+    logo: '/comet.png',
     // https://vitepress.dev/reference/default-theme-config
     //nav开始
     nav: [
@@ -35,7 +35,7 @@ export default defineConfig({
       {
         text: '笔记',
         items: [
-          { text: '常用Markdown', link: '/notes/常用Markdown' },
+          { text: '常用Markdown', link: '/notes/常用Markdown语法' },
           { text: 'note', link: '/notes/note' },
           { text: 'GitHub', link: '/notes/GitHub上删除项目中的个别文件' },]
       },
