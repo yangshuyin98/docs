@@ -31,6 +31,17 @@ export default defineConfig({
           { text: 'api-examples', link: '/vitepress/api-examples' },]
       },
       {
+        text: '笔记',
+        items: [
+          { text: 'vue', link: '/frontEnd/vue/vue' },
+          { text: 'JavaScript', link: '/frontEnd/JavaScript/JavaScript' },
+          { text: 'vue', link: '/frontEnd/vue/vue2' },
+          { text: 'vue', link: '/frontEnd/vue/vue2' },
+          { text: 'note', link: '/notes/note' },
+          { text: 'GitHub', link: '/notes/GitHub上删除项目中的个别文件' },]
+
+      },
+      {
         text: '前端',
         items: [
           { text: 'vue', link: '/frontEnd/vue/vue' },
@@ -40,34 +51,55 @@ export default defineConfig({
           { text: 'vue', link: '/frontEnd/vue/vue2' },
           { text: 'vue', link: '/frontEnd/vue/vue2' },
           { text: 'else', link: '/frontEnd/else/else.md' },]
-          
-      },
-      {
-        text: '笔记',
-        items: [
-          { text: 'vue', link: '/frontEnd/vue/vue' },
-          { text: 'JavaScript', link: '/frontEnd/JavaScript/JavaScript' },
-          { text: 'vue', link: '/frontEnd/vue/vue2' },
-          { text: 'vue', link: '/frontEnd/vue/vue2' },
-          { text: 'note', link: '/notes/note' },
-          { text: 'GitHub', link: '/notes/GitHub上删除项目中的个别文件' },]
-          
-      },
 
-      
+      },
       {
         text: '后端',
         items: [
           { text: 'spring', link: '/backEnd/spring' },
           { text: 'java', link: '/backEnd/java' },
           { text: 'else', link: '/backEnd/cfd' },]
-      }
+      },
+      {//标签
+        text: 'blogs',
+        items: [
+          { text: '编程日志', link: '/blogs/coding-001' },
+          { text: '美食记录', link: '/blogs/food-001/' },
+          { text: '园艺笔记', link: '/blogs/garden-001/' },
+          { text: "健康生活", link: "/blogs/health-001" },
+          { text: "生活随笔", link: "/blogs/life-001" },
+          { text: "影视评论", link: "/blogs/movie-001" },
+          { text: "音乐分享", link: "/blogs/music-001" },
+          { text: "摄影作品", link: "/blogs/photo-001" },
+          { text: "读书笔记", link: "/blogs/reading-001" },
+          { text: "旅行日记", link: "/blogs/travel-001" },
+        ]
+      },
     ],
     //nav结束
     sidebar: {
-      
       '/document/vitepress/zh/guide/': { base: '/document/vitepress/zh/guide/', items: sidebarGuide() },
-      '/document/vitepress/zh/reference/': { base: '/document/vitepress/zh/reference/', items: sidebarReference() }
+      '/document/vitepress/zh/reference/': { base: '/document/vitepress/zh/reference/', items: sidebarReference(), },
+      '/blogs/': [
+        { text: '编程日志', link: '/blogs/coding-001' },
+        { text: '美食记录', link: '/blogs/food-001/' },
+        { text: '园艺笔记', link: '/blogs/garden-001/' },
+        { text: "健康生活", link: "/blogs/health-001" },
+        { text: "生活随笔", link: "/blogs/life-001" },
+        { text: "影视评论", link: "/blogs/movie-001" },
+        { text: "音乐分享", link: "/blogs/music-001" },
+        { text: "摄影作品", link: "/blogs/photo-001" },
+        { text: "读书笔记", link: "/blogs/reading-001" },
+        { text: "旅行日记", link: "/blogs/travel-001" },
+      ],
+
+    }, //sidebar 结束
+    //侧边栏结束    
+    lastUpdated: {
+      text: 'Last Updated',
+      formatOptions: {
+        dateStyle: 'full'
+      }
     },
     // '/zh/reference/': {
     //   text: '前端',
