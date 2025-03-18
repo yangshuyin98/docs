@@ -1,1 +1,0 @@
-import{_ as a,c as n,o as t,ag as e}from"./chunks/framework.oP1PDRBo.js";const d=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"notes/note.md","filePath":"notes/note.md"}'),p={name:"notes/note.md"};function i(l,s,g,o,c,r){return t(),n("div",null,s[0]||(s[0]=[e("",9)]))}const u=a(p,[["render",i]]);export{d as __pageData,u as default};
