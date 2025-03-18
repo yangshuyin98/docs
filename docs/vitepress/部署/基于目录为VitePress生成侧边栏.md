@@ -8,6 +8,8 @@
 
 ```
 npm install -D vitepress-plugin-autobar
+cnpm install -D vitepress-plugin-autobar
++ vitepress-plugin-autobar ^1.0.8
 ```
 
 # VitePress

@@ -24,7 +24,8 @@ export default defineConfig({
             text: 'vitepress',
             items: [
               { text: 'VitePress+Github Pages详细v1.6.3', link: '/vitepress/部署/VitePress+Github Pages详细v1.6.3' },
-              { text: 'VitePress部署v1.6.3', link: '/vitepress/部署/VitePress部署v1.6.3' },],
+              { text: 'VitePress部署v1.6.3', link: '/vitepress/部署/VitePress部署v1.6.3' },
+              { text: 'VitePress部署v1.6.3', link: '/vitepress/部署/sidebar单独抽离成文件' },],
           },
 
           { text: 'Examples', link: '/vitepress/markdown-examples' },
@@ -78,6 +79,7 @@ export default defineConfig({
     ],
     //nav结束
     sidebar: {
+       
       '/document/vitepress/zh/guide/': { base: '/document/vitepress/zh/guide/', items: sidebarGuide() },
       '/document/vitepress/zh/reference/': { base: '/document/vitepress/zh/reference/', items: sidebarReference(), },
       '/blogs/': [
@@ -124,7 +126,7 @@ export default defineConfig({
 
     footer: {          // 👉设置页脚
       message: "Released under the MIT License.",
-      copyright: "Copyright ©林太白",
+      copyright: "Copyright © modern",
     },
   }
 })
