@@ -19,17 +19,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4  # 升级到最新版本
+        uses: actions/checkout@v3  # 升级到最新版本
         with:
           fetch-depth: 0
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v3
         with:
-          version: 8.15.3  # 建议使用稳定版本
+          version: 10.6.3  # 建议使用稳定版本
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4  # 升级到最新版
+        uses: actions/setup-node@v3  # 升级到最新版
         with:
           node-version: '22'  # LTS 版本
           cache: pnpm
@@ -52,7 +52,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
               - name: Checkout
-                uses: actions/checkout@v4
+                uses: actions/checkout@v3
               
               - name: Download artifact
                 uses: actions/download-artifact@v3
