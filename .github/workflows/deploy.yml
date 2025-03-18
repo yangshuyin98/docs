@@ -8,6 +8,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+
+    - name: Install pnpm
+      uses: pnpm/action-setup@v3
+
+    - name: Set node version to ${{ matrix.node_version }}
+      uses: actions/setup-node@v4
+      with:
+         node-version: ${{ matrix.node_version }}  
+         
+    - name: Install deps
+      run: pnpm install
+      env:
+        PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1      
+    
     - name: Install dependencies
       run: pnpm install
     - name: Build
