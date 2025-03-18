@@ -28,11 +28,7 @@ jobs:
         uses: actions/configure-pages@v5  # 使用 GitHub 官方的动作来自动配置 Pages
 
       
-      # 上传构建后的文件作为工作流                   artifact（中间产物）
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3   # 使用 GitHub 官方的动作上传文件
-        with:
-             path: docs/.vitepress/dist # 指定上传的路径，当前是根目录，如果是docs需要加docs/的前缀
+      
 
   deploy:
     runs-on: ubuntu-latest
@@ -49,8 +45,13 @@ jobs:
         run: |
           pnpm run docs:build         
           touch .nojekyll 
+          touch dist/.nojekyll  # 禁用 Jekyll
           touch docs/.vitepress/dist/.nojekyll  # 精确路径
-      
+      # 上传构建后的文件作为工作流                   artifact（中间产物）
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3   # 使用 GitHub 官方的动作上传文件
+        with:
+             path: docs/.vitepress/dist # 指定上传的路径，当前是根目录，如果是docs需要加docs/的前缀
 
 
 

@@ -2,6 +2,7 @@ import { defineConfig } from 'vitepress'
 import { type DefaultTheme } from 'vitepress'
 
 export default defineConfig({
+  outDir: '../dist',  // 改为输出到根目录的 dist 文件夹
   base: "/docs/",
   title: "modern的Vitepress文档",
   description: "一个vitepress站点",
@@ -25,7 +26,7 @@ export default defineConfig({
             items: [
               { text: 'VitePress+Github Pages详细v1.6.3', link: '/vitepress/部署/VitePress+Github Pages详细v1.6.3' },
               { text: 'VitePress部署v1.6.3', link: '/vitepress/部署/VitePress部署v1.6.3' },
-              { text: 'VitePress部署v1.6.3', link: '/vitepress/部署/sidebar单独抽离成文件' },],
+              { text: 'sidebar单独抽离成文件', link: '/vitepress/部署/sidebar单独抽离成文件' },],
           },
 
           { text: 'Examples', link: '/vitepress/markdown-examples' },
@@ -34,33 +35,23 @@ export default defineConfig({
       {
         text: '笔记',
         items: [
-          { text: 'vue', link: '/frontEnd/vue/vue' },
-          { text: 'JavaScript', link: '/frontEnd/JavaScript/JavaScript' },
-          { text: 'vue', link: '/frontEnd/vue/vue2' },
-          { text: 'vue', link: '/frontEnd/vue/vue2' },
+          { text: '常用Markdown', link: '/notes/常用Markdown' },
           { text: 'note', link: '/notes/note' },
           { text: 'GitHub', link: '/notes/GitHub上删除项目中的个别文件' },]
-
       },
       {
         text: '前端',
         items: [
           { text: 'vue', link: '/frontEnd/vue/vue' },
           { text: 'JavaScript', link: '/frontEnd/JavaScript/JavaScript' },
-          { text: 'JavaScript', link: '/frontEnd/JavaScript/JavaScript' },
-          { text: 'vue', link: '/frontEnd/vue/vue2' },
-          { text: 'vue', link: '/frontEnd/vue/vue2' },
-          { text: 'vue', link: '/frontEnd/vue/vue2' },
           { text: 'else', link: '/frontEnd/else/else.md' },]
-
       },
       {
         text: '后端',
         items: [
           { text: 'spring', link: '/backEnd/spring' },
-          { text: 'java', link: '/backEnd/java' },
-          { text: 'else', link: '/backEnd/cfd' },]
-      },
+          { text: 'java', link: '/backEnd/java' },]
+      },     
       {//标签
         text: 'blogs',
         items: [
@@ -79,24 +70,24 @@ export default defineConfig({
     ],
     
     //nav结束
-    // sidebar: {
-    //   '/document/vitepress/zh/guide/': { base: '/document/vitepress/zh/guide/', items: sidebarGuide() },
-    //   '/document/vitepress/zh/reference/': { base: '/document/vitepress/zh/reference/', items: sidebarReference(), },
-    //   '/blogs/': [
-    //     { text: '编程日志', link: '/blogs/coding-001' },
-    //     { text: '美食记录', link: '/blogs/food-001/' },
-    //     { text: '园艺笔记', link: '/blogs/garden-001/' },
-    //     { text: "健康生活", link: "/blogs/health-001" },
-    //     { text: "生活随笔", link: "/blogs/life-001" },
-    //     { text: "影视评论", link: "/blogs/movie-001" },
-    //     { text: "音乐分享", link: "/blogs/music-001" },
-    //     { text: "摄影作品", link: "/blogs/photo-001" },
-    //     { text: "读书笔记", link: "/blogs/reading-001" },
-    //     { text: "旅行日记", link: "/blogs/travel-001" },
-    //   ],
+    sidebar: {
+      '/document/vitepress/zh/guide/': { base: '/document/vitepress/zh/guide/', items: sidebarGuide() },
+      '/document/vitepress/zh/reference/': { base: '/document/vitepress/zh/reference/', items: sidebarReference(), },
+      '/blogs/': [
+        { text: '编程日志', link: '/blogs/coding-001' },
+        { text: '美食记录', link: '/blogs/food-001/' },
+        { text: '园艺笔记', link: '/blogs/garden-001/' },
+        { text: "健康生活", link: "/blogs/health-001" },
+        { text: "生活随笔", link: "/blogs/life-001" },
+        { text: "影视评论", link: "/blogs/movie-001" },
+        { text: "音乐分享", link: "/blogs/music-001" },
+        { text: "摄影作品", link: "/blogs/photo-001" },
+        { text: "读书笔记", link: "/blogs/reading-001" },
+        { text: "旅行日记", link: "/blogs/travel-001" },
+      ],
 
 
-    // }, //sidebar 结束
+    }, //sidebar 结束
     //侧边栏结束    
     lastUpdated: {
       text: 'Last Updated',
