@@ -6,7 +6,7 @@ export const navbar: DefaultTheme.NavItem[] = [
     {
         text: 'ollama',
         items: [
-            { text: 'cherry studio知识库',link: '/ollama/cherry-studio' },]
+            { text: 'Cherry Studio知识库',link: '/ollama/Cherry Studio知识库' },]
     },
     {
         text: 'VitePress',
