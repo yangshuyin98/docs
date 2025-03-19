@@ -1,8 +1,21 @@
 // docs/.vitepress/relaConf/sidebar.ts
 import { DefaultTheme } from 'vitepress';
 export const sidebar: DefaultTheme.Sidebar = {
+  '/backEnd/': [
+    { text: 'spring', link: '/backEnd/spring' },
+    { text: 'java', link: '/backEnd/java' },
+  ],
 
+ 
 
+  
+
+  '/frontEnd/': [
+    { text: 'vue', link: '/frontEnd/vue/vue' },
+    { text: 'JavaScript', link: '/frontEnd/JavaScript/JavaScript' },
+    { text: 'else', link: '/frontEnd/else/2024年前端学习路线图.md' },
+    { text: 'else', link: '/frontEnd/else/else.md' },
+  ],
 
   //     /blogs/表示对这个文件夹下的所有md文件做侧边栏配置
   '/blogs/': [
@@ -22,20 +35,19 @@ export const sidebar: DefaultTheme.Sidebar = {
   '/vitepress/zh/guide/': { base: '/vitepress/zh/guide/', items: sidebarGuide() },
   '/vitepress/zh/reference/': { base: '/vitepress/zh/reference/', items: sidebarReference(), },
 
-
-
-
-
-
-  '/zh/reference/': [
-    {
-      text: '前端',
-      items: [
-        { text: '站点配置', link: '/runtime-api/' },
-        { text: 'Frontmatter配置', link: '/frontmatter-config/' },
-      ]
-    },
+  '/notes/': [
+    { text: '常用Markdown', link: '/notes/常用Markdown语法' },
+    { text: '下载和安装Pandoc_Windows版本', link: '/notes/下载和安装Pandoc_Windows版本' },
+    { text: 'GitHub', link: '/notes/GitHub上删除项目中的个别文件' },
+    { text: 'note', link: '/notes/note' },
+    { text: 'Pandoc命令', link: '/notes/Pandoc命令' },
   ],
+
+  '/ollama/': [
+    { text: 'cherry studio知识库',link: '/ollama/cherry-studio' },
+  ],
+
+
 
 
   //     /column/Algothm/表示对这个文件夹下的所有md文件做侧边栏配置

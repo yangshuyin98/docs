@@ -12,7 +12,7 @@ ProgId: Word.Document
 知识库（Knowledge
 Base）是一个存储和管理知识的系统，通常包含结构化和非结构化的信息，用于帮助用户或系统快速查找和获取相关知识。
 
-你可以把它想象成一个"知识仓库"，里面存放着各种有用的信息，比如文档、常见问题解答（FAQ）、[数据库](https://cloud.tencent.com/product/tencentdb-catalog?from_column=20065&from=20065)、规则、案例等。
+你可以把它想象成一个"知识仓库"，里面存放着各种有用的信息，比如文档、常见问题解答（FAQ）、数据库、规则、案例等。
 
 **举个栗子：**
 
@@ -48,8 +48,7 @@ Base）是一个存储和管理知识的系统，通常包含结构化和非结�
 
 ## 三、什么是RAG？
 
-**RAG**（Retrieval Augmented
-Generation，检索增强生成）是一种让大语言模型（LLM）变得更聪明的方法。
+**RAG**（Retrieval Augmented Generation，检索增强生成）是一种让大语言模型（LLM）变得更聪明的方法。
 
 简单来说，它通过给模型提供一个外部的"知识库"，让模型在回答问题时可以"查资料"，从而给出更准确、更相关的答案。
 
@@ -68,18 +67,15 @@ Generation，检索增强生成）是一种让大语言模型（LLM）变得更�
 
 这里，我先贴出一个 RAG 的运作流程图。
 
-![RAG运作图](知识库.files/image002.jpg){border="0" width="553"
-height="283" v:shapes="图片_x0020_30"}
+
 
 RAG运作图
 
 好了，废话不多说，接下来就带大家具体实操了，
 
-如何用[DeepSeek]+ [Ollama]+ Cherry
-Studio在本地搭建私有知识库。
+如何用DeepSeek+ Ollama+ Cherry Studio在本地搭建私有知识库。
 
-![私有知识库搭建](知识库.files/image004.jpg){border="0" width="553"
-height="183" v:shapes="图片_x0020_29"}
+
 
 私有知识库搭建
 
@@ -89,28 +85,23 @@ height="183" v:shapes="图片_x0020_29"}
 
 （1）硬件: [公司标配的]办公电脑 Apple M3 Pro 36GB
 
-（2）软件：cherry studio v0.9.21
-[下载](https://cloud.tencent.com/developer/tools/blog-entry?target=https%3A%2F%2Fcherry-ai.com%2Fdownload&objectId=2500018&objectType=1&isNewArticle=undefined),
-[ollama]
-[下载](https://cloud.tencent.com/developer/tools/blog-entry?target=https%3A%2F%2Follama.com%2F&objectId=2500018&objectType=1&isNewArticle=undefined)
+（2）软件：cherry studio v0.9.21 ollama
 
-（3）基础模型为：deepseek-r1:7b （[ollama]内置下载）
+（3）基础模型为：deepseek-r1:7b （ollama内置下载）
 
-（4）嵌入模型为：bge-m3 （[ollama]内置下载）
+（4）嵌入模型为：bge-m3 （ollama内置下载）
 
 **2. 步骤说明**
 
 **步骤[一]：下载安装Cherry Studio可视化工具**
 
 [官网直接]下载安装，毋庸赘述。 cherry studio v0.9.21
-[下载](https://cloud.tencent.com/developer/tools/blog-entry?target=https%3A%2F%2Fcherry-ai.com%2Fdownload&objectId=2500018&objectType=1&isNewArticle=undefined)
 
 **步骤二：部署[DeepSeek]模型 + Embedding模型**
 
 那么，这里又分为两种方式
 
-**方式[一]：使用[Ollama][工具本地]运行
-[DeepSeek]R1 **
+**方式[一]：使用 Ollama 运行  DeepSeek R1 **
 
 **好处：** 可以实现本地部署[DeepSeek]模型 +
 Embedding模型，免费、安全
@@ -124,104 +115,50 @@ Embedding模型，免费、安全
 **好处：** 不用本地部署，可以使用完整的模型服务
 
 **坏处：**
-调用云端的模型服务需要一定的费用，但是也不贵。比如硅基流动，不过实测最近硅基[api]很卡，有时比
-ds [官网还]卡。
+调用云端的模型服务需要一定的费用，但是也不贵。比如硅基流动，不过实测最近硅基[api]很卡，有时比ds [官网还]卡。
 
-因为我自己搭建的知识库会用到很多内部资料，出于安全性考虑今天我们重点介绍的是第一种方式------[---]**使用[Ollama][工具本地]运行
-[DeepSeek]R1 ，借助Cherry
-Studio嵌入本地资料，搭建本地私有知识库。**
+因为我自己搭建的知识库会用到很多内部资料，出于安全性考虑今天我们重点介绍的是第一种方式------[---]**使用[Ollama][工具本地]运行DeepSeek R1 ，借助Cherry Studio嵌入本地资料，搭建本地私有知识库。**
 
 **本地安装 [ollama]并下载需要的模型。
-**[官网下载][ollama][下载
-](https://cloud.tencent.com/developer/tools/blog-entry?target=https%3A%2F%2Follama.com%2F&objectId=2500018&objectType=1&isNewArticle=undefined)并安装后，打开任意终端，
-如图输入以下两个命令来下载并运行 deepseek-r1 和
-beg-m3，基础模型为deepseek-r1:7b， 嵌入模型为bge-m3，
+并安装后，打开任意终端，
+如图输入以下两个命令来下载并运行 deepseek-r1 和beg-m3，基础模型为deepseek-r1:7b， 嵌入模型为bge-m3，
 需要联网下载，时间会比较久， 耐心等待提示成功即可。
 
 [**ollama**]** run deepseek-r1:7b**
 
-![](知识库.files/image006.jpg){border="0" width="554" height="64"
-v:shapes="图片_x0020_28"}
-
 运行 deepseek-r1 成功后，可以再终端进行问答测试
 
-![](知识库.files/image008.jpg){border="0" width="554" height="120"
-v:shapes="图片_x0020_27"}
-
 [**ollama**]** pull bge-m3**
-
-![](知识库.files/image010.jpg){border="0" width="554" height="20"
-v:shapes="图片_x0020_26"}
 
 **步骤三：在 Cherry Studio 中配置模型**
 
 如图，在 Cherry Studio 设置页面配置模型服务，选择 Ollama，
 模型[选择弹窗中选]中 deepseek-r1:7b 和 bge-m3:latest
 
-![](知识库.files/image012.jpg){border="0" width="554" height="347"
-v:shapes="图片_x0020_25"}
-
-![](知识库.files/image014.jpg){border="0" width="554" height="345"
-v:shapes="图片_x0020_24"}
-
 配置模型成功后应该如下图所示，也可以点击 check 按钮进行验证。
-
-![](知识库.files/image016.jpg){border="0" width="554" height="341"
-v:shapes="图片_x0020_23"}
 
 **步骤四：在 Cherry Studio 中构建知识库**
 
-在Cherry Studio
-知识库配置页卡中，按照自己的需要新建【知识库】，嵌入模型选择【bge-m3:latest】，
-然后上传知识库素材，可以添加文档(支持pdf/doc/xlsx/ppt/txt/md
-等)，也可以**添加目录（这个极其方便）、网站等，**添加完以后出现绿色的对号，表示向量化完成。
-
-![](知识库.files/image018.jpg){border="0" width="554" height="347"
-v:shapes="图片_x0020_22"}
-
-![](知识库.files/image020.jpg){border="0" width="554" height="340"
-v:shapes="图片_x0020_21"}
+在Cherry Studio知识库配置页卡中，按照自己的需要新建【知识库】，嵌入模型选择【bge-m3:latest】，
+然后上传知识库素材，可以添加文档(支持pdf/doc/xlsx/ppt/txt/md等)，也可以**添加目录（这个极其方便）、网站等，**添加完以后出现绿色的对号，表示向量化完成。
 
 添加素材完成后，可以使用【搜索知识库】进行测试验证，如下图所示，我这里提供的素材是
-[clb]
-[串流原理]的文档，所以提问了【[clb]为什么会串流？】。模型会根据知识库中的素材进行回答，并标注来源和匹配度等。
-
-![](知识库.files/image022.png){border="0" width="554" height="356"
-v:shapes="图片_x0020_20"}
+[clb][串流原理]的文档，所以提问了【[clb]为什么会串流？】。模型会根据知识库中的素材进行回答，并标注来源和匹配度等。
 
 **步骤五：在 Cherry Studio 中构建智能助手**
 
-经过上面的步骤，我们的大模型和个人知识库其实已经搭建好了，
-后续有新的素材可以重复步骤四补充进去，让知识库越来越丰富。接下来就是通过Cherry
-Studio 提供的聊天助手来更加方便的使用我们的知识库了。
+经过上面的步骤，我们的大模型和个人知识库其实已经搭建好了，后续有新的素材可以重复步骤四补充进去，让知识库越来越丰富。接下来就是通过Cherry Studio 提供的聊天助手来更加方便的使用我们的知识库了。
 
 如图可以使用默认的聊天助手，也可以新建一个自定义的聊天助手，选择本地模型和知识库，
 这样默认这个聊天助手所有的问答都会参考我们的知识库资料。同理也可以搭建多个知识库和多个聊天助手，满足不同的使用场景。
-其实 Cherry Studio
-中已经默认配置了很多助手，比如产品助手、[运维](https://cloud.tencent.com/solution/operation?from_column=20065&from=20065)助手、软件开发助手等等，大家可以按需使用。
-
-![](知识库.files/image024.jpg){border="0" width="554" height="346"
-v:shapes="图片_x0020_19"}
-
-![](知识库.files/image026.jpg){border="0" width="553" height="332"
-v:shapes="图片_x0020_18"}
-
-![](知识库.files/image028.jpg){border="0" width="553" height="327"
-v:shapes="图片_x0020_17"}
+其实 Cherry Studio中已经默认配置了很多助手，比如产品助手、[运维](https://cloud.tencent.com/solution/operation?from_column=20065&from=20065)助手、软件开发助手等等，大家可以按需使用。
 
 当然也可以在聊天页面，选择使用哪个知识库进行推理，或者不使用知识库，让大模型基于通用知识进行推理。
 
-![](知识库.files/image030.jpg){border="0" width="554" height="337"
-v:shapes="图片_x0020_16"}
+好了，到[这里相信]你已经拥有了属于自己的知识库和智能助手，预祝你可以在 AI时代，更加智能和高效的工作。
 
-好了，到[这里相信]你已经拥有了属于自己的知识库和智能助手，
-预祝你可以在 AI时代，更加智能和高效的工作。
-
-另外，受限于工作机配置原因，我们这里使用的是 ds-r1:7b
-版本，如果想要使用[满血版的] [deepseek]
-可以参照步骤二中的方式[一]使用付费服务或者自己购买[腾讯云]
-HAI进行部署。如果需要使用其他大模型，部署步骤和 [deepseek]
-类似，可以根据自己的电脑配置，酌情选择。
+另外，受限于工作机配置原因，我们这里使用的是 ds-r1:7b版本，如果想要使用[满血版的] [deepseek]
+可以参照步骤二中的方式[一]使用付费服务或者自己购买[腾讯云]HAI进行部署。如果需要使用其他大模型，部署步骤和 [deepseek]类似，可以根据自己的电脑配置，酌情选择。
 
 ## 六、未来已来：重新定义程序员的战场
 
