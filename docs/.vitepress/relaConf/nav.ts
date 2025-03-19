@@ -38,8 +38,11 @@ export const navbar: DefaultTheme.NavItem[] = [
         text: '笔记',
         items: [
             { text: '常用Markdown', link: '/notes/常用Markdown语法' },
+            { text: '下载和安装Pandoc_Windows版本', link: '/notes/下载和安装Pandoc_Windows版本' },
+            { text: 'GitHub', link: '/notes/GitHub上删除项目中的个别文件' },
+            { text: '安装git', link: '/notes/安装git' },
             { text: 'note', link: '/notes/note' },
-            { text: 'GitHub', link: '/notes/GitHub上删除项目中的个别文件' },]
+            { text: 'Pandoc命令', link: '/notes/Pandoc命令' },]
     },
     {
         text: '前端',
