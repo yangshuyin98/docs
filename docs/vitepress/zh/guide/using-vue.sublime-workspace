@@ -1,0 +1,281 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Users/XNY5612/blogs/docs/china/using-vue.md",
+		"/D/WEB/docktop/HXML/小米导航栏.html",
+		"/D/WEB/HTML5+CSS3+JavaScript网页制作从入门到精通054245【实例示例源程序】/HTML5+CSS3+JavaScript网页制作从入门到精通054245【实例示例源程序】/8/8.4.2 设计列表水平布局/test2.html",
+		"/D/WEB/HTML5+CSS3+JavaScript网页制作从入门到精通054245【实例示例源程序】/HTML5+CSS3+JavaScript网页制作从入门到精通054245【实例示例源程序】/7/7.3.6 设计图形化按钮样式/test.html",
+		"/C/Users/Administrator/Desktop/杀死一只知更鸟 To Kill a Mockingbird/杀死一只知更鸟 To Kill a Mockingbird.html",
+		"/C/Users/Administrator/Desktop/test.html",
+		"/C/Users/Administrator/Desktop/test.tcl",
+		"/E/CAE2024/EP12/model/LoadSteps1_Modal.tcl",
+		"/E/CAE2024/06_X3P/output/command1.tcl",
+		"/C/Users/Administrator/Desktop/CombineComps.tcl",
+		"/E/CAE2024/EP12/model/RANDOM_VIBRATION_FINAL/RANDOM_VIBRATION_X/RANDOM_VIBRATION_X.fem",
+		"/E/CAE2024/EP12/model/01001mats_optiStruct.tcl",
+		"/E/CAE2024/0-PACK/01003Opti_Property_Define.tcl",
+		"/E/CAE2024/2024.3 E-car 14 degrees electric logistics car/01003Opti_Property_Define.tcl",
+		"/E/CAE2024/2024.3 E-car 14 degrees electric logistics car/2024CAE/modle/TEST.out",
+		"/E/CAE2024/2024.3 E-car 14 degrees electric logistics car/01003properties_optiStruct.tcl",
+		"/C/Users/Administrator/Desktop/TCL/optiStruct/01003Opti_Property_Define.tcl",
+		"/E/CAE2024/0-PACK/01003properties_optiStruct.tcl",
+		"/C/Users/Administrator/Desktop/TCL/geo/01003properties_optiStruct.tcl",
+		"/C/Users/Administrator/Desktop/01_STATIC2.fem",
+		"/E/CAE2024/06_X3P/output/新文件 1.tcl",
+		"/E/CAE2024/EP12/model/0001CombineComps.tcl",
+		"/C/Users/Administrator/Desktop/TCL/geo/0001CombineComps.tcl",
+		"/C/Users/Administrator/Desktop/TCL/geo/TubeCerterLine.tcl",
+		"/E/CAE2024/EP12/model/command1.tcl",
+		"/C/Users/Administrator/Desktop/TCL/geo/01001mats_optiStruct.tcl",
+		"/C/Users/Administrator/Desktop/TCL/geo/01002properties_optiStruct.tcl",
+		"/C/Users/Administrator/Desktop/TCL/geo/UpperLetters.tcl",
+		"/C/Users/Administrator/Desktop/TCL/geo/RenameToUpperLetterComp.tcl",
+		"/C/Users/Administrator/Desktop/TCL/geo/ReorderAndAutoColor.tcl",
+		"/C/Users/Administrator/Desktop/TCL/geo/RenameToUpperLetter.tcl",
+		"/C/Users/Administrator/Desktop/TCL/geo/RenameToUpperLetterMat.tcl",
+		"/C/Users/Administrator/Desktop/TCL/geo/mats_optiStruct.tcl",
+		"/C/Users/Administrator/Desktop/TCL/optiStruct/Opti_Property_Define.tcl",
+		"/C/Users/Administrator/Desktop/TCL/geo/AotuThickness.tcl",
+		"/E/CAE2024/EP12/model/0005MIDSURF_circle.tcl",
+		"/C/Users/Administrator/Desktop/TCL/geo/0008CreateHoleCenterNodes.tcl",
+		"/C/Users/Administrator/Desktop/TCL/optiStruct/OPTI_Connector_Bolt.tcl",
+		"/C/Users/Administrator/Desktop/TCL/optiStruct/OPTI材料模型.tcl",
+		"/C/Users/Administrator/Desktop/TCL/geo/0005MIDSURF_circle.tcl",
+		"/C/Users/Administrator/Desktop/TCL/geo/ShowThick.tcl",
+		"/E/CAE2024/EP12/model/CreateCenterNodesAndCircleLines.tcl",
+		"/E/CAE2024/EP12/model/ShowThick.tcl",
+		"/C/Users/Administrator/Desktop/TCL/geo/CreateHoleCenterNodes.tcl",
+		"/C/Users/Administrator/Desktop/TCL/geo/CreateCenterNodesAndCircleLines.tcl",
+		"/C/Users/Administrator/Documents/MIDSURF.tcl",
+		"/E/CAE2024/EP12/model/0005MIDSURF.tcl",
+		"/C/Users/Administrator/Desktop/TCL/geo/0002MidSurfaceOriginal.tcl",
+		"/C/Users/Administrator/Desktop/TCL/geo/CombineComps.tcl",
+		"/C/Users/Administrator/Desktop/command1.tcl",
+		"/C/Users/Administrator/Desktop/CreateHoleCenterNodes.tcl",
+		"/C/Users/Administrator/Desktop/ProcessPolygonToCircular_DUP1.tcl",
+		"/C/Users/Administrator/Desktop/TCL/TubeCerterLineTest.tcl",
+		"/C/Users/Administrator/Desktop/optiStruct/CreateSection.tcl",
+		"/C/Users/Administrator/Desktop/TCL/command1.tcl",
+		"/C/Users/Administrator/Desktop/TCL/UpperLetters.tcl",
+		"/C/Users/Administrator/Desktop/TCL/UPVAR.tcl",
+		"/C/Users/Administrator/Desktop/TCL/CombineComps.tcl",
+		"/C/Users/Administrator/Desktop/TCL/CreateCenterNodesAndCircleLines.tcl",
+		"/C/Users/Administrator/Desktop/test2.tcl",
+		"/?172.18.13.38/Project2/ZhangLiNa/HandOver_zln/2024/2024.3 E-car 14 degrees electric logistics car/ECAR output/command1.tcl",
+		"/?172.18.13.38/Project2/ZhangLiNa/HandOver_zln/2023/01_EP12_210km_SMC_COVER/EP12-OUTPUT/command1.tcl",
+		"/?172.18.13.38/Project2/ZhangLiNa/HandOver_zln/2023/01_EP12_210km_SMC_COVER/EP12-OUTPUT/数据说明.tcl",
+		"/C/Users/Administrator/Desktop/TCL/OPTI_Connector_Bolt.tcl",
+		"/C/Users/Administrator/Desktop/TCL/RenameToUpperLetterMat.tcl",
+		"/C/Users/Administrator/Desktop/TCL/属性重编号.tcl",
+		"/C/Users/Administrator/Desktop/TCL/ProcessPolygonToCircular_DUP1.tcl",
+		"/C/Users/Administrator/Desktop/TCL/储备.tcl",
+		"/C/Users/Administrator/Desktop/TCL/笔记.tcl",
+		"/C/Users/Administrator/Desktop/TCL/机械振动基础.tcl",
+		"/C/Users/Administrator/Desktop/TCL/阻尼.tcl",
+		"/C/Users/Administrator/Desktop/TCL/run options.tcl",
+		"/C/Users/Administrator/Desktop/run options.tcl",
+		"/C/Users/Administrator/Desktop/TCL/OPTI_FREQi卡片.tcl",
+		"/C/Users/Administrator/Desktop/TCL/Opti_Property_Define.tcl",
+		"/C/Users/Administrator/Desktop/TCL/Opti_To_Dyna_Clean.tcl",
+		"/C/Users/Administrator/Desktop/TCL/OPTI材料模型.tcl",
+		"/C/Users/Administrator/Desktop/MidSurface(SkinOffset).tcl",
+		"/C/Users/Administrator/Desktop/AotuThickness.tcl",
+		"/C/Users/Administrator/Desktop/TCL/ElemCenterCoordinate.tcl",
+		"/C/Users/Administrator/Desktop/MIDSURF.tcl",
+		"/C/Users/Administrator/Desktop/TCL/MIDSURF.tcl",
+		"/C/Users/Administrator/Desktop/UserProfile.tcl",
+		"/C/Users/Administrator/Desktop/TCL/TCL命令解析.tcl",
+		"/C/Users/Administrator/Desktop/TCL/MidSurfaceOriginal.tcl",
+		"/C/Users/Administrator/Desktop/TCL/GetSurfNormal.tcl",
+		"/C/Users/Administrator/Desktop/TCL/DYNA_MAT_DEFINE.tcl",
+		"/C/Users/Administrator/Desktop/TCL/DYNA_LOAD_CRASH_X.tcl",
+		"/C/Users/Administrator/Desktop/TCL/DYNA_CRUSH.tcl",
+		"/C/Users/Administrator/Desktop/CreateCompNamefromBOM.tcl",
+		"/C/Users/Administrator/Desktop/TCL/CylinderCenterLine.tcl",
+		"/C/Users/Administrator/Desktop/TCL/CreateSection.tcl",
+		"/C/Users/Administrator/Desktop/CreateCenterNodesAndCircleLines.tcl",
+		"/C/Users/Administrator/Desktop/TCL/CreateHoleCenterNodes.tcl",
+		"/E/03CAE - LIANXI/S51EV-301-DFD-Static_CheryEV/command1.tcl",
+		"/C/Users/Administrator/Desktop/TCL/CreateCompNamefromBOM.tcl",
+		"/C/Users/Administrator/Desktop/NodesTranslate.tcl",
+		"/E/03CAE - LIANXI/command1.tcl",
+		"/C/Users/Administrator/Desktop/TCL/LoadSteps2_Static_CheryEV.tcl",
+		"/C/Users/Administrator/Desktop/translate1.tcl",
+		"/E/03CAE - LIANXI/modle/command1.tcl",
+		"/C/Users/Administrator/Desktop/TCL/LoadSteps4_RanResp_GB38031.tcl",
+		"/C/Users/Administrator/Desktop/TCL/LoadSteps3_FreqResp_GB38031.tcl",
+		"/C/Users/Administrator/Desktop/TCL/LoadSteps1_Modal.tcl",
+		"/C/Users/Administrator/Desktop/TCL/Dyna_Contact.tcl",
+		"/C/Users/Administrator/Desktop/properties_optiStruct.tcl",
+		"/C/Users/Administrator/Desktop/command2.tcl",
+		"/C/Users/Administrator/Desktop/mats_optiStruct.tcl",
+		"/C/Users/Administrator/Desktop/TCL/DYNA材料模型.tcl",
+		"/C/Users/Administrator/Desktop/TCL/DYNA接触.tcl",
+		"/C/Users/Administrator/Desktop/connector_TranslateUI.tcl",
+		"/E/BaiduNetdiskDownload/CAE/ercikaifa_yuandaima/ercikaifa_yuandaima/translate1.tcl",
+		"/C/Users/Administrator/Documents/command1.tcl",
+		"/C/Users/Administrator/Desktop/TCL/TubeCerterLine.tcl",
+		"/C/Users/Administrator/Desktop/TCL/UserProfile.tcl"
+	],
+	"find":
+	{
+		"height": 27.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"scrollbar_highlights": true,
+		"show_context": true,
+		"use_buffer2": true,
+		"use_gitignore": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 27.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "using-vue.sublime-project",
+	"replace":
+	{
+		"height": 50.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
