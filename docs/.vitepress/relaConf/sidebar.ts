@@ -20,9 +20,10 @@ export const sidebar: DefaultTheme.Sidebar = {
     { text: '21讲二次开发大纲', link: '/hypermesh二次开发/21讲二次开发大纲' },
     { text: '22讲 set puts expr for循环', link: '/hypermesh二次开发/22讲set puts expr for循环' },
     { text: '23讲列表和字符串的操作方法', link: '/hypermesh二次开发/23讲列表和字符串的操作方法' },
+    { text: '24讲文件对话框的操作方法', link: '/hypermesh二次开发/24讲文件对话框的操作方法' },
 
 
-    { text: '22讲 set puts expr for循环', link: '/hypermesh二次开发/22讲set puts expr for循环' },
+
     { text: '22讲 set puts expr for循环', link: '/hypermesh二次开发/22讲set puts expr for循环' },
     { text: '22讲 set puts expr for循环', link: '/hypermesh二次开发/22讲set puts expr for循环' },
     { text: '22讲 set puts expr for循环', link: '/hypermesh二次开发/22讲set puts expr for循环' },
