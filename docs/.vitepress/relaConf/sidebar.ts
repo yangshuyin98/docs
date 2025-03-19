@@ -6,14 +6,14 @@ export const sidebar: DefaultTheme.Sidebar = {
     { text: 'java', link: '/backEnd/java' },
   ],
 
- 
 
-  
+
+
 
   '/frontEnd/': [
     { text: 'vue', link: '/frontEnd/vue/vue' },
     { text: 'JavaScript', link: '/frontEnd/JavaScript/JavaScript' },
-    { text: 'else', link: '/frontEnd/else/2024年前端学习路线图.md' },
+    { text: '2024年前端学习路线图', link: '/frontEnd/else/2024年前端学习路线图.md' },
     { text: 'else', link: '/frontEnd/else/else.md' },
   ],
 
@@ -32,8 +32,7 @@ export const sidebar: DefaultTheme.Sidebar = {
   ],
 
 
-  '/vitepress/zh/guide/': { base: '/vitepress/zh/guide/', items: sidebarGuide() },
-  '/vitepress/zh/reference/': { base: '/vitepress/zh/reference/', items: sidebarReference(), },
+
 
   '/notes/': [
     { text: '常用Markdown', link: '/notes/常用Markdown语法' },
@@ -44,8 +43,28 @@ export const sidebar: DefaultTheme.Sidebar = {
   ],
 
   '/ollama/': [
-    { text: 'cherry studio知识库',link: '/ollama/cherry-studio' },
+    { text: 'Cherry Studio知识库', link: '/ollama/Cherry Studio知识库' },
   ],
+
+  '/vitepress/zh/guide/': { base: '/vitepress/zh/guide/', items: sidebarGuide() },
+  '/vitepress/zh/reference/': { base: '/vitepress/zh/reference/', items: sidebarReference(), },
+  '/vitepress/部署/': [
+    { text: '基于VitePress+Github Pages详细v1.6.3', link: '/vitepress/部署/VitePress+Github Pages详细v1.6.3' },
+    { text: '支持PC和wap自适应', link: '/vitepress/部署/支持PC和wap自适应' },
+    { text: 'dist部署', link: '/vitepress/部署/dist部署' },
+    { text: 'narbar单独抽离成文件', link: '/vitepress/部署/sidebar单独抽离成文件' },
+    { text: 'sidebar单独抽离成文件', link: '/vitepress/部署/sidebar单独抽离成文件' },
+    { text: 'VitePress+Github Pages详细v1.6.3', link: '/vitepress/部署/VitePress+Github Pages详细v1.6.3' },
+    { text: 'VitePress部署', link: '/vitepress/部署/VitePress部署' },
+    { text: 'VitePress部署v1.6.3', link: '/vitepress/部署/VitePress部署v1.6.3' },
+    { text: 'VitePress从0到1', link: '/vitepress/部署/VitePress从0到1' },
+
+    
+
+  ],
+
+
+
 
 
 
