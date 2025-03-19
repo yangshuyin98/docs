@@ -4,6 +4,11 @@ export const navbar: DefaultTheme.NavItem[] = [
 
     { text: 'Home', link: '/' },
     {
+        text: 'ollama',
+        items: [
+            { text: 'cherry studio知识库',link: '/ollama/cherry-studio' },]
+    },
+    {
         text: 'VitePress',
         items: [
             { text: 'VitePress', link: '/vitepress/zh/guide/what-is-vitepress' },
