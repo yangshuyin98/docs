@@ -4,6 +4,13 @@ export const navbar: DefaultTheme.NavItem[] = [
 
     { text: 'Home', link: '/' },
     {
+        text: 'hypermesh二次开发',
+        items: [
+            { text: '21讲二次开发大纲', link: '/hypermesh二次开发/21讲二次开发大纲' },
+            { text: '22讲set puts expr for循环', link: '/hypermesh二次开发/22讲set puts expr for循环' },]
+    },
+    
+    {
         text: 'ollama',
         items: [
             { text: 'Cherry Studio知识库',link: '/ollama/Cherry Studio知识库' },]

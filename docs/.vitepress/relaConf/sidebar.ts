@@ -16,6 +16,22 @@ export const sidebar: DefaultTheme.Sidebar = {
     { text: '2024年前端学习路线图', link: '/frontEnd/else/2024年前端学习路线图.md' },
     { text: 'else', link: '/frontEnd/else/else.md' },
   ],
+  '/hypermesh二次开发/': [
+    { text: '21讲二次开发大纲', link: '/hypermesh二次开发/21讲二次开发大纲' },
+    { text: '22讲 set puts expr for循环', link: '/hypermesh二次开发/22讲set puts expr for循环' },
+    { text: '23讲列表和字符串的操作方法', link: '/hypermesh二次开发/23讲列表和字符串的操作方法' },
+
+
+    { text: '22讲 set puts expr for循环', link: '/hypermesh二次开发/22讲set puts expr for循环' },
+    { text: '22讲 set puts expr for循环', link: '/hypermesh二次开发/22讲set puts expr for循环' },
+    { text: '22讲 set puts expr for循环', link: '/hypermesh二次开发/22讲set puts expr for循环' },
+    { text: '22讲 set puts expr for循环', link: '/hypermesh二次开发/22讲set puts expr for循环' },
+
+  ],
+
+
+
+
 
   //     /blogs/表示对这个文件夹下的所有md文件做侧边栏配置
   '/blogs/': [
@@ -59,7 +75,7 @@ export const sidebar: DefaultTheme.Sidebar = {
     { text: 'VitePress部署v1.6.3', link: '/vitepress/部署/VitePress部署v1.6.3' },
     { text: 'VitePress从0到1', link: '/vitepress/部署/VitePress从0到1' },
 
-    
+
 
   ],
 
