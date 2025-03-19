@@ -10,8 +10,6 @@
 ~~~text
 # Markdown 扩展 {#markdown-extensions}
 
-
-
 ::: danger 注意，注意，注意
 VitePress 带有内置的 Markdown 扩展。当前文档对应的是官方 [1.0.0-rc.40](https://vitepress.dev/zh/guide/markdown) 版。
 
