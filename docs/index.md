@@ -14,17 +14,17 @@ hero:
     alt: 背景图
   actions:
     - theme: brand
-      text: VitePress+Github Pages详细v1.6.3
-      link: vitepress/VitePress+Github Pages详细v1.6.3
+      text: hypermesh二次开发
+      link: /hypermesh二次开发/21讲二次开发大纲
     - theme: brand
-      text: VitePress部署v1.6.3
-      link: /vitepress/VitePress部署v1.6.3
+      text: ollama
+      link: /ollama/Cherry Studio知识库
     - theme: alt    
-      text: 基于目录为VitePress生成侧边栏
-      link: /vitepress/基于目录为VitePress生成侧边栏
+      text: Pandoc命令
+      link: /notes/Pandoc命令
     - theme: alt  
-      text: dist部署
-      link: /vitepress/dist部署
+      text: 前端
+      link: /frontEnd/vue/vue
 
       
 
