@@ -7,7 +7,7 @@ titleTemplate: Vite和Vue
 
 hero:
   name: Awesome Project
-  text: 由 Vite 和 Vue 驱动的静态站点生成器
+  text: 前端学习
   tagline: 持续学习，持续进步！
   image:
     src: /vitepress-logo-large.webp     

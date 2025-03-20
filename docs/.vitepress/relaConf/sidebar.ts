@@ -58,6 +58,9 @@ export const sidebar: DefaultTheme.Sidebar = {
     { text: '安装git', link: '/notes/安装git' },
     { text: 'note', link: '/notes/note' },
     { text: 'Pandoc命令', link: '/notes/Pandoc命令' },
+    { text: 'FFmpeg项目', link: '/notes/FFmpeg项目' },
+    { text: 'B站缓存m4s', link: '/notes/B站缓存m4s' },
+    
   ],
 
   '/ollama/': [
