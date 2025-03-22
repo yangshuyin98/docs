@@ -16,17 +16,18 @@ export const sidebar: DefaultTheme.Sidebar = {
     { text: '2024年前端学习路线图', link: '/frontEnd/else/2024年前端学习路线图.md' },
     { text: 'else', link: '/frontEnd/else/else.md' },
   ],
-  '/hypermesh二次开发/': [
-    { text: '21讲二次开发大纲', link: '/hypermesh二次开发/21讲二次开发大纲' },
-    { text: '22讲 set puts expr for循环', link: '/hypermesh二次开发/22讲set puts expr for循环' },
-    { text: '23讲列表和字符串的操作方法', link: '/hypermesh二次开发/23讲列表和字符串的操作方法' },
-    { text: '24讲文件对话框的操作方法', link: '/hypermesh二次开发/24讲文件对话框的操作方法' },
+  '/CAE/': [
+    { text: 'PC材质提手受拉失效分析', link: '/CAE/PC材质提手受拉失效分析' },
+    { text: 'PC材质提手的拉力失效分析', link: '/CAE/PC材质提手的拉力失效分析' },
+    { text: '21讲二次开发大纲', link: '/CAE/21讲二次开发大纲' },
+    { text: '22讲 set puts expr for循环', link: '/CAE/22讲set puts expr for循环' },
+    { text: '23讲列表和字符串的操作方法', link: '/CAE/23讲列表和字符串的操作方法' },
+    { text: '24讲文件对话框的操作方法', link: '/CAE/24讲文件对话框的操作方法' },
 
 
 
-    { text: '22讲 set puts expr for循环', link: '/hypermesh二次开发/22讲set puts expr for循环' },
-    { text: '22讲 set puts expr for循环', link: '/hypermesh二次开发/22讲set puts expr for循环' },
-    { text: '22讲 set puts expr for循环', link: '/hypermesh二次开发/22讲set puts expr for循环' },
+    { text: '22讲 set puts expr for循环', link: '/CAE/22讲set puts expr for循环' },
+    
 
   ],
 
@@ -52,9 +53,10 @@ export const sidebar: DefaultTheme.Sidebar = {
 
 
   '/notes/': [
-    { text: '常用Markdown', link: '/notes/常用Markdown语法' },
-    { text: '下载和安装Pandoc_Windows版本', link: '/notes/下载和安装Pandoc_Windows版本' },
+    { text: 'git常用命令', link: '/notes/git常用命令' },
     { text: 'GitHub', link: '/notes/GitHub上删除项目中的个别文件' },
+    { text: '常用Markdown', link: '/notes/常用Markdown语法' },   
+    { text: '下载和安装Pandoc_Windows版本', link: '/notes/下载和安装Pandoc_Windows版本' },    
     { text: '安装git', link: '/notes/安装git' },
     { text: 'note', link: '/notes/note' },
     { text: 'Pandoc命令', link: '/notes/Pandoc命令' },
@@ -64,7 +66,14 @@ export const sidebar: DefaultTheme.Sidebar = {
   ],
 
   '/ollama/': [
+    { text: 'Ollama', link: '/ollama/Ollama' },
     { text: 'Cherry Studio知识库', link: '/ollama/Cherry Studio知识库' },
+    { text: 'InternLM2书生浦语', link: '/ollama/InternLM2书生浦语' },
+    { text: 'Llama 3.1 综合指南', link: '/ollama/Llama 3.1 综合指南' },
+    { text: '从零到一，深入浅出大语言模型的奇妙世界',link: '/ollama/从零到一，深入浅出大语言模型的奇妙世界' },
+    { text: 'Prompt提示词优化原则',link: '/ollama/Prompt提示词优化原则' },
+   
+    
   ],
 
   '/vitepress/zh/guide/': { base: '/vitepress/zh/guide/', items: sidebarGuide() },
@@ -73,16 +82,25 @@ export const sidebar: DefaultTheme.Sidebar = {
     { text: '基于VitePress+Github Pages详细v1.6.3', link: '/vitepress/部署/VitePress+Github Pages详细v1.6.3' },
     { text: '支持PC和wap自适应', link: '/vitepress/部署/支持PC和wap自适应' },
     { text: 'dist部署', link: '/vitepress/部署/dist部署' },
-    { text: 'narbar单独抽离成文件', link: '/vitepress/部署/sidebar单独抽离成文件' },
+    { text: 'narbar单独抽离成文件', link: '/vitepress/部署/narbar单独抽离成文件' },
     { text: 'sidebar单独抽离成文件', link: '/vitepress/部署/sidebar单独抽离成文件' },
     { text: 'VitePress+Github Pages详细v1.6.3', link: '/vitepress/部署/VitePress+Github Pages详细v1.6.3' },
     { text: 'VitePress部署', link: '/vitepress/部署/VitePress部署' },
     { text: 'VitePress部署v1.6.3', link: '/vitepress/部署/VitePress部署v1.6.3' },
-    { text: 'VitePress从0到1', link: '/vitepress/部署/VitePress从0到1' },
+    { text: 'VitePress从0到1', link: '/vitepress/部署/VitePress从0到1' },  
 
 
 
   ],
+  '/vuepress/': [
+    { text: 'A_Node.js安装',     link: '/vuepress/A_Node.js安装.md'},
+    { text: 'B_npm镜像站',       link: '/vuepress/B_npm镜像站'},
+    { text: 'C_vuepress@1.9.10', link:' /vuepress/C_vuepress@1.9.10'},
+    { text: '什么是敏感信息',      link:' /vuepress/什么是敏感信息'},
+
+
+  ],
+
 
 
 

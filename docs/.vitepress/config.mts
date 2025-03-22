@@ -1,7 +1,9 @@
 import { defineConfig } from 'vitepress'
 import {  sidebar } from './relaConf';
 import { navbar} from './relaConf';
-import { type DefaultTheme } from 'vitepress'
+import { type DefaultTheme } from 'vitepress';
+
+
 export default defineConfig({
   
   base: "/docs/",
@@ -12,6 +14,7 @@ export default defineConfig({
     outline: [2, 6],
     logo: '/comet.png',
     nav: navbar,
+  
     sidebar: sidebar, // 把定义的sidebar给替换进来
    
     lastUpdated: {

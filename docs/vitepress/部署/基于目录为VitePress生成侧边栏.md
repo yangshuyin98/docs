@@ -7,7 +7,9 @@
 # Install
 
 ```
-npm install -D vitepress-plugin-autobar
+pnpm install -D vitepress-plugin-autobar
+pnpm i vitepress-auto-sidebar -D
+cnpm install -D vitepress-plugin-autobar
 cnpm install -D vitepress-plugin-autobar
 + vitepress-plugin-autobar ^1.0.8
 ```
