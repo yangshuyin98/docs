@@ -126,7 +126,7 @@ npm install -D @vuepress/theme-default
 
 完成这些之后开始创建我们的第一篇文档，先创建 **docs** 文件夹，然后在文件夹下创建 **README.md** 文件，**README.md** 文件中我们可以随意加入点内容，比如 Hello Vuepress。
 
-创建一个 markdown 文件 
+创建一个 markdown 文件
 
 ```bash
 mkdir docs
@@ -237,7 +237,6 @@ docs/
 npm install来重新安装所有依赖项      # 删除现有依赖
 npm cache clean --force来清理npm缓存
 rmdir /s /q node_modules     # 删除node_modules文件夹
-
 npm install          # 重新安装
 ```
 
@@ -365,7 +364,7 @@ layout: 布局
 
 在docs目录下创建主页README.md配置如下：
 
-添加主页标题和描述 
+添加主页标题和描述
 
 ```md
 ---
@@ -950,8 +949,8 @@ sh deploy.sh
 
 ```text
 项目根目录
-|--scripts目录
-|--deploy.sh
+  |--scripts目录
+  |--deploy.sh
 比如在项目根目录下新建了scripts目录下添加的deploy.sh文件（添加目录一般都叫scripts）
 此时命令就要写成:
 
