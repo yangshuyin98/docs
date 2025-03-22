@@ -156,7 +156,7 @@ echo '# Hello VuePress' > docs/README.md
 }
 ```
 
-#使用npm，在本地启动服务器 VuePress 会在 http://localhost:8080 启动一个热重载的开发服务器。
+#使用npm，在本地启动服务器， VuePress  启动一个热重载的开发服务器。
 
 
 

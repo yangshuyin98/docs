@@ -214,7 +214,7 @@ git push origin main          #重新推送
 
 ​	git branch -vv  # 确认本地分支已关联远程分支（显示 [origin/main]）
 ​	若未关联，需先执行：
-​	git push -u origin main  # 首次推送时建立追踪关系[2](@ref)
+​	git push -u origin main  # 首次推送时建立追踪关系
 
 ### 避免重复冲突：	
 
