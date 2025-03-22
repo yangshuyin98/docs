@@ -1,4 +1,4 @@
-## 一、关于Git
+# 一、关于Git
 
 使用git从github下载项目到本地以及本地项目上传github
 
@@ -9,7 +9,7 @@
 ## 二、安装git
 
 要使用GitCode，需要先安装git工具。
-git工具下载：https://git-scm.com/downloads
+git工具下载：<https://git-scm.com/downloads>
 安装完成后，在命令行输入git --version可以查看到git的版本。
 验证Git安装是否成功的方法：
 
@@ -19,50 +19,47 @@ git工具下载：https://git-scm.com/downloads
 
 安装完成后，右键菜单也会出现Git GUI、Git Bash相应的菜单。
 
-
-
 ## 三、配置Git用户名和邮箱的命令
 
 1. 全局配置（适用于所有项目）：
-   		设置全局用户名：
+   设置全局用户名：
 
-```
+```text
 git config --global user.name  "yangshuyin98"
 ```
 
-​		设置全局邮箱：
+设置全局邮箱：
 
-```
+```text
 git config --global user.email "yangshuyin@126.com"
 ```
 
 这些命令会将配置信息保存到全局配置文件中，适用于所有项目。
 
-2. 项目级配置（仅当前仓库生效）
+1. 项目级配置（仅当前仓库生效）
 
-​		设置局部用户名：
+   设置局部用户名：
 
-```
+```text
 git config user.name  "yang_shu_yin"
 ```
 
-​		设置局部邮箱：
+​  设置局部邮箱：
 
-```
+```text
 git config user.email "yangshuyin@126.com"
 ```
 
-3. 配置完成后，可以使用git config --list命令查看所有git配置信息，以确认配置是否成功。
+ 配置完成后，可以使用git config --list命令查看所有git配置信息，以确认配置是否成功。
 
 ## 四、登录GitCode
 
-
-GitCode地址：https://gitcode.net/
+GitCode地址：<https://gitcode.net/>
 
 如果你有CSDN账号，直接用CSDN账号登录即可。
 
 我们先在 Github上注册账号并登录。
-Github地址：https://github.com/new
+Github地址：<https://github.com/new>
 
 ## 五、生成SSH密钥
 
@@ -71,14 +68,14 @@ Github地址：https://github.com/new
 
 1. 首先，在命令提示符中输入命令生成SSH密钥对。按照提示完成三次回车，即可生成ssh key。
 
-```
+```text
 ssh-keygen -t rsa -C "yangshuyin@126.com"
 ```
 
-​		可以看到，我们生成的公钥文件id_rsa.pub路径：C:\User\Adminstrator/.ssh/id_rsa.pub。
-​		这个命令会生成一个私钥（默认存储在~/.ssh/id_rsa）和一个公钥（默认存储在~/.ssh/id_rsa.pub）。
+可以看到，我们生成的公钥文件id_rsa.pub路径：C:\User\Adminstrator/.ssh/id_rsa.pub。
+这个命令会生成一个私钥（默认存储在~/.ssh/id_rsa）和一个公钥（默认存储在~/.ssh/id_rsa.pub）。
 
-2. 进入该目录用文本编辑器打开。即可看到SSH公钥，下文中将会用到这个SSH公钥。
+1. 进入该目录用文本编辑器打开。即可看到SSH公钥，下文中将会用到这个SSH公钥。
 
 ## 六、配置SSH密钥的步骤
 
@@ -88,16 +85,19 @@ ssh-keygen -t rsa -C "yangshuyin@126.com"
 
 3. 点击SSH密钥。
 
-4. 拷贝刚刚的SSH密钥到框中，输入公钥标题，点击添加密钥。		
+4. 拷贝刚刚的SSH密钥到框中，输入公钥标题，点击添加密钥。
 
 5. 配置成功。
 
-6. 最后，为了验证SSH配置是否成功，可以在命令提示符中输入ssh -T git@github.com（以GitHub为例）命令进行测试。
+6. 最后，为了验证SSH配置是否成功，可以在命令提示符中输入（以GitHub为例）命令进行测试。
+
+   ```text
+   ssh -T git@github.com
+   ssh -T git@gitcode.com（gitcode，（以前叫CODE.CHINA））
+   ```
 
 7. 如果看到欢迎信息，则说明SSH配置成功。
 
-   ```
+   ```text
    Hi yangshuyin98! You've successfully authenticated, but GitHub does not provide shell access.
    ```
-
-   ​		ssh -T git@gitcode.com（gitcode，（以前叫CODE.CHINA））

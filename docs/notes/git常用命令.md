@@ -1,29 +1,29 @@
-## 新建一个项目
+# 新建一个项目
 
 点击右上角的 +号，新建项目。
-		填写mytest项目信息，最后点击创建即可。
-		新建项目成功。
+填写mytest项目信息，最后点击创建即可。
+新建项目成功。
 
 ## 克隆项目到本地
 
-​		点击克隆，然后点击SSH Clone项目的复制链接按钮，复制git链接。		
-​		接着，在本地目录空白处D:/Chinacode中右键菜单，点击Git Bash Here。
-​		克隆远程仓库
-​		输入git clone 刚刚的git链接，如下
+点击克隆，然后点击SSH Clone项目的复制链接按钮，复制git链接。
+接着，在本地目录空白处D:/Chinacode中右键菜单，点击Git Bash Here。
+克隆远程仓库
+输入git clone 刚刚的git链接，如下
 
-```
+```text
 git clone https://gitcode.com/yang_shu_yin/test.git
 ```
 
-```
+```text
 git clone git@github.com:yangshuyin98/docs.git
 ```
 
-​		成功后，本地目录即可看到克隆下来的文件。
+成功后，本地目录即可看到克隆下来的文件。
 
 ## 创建本地Git仓库、添加文件
 
-​	在本地添加文件，如下，添加一个HelloWorld.txt文件。
+在本地添加文件，如下，添加一个HelloWorld.txt文件。
 
 1.初始化仓库
 mkdir my-project   # 创建项目目录
@@ -40,17 +40,17 @@ git init           # 初始化Git仓库（生成隐藏的.git文件夹）
    1. **添加远程仓库**：
    2. （可在本地库上使用命令 git remote add把它和 gitee 的远程库关联），如下：
 
-   ```
+   ```text
    git remote add origin https://xxxxx.git    # 添加远程仓库别名
    ```
 
-   ```
+   ```text
    git push -u origin main         # 首次推送并建立追踪关系
    ```
 
    同步代码
 
-   ```
+   ```text
    git push origin main 推送本地提交：
    git pull origin main                拉取远程更新：（自动合并）
    ```
@@ -63,14 +63,19 @@ git init           # 初始化Git仓库（生成隐藏的.git文件夹）
 
    如果在使用命令 git remote add时报错:
 
+```text
    git remote -v
    origin git@gitee.com:linxinfa/mytest.git (fetch)
    origin git@gitee.com:linxinfa/mytest.git (push)
+   ```
 
    我们可以删除已有的远程库
    git remote rm origin
    再关联远程库
+
+```text
    git remote add  git@github.com:yangshuyin98/docs.git
+   ```
 
    :::
 
