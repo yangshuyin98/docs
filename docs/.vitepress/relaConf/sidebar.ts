@@ -17,8 +17,8 @@ export const sidebar: DefaultTheme.Sidebar = {
     { text: 'else', link: '/frontEnd/else/else.md' },
   ],
   '/CAE/': [
-    { text: 'PC材质提手受拉失效分析', link: '/CAE/PC材质提手受拉失效分析' },
-    { text: 'PC材质提手的拉力失效分析', link: '/CAE/PC材质提手的拉力失效分析' },
+    { text: 'PC材质提手受拉失效分析', link: '/CAE/PC材质提手受拉失效分析.md' },
+    { text: 'PC材质提手的拉力失效分析', link: '/CAE/PC材质提手的拉力失效分析.md' },
     { text: '21讲二次开发大纲', link: '/CAE/21讲二次开发大纲' },
     { text: '22讲 set puts expr for循环', link: '/CAE/22讲set puts expr for循环' },
     { text: '23讲列表和字符串的操作方法', link: '/CAE/23讲列表和字符串的操作方法' },
@@ -26,7 +26,7 @@ export const sidebar: DefaultTheme.Sidebar = {
 
 
 
-    { text: '22讲 set puts expr for循环', link: '/CAE/22讲set puts expr for循环' },
+    { text: '22讲 set puts expr for循环', link: '/CAE/22讲set puts expr for循环.md' },
     
 
   ],

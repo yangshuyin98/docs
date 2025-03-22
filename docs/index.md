@@ -14,8 +14,8 @@ hero:
     alt: 背景图
   actions:
     - theme: brand
-      text: hypermesh二次开发
-      link: /hypermesh二次开发/21讲二次开发大纲
+      text: CAE
+      link: /CAE/PC材质提手受拉失效分析
     - theme: brand
       text: ollama
       link: /ollama/Cherry Studio知识库
