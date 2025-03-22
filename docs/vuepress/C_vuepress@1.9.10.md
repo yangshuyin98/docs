@@ -389,7 +389,7 @@ features:
 
 任何 YAML front matter 之后额外的内容将会以普通的 markdown 被渲染，并插入到 features 的后面。
 
-使用npm， 热重载<http://localhost:8080>
+使用npm， 热重载
 
 ```bash
 npm run docs:dev 
