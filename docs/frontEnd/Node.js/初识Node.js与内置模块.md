@@ -85,9 +85,9 @@ client.send('put', { 'name': filePath, 'content': response });
    }
    ```
 
-2. 使用 built-in Node.js Features：
+2.使用 built-in Node.js Features：
 
-   - Express：一个用于快速创建 RESTful 应用的框架。
+- Express：一个用于快速创建 RESTful 应用的框架。
 
      ```javascript
      const express = require('express');
@@ -879,7 +879,7 @@ IP地址和域名是一一对应的关系，这份对应关系存放在一种叫
 
 ②在开发测试期间， 127.0.0.1 对应的域名是 localhost，它们都代表我们自己的这台电脑，在使用效果上没有任何区别。
 
-3. 端口号
+3.端口号
 
 计算机中的端口号，就好像是现实生活中的门牌号一样。通过门牌号，外卖小哥可以在整栋大楼众多的房间中，准确把外卖送到你的手中。
 
@@ -1038,7 +1038,7 @@ server.listen(80, () => {
 
 ⑥使用 res.end() 把内容响应给客户端
 
-2. 动态响应内容
+2.动态响应内容
 
 ```javaScript
 const http = require('http')
@@ -1075,7 +1075,7 @@ server.listen(80, () => {
 
 ![image-20250325133712225](filename/image-20250325133712225.png)
 
-2. 实现步骤
+2.实现步骤
 
 ①导入需要的模块
 
@@ -1087,7 +1087,7 @@ server.listen(80, () => {
 
 ⑤优化资源的请求路径
 
-3. 步骤
+3.步骤
 
 1 - 导入需要的模块
 
