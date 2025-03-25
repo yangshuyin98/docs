@@ -1,40 +1,136 @@
-## 部署到GitHub Pages
+# 前端学习路线
 
-既然要部署到GitHub Pages，你得先在github新建一个仓库，因为要用他的GitHub Pages，所以仓库命名为username.github.io的形式，username是你github的用户名。然后点击设置
+1. HTML基础和CSS基础
+2. 京东项目实战
+3. JavaScript基础语法、DOM
+4. JavaScript进阶特效
+5. webapi
+6. JavaScript高级
+7. Jquery
+8. php基础
+9. Ajax
+10. 阿里百秀项目实战
+11. HTML5购物网站项目、HTML5API、CSS3
+12. canvas框架
+13. 框架封装
+14. Git+AngularJS
+15. 移动web视频、移动web开发基础功
+16. 电商项目视频、移动web京东项目
+17. 响应式开发基础知识
+18. 微金所响应式开发项目
+19. node.js
+20. vue.js
+21. reactJS
+22. 项目实战（4大项目）
+23. ES6零基础-彩票项目
+24. Angular
+25. Bootstrap
 
-选择pages
+HTML
 
-这里设置根目录/(root),当然也可以选择其它目录,点击保存，如果选择其它目录比如docs，config.js就需要配置一个base
-
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Dynamic Demo</title>
+</head>
+<body>
+  <div id="container">
+    <h1>欢迎来到代码编辑器演示！</h1>
+    <p>点击按钮和方块更改背景颜色。</p>
+    <button id="colorButton">更改颜色</button>
+    <div id="box"></div>
+  </div>
+</body>
+</html>
 ```
-export default {
-    base:'/docs/'
-  }
+
+Css样式
+
+```css
+/* 全局样式 */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Helvetica Neue', sans-serif;
+  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* 主容器 */
+#container {
+  text-align: center;
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  width: 80%;
+  max-width: 600px;
+}
+
+/* 标题样式 */
+h1 {
+  color: #333;
+  margin-bottom: 16px;
+}
+
+/* 段落样式 */
+p {
+  font-size: 16px;
+  color: #666;
+}
+
+/* 按钮样式 */
+button {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #555;
+}
+
+/* 方块样式 */
+#box {
+  width: 100px;
+  height: 100px;
+  background-color: #ff6347;
+  margin: 20px auto;
+  border-radius: 8px;
+  transition: transform 0.5s;
+}
+
+#box:hover {
+  transform: scale(1.2);
+}
 ```
 
-最后选择一个主题(这里不选择我发现站点不生效,后面把打包后的代码推上来即可,会默认加载index.html)
+javascript
 
-然后将打包后的dist下的文件推送到你的远程仓库。vitepress官网给我们提供了一个脚本文件`deploy.sh`,我们只需要改下远程仓库即可
-
-~~~text
-#!/usr/bin/env sh
-# 忽略错误
-set -e
-# 构建
-npm run docs:build
-# 进入待发布的目录
-cd docs/.vitepress/dist
-# 如果是发布到自定义域名
-# echo 'www.example.com' > CNAME
-git init
-git add -A
-git commit -m 'deploy'
-# 如果部署到 https://<USERNAME>.github.io
-# git push -f git@github.com:<USERNAME>/<USERNAME>.github.io.git master
-# 如果是部署到 https://<USERNAME>.github.io/<REPO>
-# git push -f git@github.com:<USERNAME>/<REPO>.git master:gh-pages
-cd -
-~~~
-
-直接执行这个脚本文件，我们的打包后的文件就会被推送到我们的仓库。然后我们就可以直接访问我们的静态博客站点了。如果你想要自定义其它域名的话,可以创建一个组织然后在组织下新建仓库名为organization.github.io的形式(organization是你组织名)然后执行同样的操作即可。具体可以点这里[创建 GitHub Pages 站点(https://link.juejin.cn?target=https%3A%2F%2Fdocs.github.com%2Fcn%2Fpages%2Fgetting-started-with-github-pages%2Fcreating-a-github-pages-site)
-
+```javascript
+document.addEventListener('DOMContentLoaded', function() {
+  const btn = document.getElementById('colorButton');
+  const box = document.getElementById('box');
+  
+  // 点击按钮后，随机改变背景渐变颜色
+  btn.addEventListener('click', function() {
+    const randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
+    document.body.style.background = `linear-gradient(135deg, ${randomColor}, #c3cfe2)`;
+  });
+  
+  // 点击方块后，随机改变方块背景色并打印日志
+  box.addEventListener('click', function() {
+    console.log('Box clicked! Enjoy the animation.');
+    box.style.backgroundColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
+  });
+});
+```
