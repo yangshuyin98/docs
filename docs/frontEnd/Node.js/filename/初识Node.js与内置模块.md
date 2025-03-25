@@ -1,3 +1,5 @@
+# 初识Node.js
+
 ## 初识Node.js与内置模块
 
 - 能够知道什么是 Node.js
@@ -20,6 +22,7 @@
 “Node.js”主要应用于处理与 HTTP 有关的请求。它允许开发者编写 Node.js 应用程序，通过 HTTP 命令发送 GET、POST、PUT 和 DELETE 请求到服务器端。
 
 #### 发送 GET 请求（读取文件）
+
 ```javascript
 // 获取本地文件内容
 const file = require('path');
@@ -32,6 +35,7 @@ client.send('Content', { 'text/plain': content });
 ```
 
 #### 发送 POST 请求（写入文件）
+
 ```javascript
 // 编写一个示例的 POST 请求
 const file = require('path');
@@ -58,7 +62,8 @@ client.send('put', { 'name': filePath, 'content': response });
 ### 使用 Node.js 进行 HTTP 操作
 
 1. 初始化和创建应用程序：
-   ```javascript
+
+  ```javascript
    const app = require('path').const(__ site);
    
    function createApp() {
@@ -80,11 +85,10 @@ client.send('put', { 'name': filePath, 'content': response });
    }
    ```
 
-
-
 2. 使用 built-in Node.js Features：
 
    - Express：一个用于快速创建 RESTful 应用的框架。
+
      ```javascript
      const express = require('express');
      app.use(express.json());
@@ -99,9 +103,10 @@ client.send('put', { 'name': filePath, 'content': response });
        } else {
            console.error('API 操作失败');
        }
-     ```
+             ```
    - MongoDB：用于数据管理。
-     ```javascript
+
+```javascript
      let doc = { name: 'test' };
      app.use({ db: { documents: [doc] }, schema: 'test' });
    
@@ -308,8 +313,6 @@ node.exe .\helloword.js
 
 ④输入 cls 命令，可以清空终端
 
-
-
 ## fs 文件系统模块
 
 ### 2.1 什么是 fs 文件系统模块
@@ -358,9 +361,7 @@ fs.readFile('./files/11.txt', 'utf8',function(err, dataStr) {
 })
 ```
 
-
-
-```js
+```javaScript
 // 1. 导入 fs 模块，来操作文件
 const fs = require('fs')
 
@@ -383,7 +384,7 @@ fs.readFile('./files/11.txt', 'utf8', function(err, dataStr) {
 
 可以判断 err 对象是否为 null，从而知晓文件读取的结果：
 
-```
+```javaScript
 const fs = require('fs')
 
 fs.readFile('./files/11.txt', 'utf8', function(err, dataStr) {
@@ -395,7 +396,7 @@ fs.readFile('./files/11.txt', 'utf8', function(err, dataStr) {
 
 ```
 
-```
+```javaScript
 const fs = require('fs')
 
 fs.readFile('./files/11.txt', 'utf8', function(err, result) {
@@ -407,17 +408,13 @@ fs.readFile('./files/11.txt', 'utf8', function(err, result) {
 
 ```
 
-
-
-
-
 ### 2.3 向指定的文件中写入内容
 
 #### 1. fs.writeFile() 的语法格式
 
 使用 fs.writeFile() 方法，可以向指定的文件中写入内容，语法格式如下：
 
-```
+```javaScript
 fs.writeFile(files, data[,options],callback)
 ```
 
@@ -435,11 +432,11 @@ l参数4：必选参数，文件写入完成后的回调函数。
 
 向指定的文件路径中，写入文件内容：
 
-```
+```javaScript
 // 1. 导入 fs 文件系统模块
 const fs = require('fs')
 fs.writeFile('./files/3.txt', 'ok123', function(err) {
-	console.log(err)
+  console.log(err)
 })
 ```
 
@@ -447,7 +444,7 @@ fs.writeFile('./files/3.txt', 'ok123', function(err) {
 
 可以判断 err 对象是否为 null，从而知晓文件写入的结果：
 
-```
+```javaScript
 // 1. 导入 fs 文件系统模块
 const fs = require('fs')
 
@@ -474,13 +471,13 @@ fs.writeFile('./files/3.txt', 'Hello,ok123', function(err) {
 
 整理前，成绩.txt文件中的数据格式如下：
 
-```tex
+```text
 小红=99 小白=100 小黄=70 小黑=66 小绿=88
 ```
 
 整理完成之后，希望得到的成绩-ok.txt文件中的数据格式如下：
 
-```
+```text
 小红:99
 小白:100
 小黄:70
@@ -534,8 +531,6 @@ fs.readFile('./素材/成绩.txt', 'utf8', function (err, dataStr) {
 })
 ```
 
-
-
 ### 2.6 fs 模块 - 路径动态拼接的问题
 
 在使用 fs 模块操作文件时，如果提供的操作路径是以 ./ 或 ../ 开头的相对路径时，很容易出现路径动态拼接错误的问题。
@@ -544,7 +539,7 @@ fs.readFile('./素材/成绩.txt', 'utf8', function (err, dataStr) {
 
 解决方案：在使用 fs 模块操作文件时，直接提供完整的路径，不要提供 ./ 或 ../ 开头的相对路径，从而防止路径动态拼接的问题。
 
-```
+```javaScript
 const fs = require('fs')
 
 // 出现路径拼接错误的问题，是因为提供了 ./ 或 ../ 开头的相对路径
@@ -576,10 +571,6 @@ fs.readFile(__dirname + '/files/1.txt', 'utf8', function (err, dataStr) {
 
 ```
 
-
-
-
-
 ## path 路径模块
 
 ### 3.1 什么是 path 路径模块
@@ -593,11 +584,9 @@ path 模块是 Node.js 官方提供的、用来处理路径的模块。它提供
 
 如果要在 JavaScript 代码中，使用 path 模块来处理路径，则需要使用如下的方式先导入它：
 
-```
+```javaScript
 const path = require('path')
 ```
-
-
 
 ### 3.2 路径拼接
 
@@ -605,7 +594,7 @@ const path = require('path')
 
 使用 path.join() 方法，可以把多个路径片段拼接为完整的路径字符串，语法格式如下：
 
-```
+```javaScript
 path.join([...paths])
 ```
 
@@ -619,7 +608,7 @@ path.join([...paths])
 
 使用 path.join() 方法，可以把多个路径片段拼接为完整的路径字符串：
 
-```
+```javaScript
 // 注意：  ../ 会抵消前面的路径
 const pathStr = path.join('/a', '/b/c', '../../', './d', 'e')
 console.log(pathStr)  // \a\b\d\e
@@ -630,14 +619,11 @@ console.log(pathStr2)  // 输出 当前文件夹所在目录\files\1.txt
 
 不推荐用法，推荐使用join方法
 
-```
-
+```javascript
 fs.readFile(__dirname + '/files/1.txt')
 ```
 
-
-
-```
+```javascript
 fs.readFile(path.join(__dirname, './files/1.txt'), 'utf8', function(err, dataStr) {
   if (err) {
     return console.log(err.message)
@@ -646,9 +632,7 @@ fs.readFile(path.join(__dirname, './files/1.txt'), 'utf8', function(err, dataStr
 })
 ```
 
-
-
-```
+```javascript
 const path = require('path');
 const file fullPath = path.join('/directory', 'filename.txt'); 
 // 输出'/directory/filename.txt'
@@ -662,7 +646,7 @@ const file fullPath = path.join('/directory', 'filename.txt');
 
 使用 path.basename() 方法，可以获取路径中的最后一部分，经常通过这个方法获取路径中的文件名，语法格式如下：
 
-```
+```javaScript
 path.basename(path[,ext])
 ```
 
@@ -676,7 +660,7 @@ path.basename(path[,ext])
 
 使用 path.basename() 方法，可以从一个文件路径中，获取到文件的名称部分：
 
-```
+```javaScript
 const path = require('path')
 
 // 定义文件的存放路径
@@ -696,7 +680,7 @@ console.log(nameWithoutExt)                 //输出结果为  index
 
 使用 path.extname() 方法，可以获取路径中的扩展名部分，语法格式如下：
 
-```
+```javaScript
 path.extname(path)
 ```
 
@@ -706,13 +690,11 @@ path \<string\>必选参数，表示一个路径的字符串
 
 返回: \</string\> 返回得到的扩展名字符串
 
-
-
 #### 2. path.extname() 的代码示例
 
 使用 path.extname() 方法，可以获取路径中的扩展名部分：
 
-```
+```javascript
 const path = require('path')
 // 这是文件的存放路径
 const fpath = '/a/b/c/index.html'         //路径字符串
@@ -746,7 +728,7 @@ console.log(fext)                         //输出结果为  .html
 
 步骤1 - 导入需要的模块并创建正则表达式
 
-```
+```javaScript
 // 1.1 导入 fs 模块
 const fs = require('fs')
 // 1.2 导入 path 模块
@@ -757,11 +739,9 @@ const regStyle = /<style>[\s\S]*<\/style>/
 const regScript = /<script>[\s\S]*<\/script>/
 ```
 
-
-
 步骤2 - 使用 fs 模块读取需要被处理的 html 文件
 
-```
+```javascript
 // 2.1 调用 fs.readFile() 方法读取文件
 fs.readFile(path.join(__dirname, '../素材/index.html'), 'utf8', function(err, dataStr) {
   // 2.2 读取 HTML 文件失败
@@ -773,9 +753,9 @@ fs.readFile(path.join(__dirname, '../素材/index.html'), 'utf8', function(err, 
 })
 ```
 
- 步骤3 – 自定义 resolveCSS 方法 
+ 步骤3 – 自定义 resolveCSS 方法
 
-```
+```javascript
 // 3.1 定义处理 css 样式的方法
 function resolveCSS(htmlStr) {
   // 3.2 使用正则提取需要的内容
@@ -790,9 +770,9 @@ function resolveCSS(htmlStr) {
 }
 ```
 
-步骤4 – 自定义 resolveJS 方法 
+步骤4 – 自定义 resolveJS 方法
 
-```
+```javascript
 // 4.1 定义处理 js 脚本的方法
 function resolveJS(htmlStr) {
   // 4.2 通过正则，提取对应的 <script></script> 标签内容
@@ -807,9 +787,9 @@ function resolveJS(htmlStr) {
 }
 ```
 
-步骤5 – 自定义 resolveHTML 方法 
+步骤5 – 自定义 resolveHTML 方法
 
-```
+```javascript
 // 5.1 定义处理 HTML 结构的方法
 function resolveHTML(htmlStr) {
   // 5.2 将字符串调用 replace 方法，把内嵌的 style 和 script 标签，替换为外联的 link 和 script 标签
@@ -822,15 +802,13 @@ function resolveHTML(htmlStr) {
 }
 ```
 
-
-
 #### 4. 案例的两个注意点
 
 ①fs.writeFile() 方法只能用来创建文件，不能用来创建路径
 
 ②重复调用 fs.writeFile() 写入同一个文件，新写入的内容会覆盖之前的旧内容
 
-### 3.6 解析路径：
+### 3.6 解析路径
 
 使用 `path.parse()` 解析路径为对象形式，方便处理和修改各个部分。
 
@@ -839,13 +817,11 @@ const parsedPath = path.parse(__dirname);
 console.log(parsedPath.base);             // 当前目录下的文件名部分
 ```
 
-### 3.7检查是否是文件或目录：
+### 3.7检查是否是文件或目录
 
 ```javascript
 fs.statSync(path.join(filePath, 'file.txt')).isFile();
 ```
-
-
 
 ## http 模块
 
@@ -859,11 +835,9 @@ http 模块是 Node.js 官方提供的、用来创建 web 服务器的模块。�
 
 如果要希望使用 http 模块创建 Web 服务器，则需要先导入它：
 
-```
+```javascript
 const http =require('http')
 ```
-
-
 
 ### 4.2 进一步理解 http 模块的作用
 
@@ -889,7 +863,7 @@ IP 地址的格式：通常用“点分十进制”表示成（a.b.c.d）的形�
 
 注意：
 
-①互联网中每台 Web 服务器，都有自己的 IP 地址，例如：大家可以在 Windows 的终端中运行 <ping www.baidu.com >命令，即可查看到百度服务器的 IP 地址。
+①互联网中每台 Web 服务器，都有自己的 IP 地址，例如：大家可以在 Windows 的终端中运行 ping baidu.com 命令，即可查看到百度服务器的 IP 地址。
 
 ②在开发期间，自己的电脑既是一台服务器，也是一个客户端，为了方便测试，可以在自己的浏览器中输入 127.0.0.1 这个 IP 地址，就能把自己的电脑当做一台服务器进行访问了。
 
@@ -937,7 +911,7 @@ IP地址和域名是一一对应的关系，这份对应关系存放在一种叫
 
 如果希望在自己的电脑上创建一个 web 服务器，从而对外提供 web 服务，则需要导入 http 模块：
 
-```
+```javaScript
 const http=require('http')
 ```
 
@@ -945,7 +919,7 @@ const http=require('http')
 
 调用 http.createServer() 方法，即可快速创建一个 web 服务器实例：
 
-```
+```javaScript
 const server = http.createServer()
 ```
 
@@ -953,7 +927,7 @@ const server = http.createServer()
 
 为服务器实例绑定 request 事件，即可监听客户端发送过来的网络请求：
 
-```
+```javaScript
 //使用服务器实例的  .on()方法，为服务器绑定一个request事件
 server.on('request',req,res)=>{
 //只要有客户端来请求我们自己的服务器，就会触发request事件，从而调用这个事件处理函数
@@ -965,7 +939,7 @@ console.log('Someone visit our web server.')
 
 调用服务器实例的 .listen() 方法，即可启动当前的 web 服务器实例：
 
-```
+```javaScript
 //调用server.listen(端口号,cb回调)方法，即可启动web服务器
 server.listen(8080,()=>{
 consloe.log('http server running at http://127.0.0.1:8080')
@@ -979,7 +953,7 @@ consloe.log('http server running at http://127.0.0.1:8080')
 
 如果想在事件处理函数中，访问与客户端相关的数据或属性，可以使用如下的方式：
 
-```
+```javaScript
 const http = require('http')
 const server = http.createServer()
 // req 是请求对象，包含了与客户端相关的数据和属性
@@ -1005,7 +979,7 @@ Postman辅助工具
 
 在服务器的 request 事件处理函数中，如果想访问与服务器相关的数据或属性，可以使用如下的方式：
 
-```
+```javaScript
 const http = require('http')
 const server = http.createServer()
 
@@ -1024,13 +998,11 @@ server.listen(80, () => {
 
 ```
 
-
-
 #### 5. 解决中文乱码问题
 
 当调用 res.end() 方法，向客户端发送中文内容的时候，会出现乱码问题，此时，需要手动设置内容的编码格式：
 
-```
+```javascript
 const http = require('http')
 const server = http.createServer()
 
@@ -1068,7 +1040,7 @@ server.listen(80, () => {
 
 2. 动态响应内容
 
-```
+```javaScript
 const http = require('http')
 const server = http.createServer()
 
@@ -1095,8 +1067,6 @@ server.listen(80, () => {
 })
 ```
 
-
-
 #### 4.6 案例 - 实现 clock 时钟的 web 服务器
 
 1. 核心思路
@@ -1121,7 +1091,7 @@ server.listen(80, () => {
 
 1 - 导入需要的模块
 
-```
+```javaScript
 // 1.1 导入 http 模块
 const http = require('http')
 // 1.2 导入 fs 模块
@@ -1132,7 +1102,7 @@ const path = require('path')
 
 2 - 创建基本的 web 服务器
 
-```
+```javaScript
 // 2.1 创建 web 服务器
 const server = http.createServer()
 // 2.2 监听 web 服务器的 request 事件
@@ -1153,7 +1123,7 @@ server.listen(80, () => {
 
 3 - 将资源的请求 url 地址映射为文件的存放路径
 
-```
+```javaScript
 // 2.1 创建 web 服务器
 const server = http.createServer()
 // 2.2 监听 web 服务器的 request 事件
@@ -1173,7 +1143,7 @@ server.listen(80, () => {
 
 4 - 读取文件的内容并响应给客户端
 
-```
+```javaScript
 // 4.1 根据“映射”过来的文件路径读取文件的内容
   fs.readFile(fpath, 'utf8', (err, dataStr) => {
     // 4.2 读取失败，向客户端响应固定的“错误消息”
@@ -1185,7 +1155,7 @@ server.listen(80, () => {
 
 5 – 优化资源的请求路径
 
-```
+```javaScript
 // 5.1 预定义一个空白的文件存放路径
   let fpath = ''
   if (url === '/') {
@@ -1198,11 +1168,7 @@ server.listen(80, () => {
   }
 ```
 
-
-
-
-
-```
+```javaScript
 // 1.1 导入 http 模块
 const http = require('http')
 // 1.2 导入 fs 模块
@@ -1246,18 +1212,3 @@ server.listen(80, () => {
 })
 
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

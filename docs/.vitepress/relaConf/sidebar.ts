@@ -14,7 +14,7 @@ export const sidebar: DefaultTheme.Sidebar = {
     { text: 'vue', link: '/frontEnd/vue/vue' },
     { text: 'JavaScript', link: '/frontEnd/JavaScript/JavaScript' },
     { text: '2024年前端学习路线图', link: '/frontEnd/else/2024年前端学习路线图.md' },
-    { text: '初识Node.js与内置模块', link: '/frontEnd/初识Node.js与内置模块.md' },
+    { text: '初识Node.js与内置模块', link: '/frontEnd/Node.js/初识Node.js与内置模块.md' },
     { text: 'else', link: '/frontEnd/else/else.md' },
   ],
   '/CAE/': [
