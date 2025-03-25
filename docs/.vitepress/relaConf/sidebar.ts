@@ -14,6 +14,7 @@ export const sidebar: DefaultTheme.Sidebar = {
     { text: 'vue', link: '/frontEnd/vue/vue' },
     { text: 'JavaScript', link: '/frontEnd/JavaScript/JavaScript' },
     { text: '2024年前端学习路线图', link: '/frontEnd/else/2024年前端学习路线图.md' },
+    { text: '初识Node.js与内置模块', link: '/frontEnd/初识Node.js与内置模块.md' },
     { text: 'else', link: '/frontEnd/else/else.md' },
   ],
   '/CAE/': [
@@ -62,6 +63,10 @@ export const sidebar: DefaultTheme.Sidebar = {
     { text: 'Pandoc命令', link: '/notes/Pandoc命令' },
     { text: 'FFmpeg项目', link: '/notes/FFmpeg项目' },
     { text: 'B站缓存m4s', link: '/notes/B站缓存m4s' },
+    { text: 'B站缓存m4s批量重命名', link: '/notes/B站缓存m4s批量重命名' },
+    { text: '箭头函数', link: '/notes/箭头函数' },
+
+
     
   ],
 
