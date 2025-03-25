@@ -83,7 +83,7 @@ client.send('put', { 'name': filePath, 'content': response });
        // 发送 POST 请求
        client.send('post', { name: __site, content: '测试文件' });
    }
-   ```
+  ```
 
 2.使用 built-in Node.js Features：
 
@@ -103,14 +103,12 @@ client.send('put', { 'name': filePath, 'content': response });
        } else {
            console.error('API 操作失败');
        }
-             ```
-   - MongoDB：用于数据管理。
+     ```
 
-```javascript
-     let doc = { name: 'test' };
-     app.use({ db: { documents: [doc] }, schema: 'test' });
-   
-   
+- MongoDB：用于数据管理。
+
+​     let doc = { name: 'test' };
+​     app.use({ db: { documents: [doc] }, schema: 'test' });
 
 ### 使用 Node.js 的优点
 
@@ -123,19 +121,7 @@ client.send('put', { 'name': filePath, 'content': response });
 “Node.js”是一个轻量级的 JavaScript 基础框架，主要用于在控制台上编写 Node.js 应用程序，并通过 HTTP 连接到服务器端。
 它允许开发者快速开发脚本，用于 HTTP 无关的任务或与 web 网络通信的功能。
 
-
-
-
-
-
-
-
-
-
-
 ## 初识 Node.js
-
-
 
 ### 1.1 回顾与思考
 
@@ -254,8 +240,6 @@ Node.js 作为一个 JavaScript 的运行环境，仅仅提供了基础的功能
 浏览器中的 JavaScript 学习路径：
 
 JavaScript 基础语法 + 浏览器内置 API（DOM + BOM） + 第三方库（jQuery、art-template 等）
-
-
 
 Node.js 的学习路径：
 
