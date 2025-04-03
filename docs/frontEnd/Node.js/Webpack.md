@@ -1,20 +1,11 @@
-
-
-
-
-
-
 ## Webpack
-
-
-
 
 
 #### 什么是 Webpack？
 
 [定义：](https://webpack.docschina.org/concepts/)
 
-![image-20250329165411254](filename/image-20250329165411254.png)
+
 
 Webpack 是一个模块打包工具，主要用于现代 JavaScript 应用程序的构建。它能够将各种资源（如 JavaScript、CSS、图片等）视为模块，并通过配置文件将其打包成一个或多个最终的输出文件。Webpack 的主要功能包括：
 
@@ -42,7 +33,7 @@ Webpack 是一个模块打包工具，主要用于现代 JavaScript 应用程序
 - 把 ES6+ 降级成 ES5
 - 支持多种模块标准语法
 
-![image-20250329165426622](filename/image-20250329165426622.png)
+
 
 问题：为何不学 vite ？
 
@@ -68,13 +59,13 @@ React 脚手架使用做铺垫！
 npm i webpack webpack-cli --save-dev
 ```
 
-![image-20250329165939201](filename/image-20250329165939201.png)
+
 
 ```
 npm run build
 ```
 
-![image-20250329170104523](filename/image-20250329170104523.png)
+
 
 #### 修改 Webpack 打包入口和出口
 
@@ -90,9 +81,9 @@ npm run build
 
 注意：只有和入口产生直接/间接的引入关系，才会被打包
 
-![image-20250329170215889](filename/image-20250329170215889.png)
 
-![image-20250329170223750](filename/image-20250329170223750.png)
+
+
 
 #### 用户登录 - 长度判断
 
@@ -108,9 +99,9 @@ npm run build
 
 核心：Webpack 打包后的代码，作用在前端网页中使用
 
-![image-20250329170304342](filename/image-20250329170304342.png)
 
-![image-20250329170324965](filename/image-20250329170324965.png)
+
+
 
 自动生成 html 文件
 
@@ -128,4 +119,3 @@ npm run build
 npm i html-webpack-plugin  --save-dev
 ```
 
-![image-20250329170459314](filename/image-20250329170459314.png)

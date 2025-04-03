@@ -1,6 +1,5 @@
 
-
-
+# AJAX（Asynchronous JavaScript and XML）
 
 AJAX（Asynchronous JavaScript and XML）是一种用于创建快速动态网页的技术。它允许网页在不重新加载整个页面的情况下与服务器进行异步通信，从而实现部分页面的更新。
 

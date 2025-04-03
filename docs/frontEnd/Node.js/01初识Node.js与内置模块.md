@@ -149,7 +149,6 @@ HTML、CSS、Javascript
 
 - etc...
 
-
 其中，Chrome 浏览器的 V8 解析引擎性能最好！
 
 #### 4. 思考：为什么 JavaScript 可以操作 DOM 和 BOM
@@ -189,8 +188,6 @@ Chrome 浏览器运行环境：
 ②内置 API 是由运行环境提供的特殊接口，只能在所属的运行环境中被调用。
 
 #### 6. 思考：JavaScript能否做后端开发
-
-
 
 ### 1.2 Node.js 简介
 
@@ -317,7 +314,6 @@ fs 模块是 Node.js 官方提供的、用来操作文件的模块。它提供�
 - fs.readFile() 方法，用来读取指定文件中的内容
 
 - fs.writeFile() 方法，用来向指定的文件中写入内容
-
 
 如果要在 JavaScript 代码中，使用 fs 模块来操作文件，则需要使用如下的方式先导入它：
 
