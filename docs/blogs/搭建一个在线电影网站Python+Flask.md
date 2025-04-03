@@ -618,14 +618,14 @@ python -m flask db upgrade
 
 python run.py
 
-http://localhost:5000/auth/login
+<http://localhost:5000/auth/login>
 
-http://localhost:5000/auth/register
+<http://localhost:5000/auth/register>
 
 ### 已添加的测试账户
 
 1. 重新登录测试：
-   1. 访问 http://localhost:5000/auth/login
+   1. 访问 <http://localhost:5000/auth/login>
    2. 使用 testuser1/test123 登录
 
 可以通过添加更多功能来扩展这个基础框架：
