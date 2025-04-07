@@ -1,12 +1,6 @@
 # Headline
 
-## Headline2
-
-> 大事件后台 API 项目，API 接口文档请参考, 请参考：
-
-```js
-https://www.showdoc.cc/escook?page_id=3707158761215217
-```
+> 大事件后台 API 项目，API 接口文档请参考 https://www.showdoc.cc/escook?page_id=3707158761215217
 
 ## 1. 初始化
 
@@ -148,9 +142,56 @@ module.exports = router
 
 1. 在 `my_db_01` 数据库中，新建 `ev_users` 表如下：
 
-```TEXT
- ![ev_users表结构](./images/1.jpg)
+DataType 数据类型：
 
+① int 整数
+
+② varchar(len) 字符串
+
+③ tinyint(1) 布尔值
+
+字段的特殊标识：
+
+① PK（Primary Key）主键、唯一标识
+
+② NN（Not Null）值不允许为空
+
+③ UQ（Unique）值唯一
+
+④ AI（Auto Increment）值自动增长
+
+> Tables右击Create Tables...
+>
+> Table names：ev_users
+>
+> Comments：用户信息表
+>
+> id                DataType: INT                   √PK     √NN   √UQ    √AI
+>
+> username  DataType: VARCHAR(255)             √NN    √UQ
+>
+> password   DataType: VARCHAR(255)             √NN
+>
+> nickname   DataType: VARCHAR(255)
+>
+> email           DataType: VARCHAR(255)
+>
+> user_pic      DataType: TEXT
+
+TEXT文本长度非常长
+
+```sql
+CREATE TABLE `my_db_01`.`ev_users` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `username` VARCHAR(255) NOT NULL,
+  `password` VARCHAR(255) NOT NULL,
+  `nickname` VARCHAR(255) NULL,
+  `email` VARCHAR(255) NULL,
+  `user_pic` TEXT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
+  UNIQUE INDEX `username_UNIQUE` (`username` ASC) VISIBLE)
+COMMENT = '用户信息表';
 ```
 
 ### 2.2 安装并配置 mysql 模块
@@ -171,11 +212,19 @@ const mysql = require('mysql')
 
 // 创建数据库连接对象
 const db = mysql.createPool({
-  host: '127.0.0.1',
-  user: 'root',
-  password: 'admin123',
-  database: 'my_db_01',
-})
+    host: '127.0.0.1',
+    user: 'root',
+    password: 'admin123',
+    database: 'my_db_01',
+});
+db.getConnection((err, connection) => {
+    if (err) {
+        console.error("Database connection failed:", err);
+        return;
+    }
+    console.log("Database connected");
+    connection.release();
+});
 
 // 向外共享 db 数据库连接对象
 module.exports = db
@@ -195,8 +244,11 @@ module.exports = db
 1. 判断用户名和密码是否为空
 
 ```js
+//\api_server\router_handler\user.js
 // 接收表单数据
 const userinfo = req.body
+console.log(userinfo)
+//结果[Object: null prototype] { username: '111', password: '333' }
 // 判断数据是否合法
 if (!userinfo.username || !userinfo.password) {
   return res.send({ status: 1, message: '用户名或密码不能为空！' })
@@ -208,6 +260,8 @@ if (!userinfo.username || !userinfo.password) {
 1. 导入数据库操作模块：
 
 ```js
+//\api_server\router_handler\user.js
+//在 /router_handler/user.js 中，导入数据库操作模块
 const db = require('../db/index')
 ```
 
@@ -295,7 +349,7 @@ db.query(sql, { username: userinfo.username, password: userinfo.password }, func
 1. 在 `app.js` 中，所有路由之前，声明一个全局中间件，为 res 对象挂载一个 `res.cc()` 函数 ：
 
 ```js
-// 响应数据的中间件
+// 响应数据的中间件，一定要在路由之前，封装res.cc函数
 app.use(function (req, res, next) {
   // status = 0 为成功； status = 1 为失败； 默认将 status 的值设置为 1，方便处理失败的情况
   res.cc = function (err, status = 1) {
@@ -321,19 +375,19 @@ app.use(function (req, res, next) {
 1. 安装 `@escook/express-joi` 中间件，来实现自动对表单数据进行验证的功能：
 
 ```bash
-npm i @escook/express-joi
+npm install joi
 ```
 
 2. 安装 `@hapi/joi` 包，为表单中携带的每个数据项，定义验证规则：
 
 ```bash
-npm install @hapi/joi@17.1.0
+npm install @hapi/joi@17.1.0             #验证规则
 ```
 
 3. 新建 `/schema/user.js` 用户信息验证规则模块，并初始化代码如下：
 
 ```js
-const joi = require('@hapi/joi')
+const joi = require('joi')
 
 /**
  * string() 值必须是字符串
@@ -342,6 +396,8 @@ const joi = require('@hapi/joi')
  * max(length) 最大长度
  * required() 值是必填项，不能为 undefined
  * pattern(正则表达式) 值必须符合正则表达式的规则
+ *^[\S]非空字符
+ *{6,12}   6-12位之间
  */
 
 // 用户名的验证规则
@@ -387,7 +443,7 @@ module.exports = router
 5. 在 `app.js` 的全局错误级别中间件中，捕获验证失败的错误，并把验证失败的结果响应给客户端：
 
 ```js
-const joi = require('@hapi/joi')
+const joi = require('joi')
 
 // 错误中间件
 app.use(function (err, req, res, next) {
