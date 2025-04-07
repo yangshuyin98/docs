@@ -63,16 +63,15 @@ export const navbar: DefaultTheme.NavItem[] = [
             { text: 'vue', link: '/frontEnd/vue/vue' },
             { text: 'JavaScript', link: '/frontEnd/JavaScript/JavaScript' }, 
 
-            { text: '2024年前端学习路线图', link: '/frontEnd/else/2024年前端学习路线图' },
+            
             { text: '01初识Node.js与内置模块', link: '/frontEnd/Node.js/01初识Node.js与内置模块.md' },
             { text: '02_模块化', link: '/frontEnd/Node.js/02_模块化' },
             { text: '03_Express', link: '/frontEnd/Node.js/03_Express' },
             { text: '05_ev_api_server', link: '/frontEnd/Node.js/05_ev_api_server' },
-        
 
 
 
-
+            { text: '2024年前端学习路线图', link: '/frontEnd/else/2024年前端学习路线图' },
             { text: 'else', link: '/frontEnd/else/else.md' },]
 },
 {
