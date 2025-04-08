@@ -19,6 +19,7 @@ export const sidebar: DefaultTheme.Sidebar = {
     { text: '03_Express', link: '/frontEnd/Node.js/03_Express' },
     { text: '04_数据库与身份认证', link: '/frontEnd/Node.js/04_数据库与身份认证' },
     { text: '05_ev_api_server', link: '/frontEnd/Node.js/05_ev_api_server' },
+    { text: '06_ev_api_server', link: '/frontEnd/Node.js/06_ev_api_server' },
 
     { text: 'else', link: '/frontEnd/else/else.md' },
   ],

@@ -453,3 +453,197 @@ app.use(function (err, req, res, next) {
   res.cc(err)
 })
 ```
+
+### 2.6 登录
+
+#### 2.6.0 实现步骤
+
+1. 检测表单数据是否合法
+2. 根据用户名查询用户的数据
+3. 判断用户输入的密码是否正确
+4. 生成 JWT 的 Token 字符串
+
+#### 2.6.1 检测登录表单的数据是否合法
+
+1. 将 `/router/user.js` 中 `登录` 的路由代码修改如下：
+
+```js
+// 登录的路由
+router.post('/login', expressJoi(reg_login_schema), userHandler.login)
+```
+
+#### 2.6.2 根据用户名查询用户的数据
+
+1. 接收表单数据：
+
+```js
+ //   /router_handler/user.js
+ // 接收表单数据
+const userinfo = req.body
+```
+
+2. 定义 SQL 语句：
+
+```js
+// 定义 SQL 语句
+const sql = `select * from ev_users where username=?`
+```
+
+3. 执行 SQL 语句，查询用户的数据：
+
+```js
+db.query(sql, userinfo.username, function (err, results) {
+  // 执行 SQL 语句失败
+  if (err) {
+      return res.cc(err)
+  }
+  // 执行 SQL 语句成功，但是查询到数据条数不等于 1
+    //if (results.length === 0) {
+  if (results.length !== 1) {
+      return res.cc('登录失败！')
+  }
+  // TODO：判断用户输入的登录密码是否和数据库中的密码一致
+})
+```
+
+#### 2.6.3 判断用户输入的密码是否正确
+
+> 核心实现思路：调用 `bcrypt.compareSync(用户提交的密码, 数据库中的密码)` 方法比较密码是否一致
+
+> 返回值是布尔值（true 一致、false 不一致）
+
+具体的实现代码如下：
+
+```js
+// 拿着用户输入的密码,和数据库中存储的密码进行对比
+const compareResult = bcrypt.compareSync(userinfo.password, results[0].password)
+
+// 如果对比的结果等于 false, 则证明用户输入的密码错误
+if (!compareResult) {
+  return res.cc('登录失败！')
+}
+
+// TODO：登录成功，生成 Token 字符串
+```
+
+results的结构如下：
+
+```
+[
+  RowDataPacket {
+    id: 5,
+    username: 'xijinping1',
+    password: '$2a$10$9XxXhdVJ1YNMpnatUHPRE.uU9eWnJSDfa/PTCT7XtWTFKBBW9IEGW',
+    nickname: null,
+    email: null,
+    user_pic: null
+  }
+]
+```
+
+#### 2.6.4 生成 JWT 的 Token 字符串
+
+> 核心注意点：在生成 Token 字符串的时候，一定要剔除 **密码** 和 **头像** 的值
+
+1. 通过 ES6 的高级语法，快速剔除 `密码` 和 `头像` 的值：
+
+```js
+//   /router_handler/user.js
+// 剔除完毕之后，user 中只保留了用户的 id, username, nickname, email 这四个属性的值
+const user = { ...results[0], password: '', user_pic: '' }
+```
+
+2. 运行如下的命令，安装生成 Token 字符串的包：
+
+```bash
+npm i jsonwebtoken@8.5.1
+```
+
+3. 在 `/router_handler/user.js` 模块的头部区域，导入 `jsonwebtoken` 包：
+
+```js
+//   /router_handler/user.js
+// 用这个包来生成 Token 字符串
+const jwt = require('jsonwebtoken')
+```
+
+4. 创建 `config.js` 文件，并向外共享 **加密** 和 **还原** Token 的 `jwtSecretKey` 字符串：
+
+```js
+// config.js
+// 定义配置信息对象
+module.exports = {
+    // 加密和解密 Token 的密钥
+    jwtSecretKey: 'itheima No1. ^_^',
+}
+```
+
+5. 将用户信息对象加密成 Token 字符串：
+
+```js
+//   /router_handler/user.js
+// 导入全局的配置文件
+const config = require('../config')
+
+// 生成 Token 字符串
+const tokenStr = jwt.sign(user, config.jwtSecretKey, {
+  expiresIn: '10h', // token 有效期为 10 个小时
+})
+```
+
+6. 将生成的 Token 字符串响应给客户端：
+
+```js
+// 将 Token 字符串作为响应体，返回给客户端
+res.send({
+  status: 0,
+  message: '登录成功！',
+  // 为了方便客户端使用 Token，在服务器端直接拼接上 Bearer 的前缀
+  token: 'Bearer ' + tokenStr,
+})
+```
+
+```
+{   "status": 0,
+    "message": "登录成功！",
+    "token": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwidXNlcm5hbWUiOiJ4aWppbnBpbmcxIiwicGFzc3dvcmQiOiIiLCJuaWNrbmFtZSI6bnVsbCwiZW1haWwiOm51bGwsInVzZXJfcGljIjoiIiwiaWF0IjoxNzQ0MDM2Nzg2LCJleHAiOjE3NDQwNzI3ODZ9.j8tKUrEWeBkX5yqBFuZb8Tz_IoLe03YA0ugWE_5Ss54"
+}
+```
+
+### 2.7 配置解析 Token 的中间件
+
+1. 运行如下的命令，安装解析 Token 的中间件：
+
+```js
+npm i express-jwt@5.3.3
+```
+
+2. 在 `app.js` 中注册路由之前，配置解析 Token 的中间件：
+
+```js
+//一定要在路由之前，注册解析 JSON 格式的中间件
+// 导入配置文件
+const config = require('./config')
+
+// 解析 token 的中间件
+const expressJWT = require('express-jwt')
+
+// 使用 .unless({ path: [/^\/api\//] }) 指定哪些接口不需要进行 Token 的身份认证
+app.use(expressJWT({ secret: config.jwtSecretKey }).unless({ path: [/^\/api\//] }))
+```
+
+3. 在 `app.js` 中的 `错误级别中间件` 里面，捕获并处理 Token 认证失败后的错误：
+
+```js
+// 错误中间件
+app.use(function (err, req, res, next) {
+  // 省略其它代码...
+
+  // 捕获身份认证失败的错误
+  if (err.name === 'UnauthorizedError') return res.cc('身份认证失败！')
+
+  // 未知错误...
+})
+```
+
+Authorization
