@@ -71,6 +71,8 @@ export const navbar: DefaultTheme.NavItem[] = [
             { text: '05_ev_api_server', link: '/frontEnd/Node.js/05_ev_api_server' },
             { text: '06_ev_api_server', link: '/frontEnd/Node.js/06_ev_api_server' },
 
+            { text: 'Day01_AJAX入门', link: '/frontEnd/ajax/Day01_AJAX入门.md' },
+
 
 
             { text: '2024年前端学习路线图', link: '/frontEnd/else/2024年前端学习路线图' },
