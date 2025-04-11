@@ -898,23 +898,35 @@ xhr.send();
      <script>
        /*
          注册用户：http://hmajax.itheima.net/api/register
+         url: 'https://hmajax.itheima.net/api/register,
          请求方法：POST
          参数名：
            username：用户名（中英文和数字组成，最少8位）
            password：密码  （最少6位）
    
          目标：点击按钮，通过axios提交用户和密码，完成注册
+         
        */
        document.querySelector('.btn').addEventListener('click', () => {
          axios({
            url: 'http://hmajax.itheima.net/api/register',
+           
            method: 'POST',
            data: {
              username: 'itheima007',
              password: '7654321'
-           }
-         })
+         }
+       }).then(result => {
+         // 成功
+         console.log(result)
+       }).catch(error => {
+         // 失败
+         // 处理错误信息
+         console.log(error)
+         console.log(error.response.data.message)
+         alert(error.response.data.message)
        })
+      })
      </script>
    </body>
    
@@ -962,9 +974,17 @@ xhr.send();
 
 2. 在 axios 语法中要如何处理呢？
 
-   * 因为，普通用户不会去控制台里看错误信息，我们要编写代码拿到错误并展示给用户在页面上
+   - axios 错误处理
 
-3. 使用 axios 的 catch 方法，捕获这次请求响应的错误并做后续处理，语法如下：
+   - 场景：再次注册相同的账号，会遇到报错信息
+
+   - 处理：用更直观的方式，给普通用户展示错误信息
+
+   - 因为，普通用户不会去控制台里看错误信息，我们要编写代码拿到错误并展示给用户在页面上
+
+3. 使用 axios 的 catch 方法，捕获这次请求响应的错误并做后续处理.
+
+   语法：在 then 方法的后面，通过点语法调用 catch 方法，传入回调函数并定义形参
 
    ```js
    axios({
@@ -976,6 +996,8 @@ xhr.send();
    })
    ```
 
+   处理**：**注册案例，重复注册时通过弹框提示用户错误原因
+
 4. 需求：再次重复注册相同用户名，提示用户注册失败的原因
 
    ![image-20230404104440224](images/image-20230404104440224.png)
@@ -985,7 +1007,31 @@ xhr.send();
 5. 对应代码
 
    ```js
-   document.querySelector('.btn').addEventListener('click', () => {
+   <!DOCTYPE html>
+   <html lang="en">
+   
+   <head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>axios错误处理</title>
+   </head>
+   
+   <body>
+     <button class="btn">注册用户</button>
+     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+     <script>
+       /*
+         注册用户: http://hmajax.itheima.net/api/register
+         请求方法: POST
+         参数名:
+           username: 用户名 (中英文和数字组成, 最少8位)
+           password: 密码 (最少6位)
+   
+         目标: 点击按钮, 通过axios提交用户和密码, 完成注册
+         需求: 使用axios错误处理语法, 拿到报错信息, 弹框反馈给用户
+       */
+      document.querySelector('.btn').addEventListener('click', () => {
        axios({
          url: 'http://hmajax.itheima.net/api/register',
          method: 'post',
@@ -1003,7 +1049,11 @@ xhr.send();
          console.log(error.response.data.message)
          alert(error.response.data.message)
        })
-   })
+      })
+     </script>
+   </body>
+   
+   </html>
    ```
 
 
@@ -1032,24 +1082,177 @@ xhr.send();
 
 ### 讲解
 
-1. 首先，HTTP 协议规定了浏览器和服务器返回内容的<span style="color: red;">格式</span>
+1. HTTP 协议－请求报文
 
-2. 请求报文：是浏览器按照协议规定发送给服务器的内容，例如刚刚注册用户时，发起的请求报文：
+2. 首先，HTTP 协议规定了浏览器和服务器返回内容的<span style="color: red;">格式</span>
+
+3. 请求报文：浏览器按照 HTTP 协议要求的格式，发送给服务器的内容
+
+4. 请求报文：是浏览器按照协议规定发送给服务器的内容，例如刚刚注册用户时，发起的请求报文：
+
+   ```
+       axios({
+         url: 'http://hmajax.itheima.net/api/register',
+         method: 'post',
+         data: {
+           username: 'itheima007',
+           password: '7654321'
+         }
+   ```
 
    ![image-20230404104508764](images/image-20230404104508764.png)
 
    ![image-20230220132229960](images/image-20230220132229960.png)
 
-3. 这里的格式包含：
+5. 请求报文的格式
 
-   * 请求行：请求方法，URL，协议
-   * 请求头：以键值对的格式携带的附加信息，比如：Content-Type（指定了本次传递的内容类型）
-   * 空行：分割请求头，空行之后的是发送给服务器的资源
-   * 请求体：发送的资源
+   请求报文的组成部分有:
 
-4. 我们切换到浏览器中，来看看刚才注册用户发送的这个请求报文以及内容去哪里查看呢
+   1. 请求行：请求方法，URL，协议
+   2. 请求头：以键值对的格式携带的附加信息，比如：Content-Type（指定了本次传递的内容类型），Content-Type：appcation/json
+   3. 空行：分割请求头，空行之后的是发送给服务器的资源
+   4. 请求体：发送的资源，json字符串
 
-5. 代码：直接在上个代码基础上复制，然后运行查看请求报文对应关系即可
+6. 我们切换到浏览器中，来看看刚才注册用户发送的这个请求报文以及内容去哪里查看呢
+
+7. 代码：直接在上个代码基础上复制，然后运行查看请求报文对应关系即可
+
+对应代码
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>请求报文_辅助调试</title>
+  <!-- 引入bootstrap.css -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+  <!-- 公共 -->
+  <style>
+    html,
+    body {
+      background-color: #EDF0F5;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      width: 520px;
+      height: 540px;
+      background-color: #fff;
+      padding: 60px;
+      box-sizing: border-box;
+    }
+
+    .container h3 {
+      font-weight: 900;
+    }
+  </style>
+  <!-- 表单容器和内容 -->
+  <style>
+    .form_wrap {
+      color: #8B929D !important;
+    }
+
+    .form-text {
+      color: #8B929D !important;
+    }
+  </style>
+  <!-- 提示框样式 -->
+  <style>
+    .alert {
+      transition: .5s;
+      opacity: 0;
+    }
+
+    .alert.show {
+      opacity: 1;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h3>欢迎-登录</h3>
+    <!-- 登录结果-提示框 -->
+    <div class="alert alert-success" role="alert">
+      JS中会动态插入提示文字
+    </div>
+    <!-- 表单 -->
+    <div class="form_wrap">
+      <form>
+        <div class="mb-3">
+          <label for="username" class="form-label">账号名</label>
+          <input type="text" class="form-control username" name="username" aria-describedby="usernameHelp">
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">密码</label>
+          <input type="password" class="form-control password" name="password">
+        </div>
+        <button type="button" class="btn btn-primary btn-login"> 登 录 </button>
+      </form>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    // 1.获取 alert
+    const alertCom = document.querySelector('.alert')
+
+    // 2.抽取提示框的方法
+    function showAlert(msg, classname) {
+      alertCom.innerText = msg
+      alertCom.classList.add(classname)
+      alertCom.classList.add('show')
+      setTimeout(() => {
+        // 延迟隐藏
+        alertCom.classList.remove('show')
+        alertCom.classList.remove(classname)
+      }, 2000);
+    }
+
+    // 3.给登录按钮绑定点击事件，提交输入的用户信息到服务器
+    document.querySelector('.btn-login').addEventListener('click', function () {
+      // 3.1 获取输入的用户名和密码
+      const username = document.querySelector('.username').value
+      const password = document.querySelector('.password').value
+
+      // 3.2用户名 密码 长度判断
+      if (username.trim().length < 8) {
+        showAlert('用户名长度需要大于等于8', 'alert-danger')
+        return
+      }
+      if (password.trim().length < 6) {
+        showAlert('密码长度需要大于等于6', 'alert-danger')
+        return
+      }
+
+      // 3.3 通过axios提交到服务器 并 提示用户 成功 / 失败
+      axios({
+        url: 'http://hmajax.itheima.net/api/login',
+        method: 'post',
+        data: {
+          username,
+          password
+        }
+      }).then(res => {
+        // 显示提示框
+        showAlert(res.data.message, 'alert-success')
+      }).catch(err => {
+        // 显示警示框
+        showAlert(err.response.data.message, 'alert-danger')
+      })
+    })
+  </script>
+</body>
+
+</html>
+```
 
 
 
@@ -1083,11 +1286,15 @@ xhr.send();
 
 ### 讲解
 
-1. 学习了查看请求报文有什么用呢？
+1. 请求报文－错误排查
+2. 需求：通过请求报文排查错误原因，并修复输入正确的用户名和密码无法登录
+3. 用户名：itheima007
+4. 密码：7654321
+5. 学习了查看请求报文有什么用呢？
    * 可以用来确认我们代码发送的请求数据是否真的正确
-2. 配套模板代码里，对应 08 标题文件夹里是我同桌的代码，它把登录也写完了，但是无法登录，我们来到模板代码中，找到运行后，在<span style="color: red;">不逐行查看代码的情况下</span>，查看请求报文，看看它登录提交的相关信息对不对，帮他找找问题出现的原因
-3. 发现请求体数据有问题，往代码中定位，找到类名写错误了
-4. 代码：在配套文件夹素材里，找到需要对应代码，直接运行，根据报错信息，找到错误原因
+6. 配套模板代码里，对应 08 标题文件夹里是我同桌的代码，它把登录也写完了，但是无法登录，我们来到模板代码中，找到运行后，在<span style="color: red;">不逐行查看代码的情况下</span>，查看请求报文，看看它登录提交的相关信息对不对，帮他找找问题出现的原因
+7. 发现请求体数据有问题，往代码中定位，找到类名写错误了
+8. 代码：在配套文件夹素材里，找到需要对应代码，直接运行，根据报错信息，找到错误原因
 
 
 
@@ -1115,26 +1322,86 @@ xhr.send();
 
 ### 讲解
 
-1. 响应报文：是服务器按照协议固定的格式，返回给浏览器的内容
+1. HTTP 协议－响应报文
+
+2. HTTP 协议：规定了浏览器发送及服务器返回内容的格式
+
+3. 响应报文：服务器按照 HTTP 协议要求的格式，返回给浏览器的内容
+
+4. 响应报文：是服务器按照协议固定的格式，返回给浏览器的内容
 
    ![image-20230404104556531](images/image-20230404104556531.png)
 
    ![image-20230220133141151](images/image-20230220133141151.png)
 
-2. 响应报文的组成：
+5. 响应报文的组成：
 
    * 响应行（状态行）：协议，HTTP响应状态码，状态信息
    * 响应头：以键值对的格式携带的附加信息，比如：Content-Type（告诉浏览器，本次返回的内容类型）
    * 空行：分割响应头，控制之后的是服务器返回的资源
    * 响应体：返回的资源
 
-3. HTTP 响应状态码：
+6. HTTP 响应状态码：
+
+   * HTTP 响应状态码：用来表明请求是否成功完成
 
    * 用来表明请求是否成功完成
 
-   * 例如：404（客户端要找的资源，在服务器上不存在）
+   * 例如：404（客户端要找的资源，在服务器上不存在）（服务器找不到资源）
 
      ![image-20230220133344116](images/image-20230220133344116.png)
+
+对应代码
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTTP协议_响应报文</title>
+</head>
+
+<body>
+  <button class="btn">注册用户</button>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    /*
+      注册用户: http://hmajax.itheima.net/api/register
+      请求方法: POST
+      参数名:
+        username: 用户名 (中英文和数字组成, 最少8位)
+        password: 密码 (最少6位)
+
+      目标: 点击按钮, 通过axios提交用户和密码, 完成注册
+      需求: 使用axios错误处理语法, 拿到报错信息, 弹框反馈给用户
+    */
+   document.querySelector('.btn').addEventListener('click', () => {
+    axios({
+      url: 'http://hmajax.itheima.net/api/registrweer1ddd',
+      method: 'post',
+      data: {
+        username: 'itheima007',
+        password: '7654321'
+      }
+    }).then(result => {
+      // 成功
+      console.log(result)
+    }).catch(error => {
+      // 失败
+      // 处理错误信息
+      // console.log(error)
+      console.log(error.response.data.message)
+      // alert(error.response.data.message)
+    })
+   })
+  </script>
+</body>
+
+</html>
+```
 
 
 
@@ -1146,8 +1413,10 @@ xhr.send();
    <details>
    <summary>答案</summary>
    <ul>
-   <li>响应行，响应头，空行，响应体
-   </li>
+   <li>响应行（状态行）：协议、HTTP 响应状态码、状态信息</li>
+   <li>响应头：以键值对的格式携带的附加信息，比如 Content-Type</li>
+   <li>空行：分隔响应头，空行之后的是返回给浏览器的资源</li>
+   <li>响应体：返回的资源</li>
    </ul>
    </details>
 
@@ -1156,8 +1425,8 @@ xhr.send();
    <details>
    <summary>答案</summary>
    <ul>
-   <li>表明请求是否成功完成，2xx都是成功的
-   </li>
+   <li>HTTP 响应状态码用来表明请求是否成功完成</li>
+   <li>表明请求是否成功完成，状态码：2xx都是成功的</li>
    </ul>
    </details>
 
@@ -1174,30 +1443,57 @@ xhr.send();
 ### 讲解
 
 1. 接口文档：描述接口的文章（一般是后端工程师，编写和提供）
-2. 接口：指的使用 AJAX 和 服务器通讯时，使用的 URL，请求方法，以及参数，例如：[AJAX阶段接口文档](https://apifox.com/apidoc/shared-1b0dd84f-faa8-435d-b355-5a8a329e34a8)
-3. 例如：获取城市列表接口样子
+2. 接口：指的使用 AJAX 和 服务器通讯时，使用的 URL，请求方法，以及参数
+3. 传送门：[AJAX阶段接口文档](https://apifox.com/apidoc/shared-1b0dd84f-faa8-435d-b355-5a8a329e34a8)
+4. 例如：获取城市列表接口样子
 
    ![image-20230404104720587](images/image-20230404104720587.png)
-4. 需求：打开 AJAX 阶段接口文档，查看登录接口，并编写代码，完成一次登录的效果吧
-5. 代码如下：
+5. 需求：打开 AJAX 阶段接口文档，查看登录接口，并编写代码，完成一次登录的效果吧
+6. 代码如下：
 
    ```js
-   document.querySelector('.btn').addEventListener('click', () => {
-     // 用户登录
-     axios({
-       url: 'http://hmajax.itheima.net/api/login',
-       method: 'post',
-       data: {
-         username: 'itheima007',
-         password: '7654321'
-       }
-     })
-   })
+   <!DOCTYPE html>
+   <html lang="en">
+   
+   <head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>接口文档</title>
+   </head>
+   
+   <body>
+     <button class="btn">用户登录</button>
+     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+     <script>
+       // 用户注册
+       // axios({
+       //   url: 'http://hmajax.itheima.net/api/register',
+       //   method: 'post',
+       //   data: {
+       //     username: 'itheima007',
+       //     password: '7654321'
+       //   }
+       // })
+   
+       document.querySelector('.btn').addEventListener('click', () => {
+         // 用户登录
+         axios({
+           url: 'http://hmajax.itheima.net/api/login',
+           method: 'post',
+           data: {
+             username: 'itheima007',
+             password: '7654321'
+           }
+         })
+       })
+     </script>
+   </body>
+   
+   </html>
    ```
 
    
-
-
 
 ### 小结
 
@@ -1210,6 +1506,8 @@ xhr.send();
    </li>
    </ul>
    </details>
+
+   ![image-20250411100813393](images/image-20250411100813393.png)
 
 2. 接口文档里包含什么？
 
@@ -1229,7 +1527,15 @@ xhr.send();
 
 尝试通过页面获取用户名和密码，进行登录
 
+案例－用户登录
 
+1. 点击登录时，判断用户名和密码长度
+
+2. 提交数据和服务器通信
+
+3. 提示信息
+
+   ![image-20250411101347915](images/image-20250411101347915.png)
 
 ### 讲解
 
@@ -1250,42 +1556,127 @@ xhr.send();
 4. 代码如下：
 
    ```js
-   // 目标1：点击登录时，用户名和密码长度判断，并提交数据和服务器通信
+   <!DOCTYPE html>
+   <html lang="en">
    
-   // 1.1 登录-点击事件
-   document.querySelector('.btn-login').addEventListener('click', () => {
-     // 1.2 获取用户名和密码
-     const username = document.querySelector('.username').value
-     const password = document.querySelector('.password').value
-     // console.log(username, password)
-   
-     // 1.3 判断长度
-     if (username.length < 8) {
-       console.log('用户名必须大于等于8位')
-       return // 阻止代码继续执行
-     }
-     if (password.length < 6) {
-       console.log('密码必须大于等于6位')
-       return // 阻止代码继续执行
-     }
-   
-     // 1.4 基于axios提交用户名和密码
-     // console.log('提交数据到服务器')
-     axios({
-       url: 'http://hmajax.itheima.net/api/login',
-       method: 'POST',
-       data: {
-         username,
-         password
+   <head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>案例_登录</title>
+     <!-- 引入bootstrap.css -->
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+     <!-- 公共 -->
+     <style>
+       html,
+       body {
+         background-color: #EDF0F5;
+         width: 100%;
+         height: 100%;
+         display: flex;
+         justify-content: center;
+         align-items: center;
        }
-     }).then(result => {
-       console.log(result)
-       console.log(result.data.message)
-     }).catch(error => {
-       console.log(error)
-       console.log(error.response.data.message)
-     })
-   })
+   
+       .container {
+         width: 520px;
+         height: 540px;
+         background-color: #fff;
+         padding: 60px;
+         box-sizing: border-box;
+       }
+   
+       .container h3 {
+         font-weight: 900;
+       }
+     </style>
+     <!-- 表单容器和内容 -->
+     <style>
+       .form_wrap {
+         color: #8B929D !important;
+       }
+   
+       .form-text {
+         color: #8B929D !important;
+       }
+     </style>
+     <!-- 提示框样式 -->
+     <style>
+       .alert {
+         transition: .5s;
+         opacity: 0;
+       }
+   
+       .alert.show {
+         opacity: 1;
+       }
+     </style>
+   </head>
+   
+   <body>
+     <div class="container">
+       <h3>欢迎-登录</h3>
+       <!-- 登录结果-提示框 -->
+       <div class="alert alert-success" role="alert">
+         提示消息
+       </div>
+       <!-- 表单 -->
+       <div class="form_wrap">
+         <form>
+           <div class="mb-3">
+             <label for="username" class="form-label">账号名</label>
+             <input type="text" class="form-control username">
+           </div>
+           <div class="mb-3">
+             <label for="password" class="form-label">密码</label>
+             <input type="password" class="form-control password">
+           </div>
+           <button type="button" class="btn btn-primary btn-login"> 登 录 </button>
+         </form>
+       </div>
+     </div>
+     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+     <script>
+       // 目标1：点击登录时，用户名和密码长度判断，并提交数据和服务器通信
+   
+       // 1.1 登录-点击事件
+       document.querySelector('.btn-login').addEventListener('click', () => {
+         // 1.2 获取用户名和密码
+         const username = document.querySelector('.username').value
+         const password = document.querySelector('.password').value
+         // console.log(username, password)
+   
+         // 1.3 判断长度
+         if (username.length < 8) {
+           console.log('用户名必须大于等于8位')
+           return // 阻止代码继续执行
+         }
+         if (password.length < 6) {
+           console.log('密码必须大于等于6位')
+           return // 阻止代码继续执行
+         }
+   
+         // 1.4 基于axios提交用户名和密码
+         // console.log('提交数据到服务器')
+         axios({
+           url: 'http://hmajax.itheima.net/api/login',
+           method: 'POST',
+           data: {
+             username,
+             password
+           }
+         }).then(result => {
+           console.log(result)
+           console.log(result.data.message)
+         }).catch(error => {
+           console.log(error)
+           console.log(error.response.data.message)
+         })
+       })
+     </script>
+   </body>
+   
+   </html>
    ```
 
 
@@ -1314,7 +1705,13 @@ xhr.send();
 
 根据准备好的提示标签和样式，给用户反馈提示
 
+案例－用户登录
 
+1. 点击登录时，判断用户名和密码长度
+
+2. 提交数据和服务器通信
+
+3. 提示信息
 
 ### 讲解
 
@@ -1341,29 +1738,157 @@ xhr.send();
 3. 对应提示框核心代码：
 
    ```js
-   /**
-    * 2.2 封装提示框函数，重复调用，满足提示需求
-    * 功能：
-    * 1. 显示提示框
-    * 2. 不同提示文字msg，和成功绿色失败红色isSuccess（true成功，false失败）
-    * 3. 过2秒后，让提示框自动消失
-   */
-   function alertFn(msg, isSuccess) {
-     // 1> 显示提示框
-     myAlert.classList.add('show')
+   <!DOCTYPE html>
+   <html lang="en">
    
-     // 2> 实现细节
-     myAlert.innerText = msg
-     const bgStyle = isSuccess ? 'alert-success' : 'alert-danger'
-     myAlert.classList.add(bgStyle)
+   <head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>案例_登录_提示消息</title>
+     <!-- 引入bootstrap.css -->
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+     <!-- 公共 -->
+     <style>
+       html,
+       body {
+         background-color: #EDF0F5;
+         width: 100%;
+         height: 100%;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+       }
    
-     // 3> 过2秒隐藏
-     setTimeout(() => {
-       myAlert.classList.remove('show')
-       // 提示：避免类名冲突，重置背景色
-       myAlert.classList.remove(bgStyle)
-     }, 2000)
-   }
+       .container {
+         width: 520px;
+         height: 540px;
+         background-color: #fff;
+         padding: 60px;
+         box-sizing: border-box;
+       }
+   
+       .container h3 {
+         font-weight: 900;
+       }
+     </style>
+     <!-- 表单容器和内容 -->
+     <style>
+       .form_wrap {
+         color: #8B929D !important;
+       }
+   
+       .form-text {
+         color: #8B929D !important;
+       }
+     </style>
+     <!-- 提示框样式 -->
+     <style>
+       .alert {
+         transition: .5s;
+         opacity: 0;
+       }
+   
+       .alert.show {
+         opacity: 1;
+       }
+     </style>
+   </head>
+   
+   <body>
+     <div class="container">
+       <h3>欢迎-登录</h3>
+       <!-- 登录结果-提示框 -->
+       <div class="alert alert-success" role="alert">
+         提示消息
+       </div>
+       <!-- 表单 -->
+       <div class="form_wrap">
+         <form>
+           <div class="mb-3">
+             <label for="username" class="form-label">账号名</label>
+             <input type="text" class="form-control username">
+           </div>
+           <div class="mb-3">
+             <label for="password" class="form-label">密码</label>
+             <input type="password" class="form-control password">
+           </div>
+           <button type="button" class="btn btn-primary btn-login"> 登 录 </button>
+         </form>
+       </div>
+     </div>
+     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+     <script>
+       // 目标1：点击登录时，用户名和密码长度判断，并提交数据和服务器通信
+       // 目标2：使用提示框，反馈提示消息
+       // 2.1 获取提示框
+       const myAlert = document.querySelector('.alert')
+       /**
+        * 2.2 封装提示框函数，重复调用，满足提示需求
+        * 功能：
+        * 1. 显示提示框
+        * 2. 不同提示文字msg，和成功绿色失败红色isSuccess（true成功，false失败）
+        * 3. 过2秒后，让提示框自动消失
+       */
+       function alertFn(msg, isSuccess) {
+         // 1> 显示提示框
+         myAlert.classList.add('show')
+   
+         // 2> 实现细节
+         myAlert.innerText = msg
+         const bgStyle = isSuccess ? 'alert-success' : 'alert-danger'
+         myAlert.classList.add(bgStyle)
+   
+         // 3> 过2秒隐藏
+         setTimeout(() => {
+           myAlert.classList.remove('show')
+           // 提示：避免类名冲突，重置背景色
+           myAlert.classList.remove(bgStyle)
+         }, 2000)
+       }
+       
+       // 1.1 登录-点击事件
+       document.querySelector('.btn-login').addEventListener('click', () => {
+         // 1.2 获取用户名和密码
+         const username = document.querySelector('.username').value
+         const password = document.querySelector('.password').value
+         // console.log(username, password)
+   
+         // 1.3 判断长度
+         if (username.length < 8) {
+           alertFn('用户名必须大于等于8位', false)
+           console.log('用户名必须大于等于8位')
+           return // 阻止代码继续执行
+         }
+         if (password.length < 6) {
+           alertFn('密码必须大于等于6位', false)
+           console.log('密码必须大于等于6位')
+           return // 阻止代码继续执行
+         }
+   
+         // 1.4 基于axios提交用户名和密码
+         // console.log('提交数据到服务器')
+         axios({
+           url: 'http://hmajax.itheima.net/api/login',
+           method: 'POST',
+           data: {
+             username,
+             password
+           }
+         }).then(result => {
+           alertFn(result.data.message, true)
+           console.log(result)
+           console.log(result.data.message)
+         }).catch(error => {
+           alertFn(error.response.data.message, false)
+           console.log(error)
+           console.log(error.response.data.message)
+         })
+       })
+     </script>
+   </body>
+   
+   </html>
    ```
 
 
@@ -1409,7 +1934,7 @@ xhr.send();
 
 使用 form-serialize 插件，快速收集目标表单范围内表单元素的值
 
-
+作用：快速收集表单元素的值
 
 ### 讲解
 
@@ -1438,6 +1963,15 @@ xhr.send();
         * empty：
           * true - 收集空值
           * false - 不收集空值
+
+   3. 语法：
+
+      ```js
+      const form =document.querySelector('.example-form')
+      const data = serialize(form,{hash:true,empty:true})
+      ```
+
+      
 
 5. 需求：收集登录表单里用户名和密码
 
@@ -1535,7 +2069,9 @@ xhr.send();
 
 尝试通过 form-serialize 重新修改用户登录案例-收集用户名和密码
 
+案例－用户登录
 
+使用 form-serialize 插件，收集用户名和密码
 
 ### 讲解
 
@@ -1559,6 +2095,172 @@ xhr.send();
       // {username: 'itheima007', password: '7654321'}
       const { username, password } = data
       ```
+
+对应代码：
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>案例_登录_插件使用</title>
+  <!-- 引入bootstrap.css -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+  <!-- 公共 -->
+  <style>
+    html,
+    body {
+      background-color: #EDF0F5;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      width: 520px;
+      height: 540px;
+      background-color: #fff;
+      padding: 60px;
+      box-sizing: border-box;
+    }
+
+    .container h3 {
+      font-weight: 900;
+    }
+  </style>
+  <!-- 表单容器和内容 -->
+  <style>
+    .form_wrap {
+      color: #8B929D !important;
+    }
+
+    .form-text {
+      color: #8B929D !important;
+    }
+  </style>
+  <!-- 提示框样式 -->
+  <style>
+    .alert {
+      transition: .5s;
+      opacity: 0;
+    }
+
+    .alert.show {
+      opacity: 1;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h3>欢迎-登录</h3>
+    <!-- 登录结果-提示框 -->
+    <div class="alert alert-success" role="alert">
+      提示消息
+    </div>
+    <!-- 表单 -->
+    <div class="form_wrap">
+      <form class="login-form">
+        <div class="mb-3">
+          <label for="username" class="form-label">账号名</label>
+          <input type="text" class="form-control username" name="username">
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">密码</label>
+          <input type="password" class="form-control password" name="password">
+        </div>
+        <button type="button" class="btn btn-primary btn-login"> 登 录 </button>
+      </form>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <!-- 3.1 引入插件 -->
+  <script src="./lib/form-serialize.js"></script>
+  <script>
+    // 目标1：点击登录时，用户名和密码长度判断，并提交数据和服务器通信
+    // 目标2：使用提示框，反馈提示消息
+    // 目标3：使用form-serialize插件，收集用户名和密码
+
+    // 2.1 获取提示框
+    const myAlert = document.querySelector('.alert')
+    /**2.2 封装提示框函数，重复调用，满足提示需求
+     * 功能：
+     * 1. 显示提示框
+     * 2. 不同提示文字msg，和成功绿色失败红色isSuccess（true成功，false失败）
+     * 3. 过2秒后，让提示框自动消失
+    */
+    function alertFn(msg, isSuccess) {
+      // 1> 显示提示框
+      myAlert.classList.add('show')
+
+      // 2> 实现细节
+      myAlert.innerText = msg
+      const bgStyle = isSuccess ? 'alert-success' : 'alert-danger'
+      myAlert.classList.add(bgStyle)
+
+      // 3> 过2秒隐藏
+      setTimeout(() => {
+        myAlert.classList.remove('show')
+        // 提示：避免类名冲突，重置背景色
+        myAlert.classList.remove(bgStyle)
+      }, 2000)
+    }
+
+    // 1.1 登录-点击事件
+    document.querySelector('.btn-login').addEventListener('click', () => {
+      // 3.2 使用serialize函数，收集登录表单里用户名和密码
+      const form = document.querySelector('.login-form')
+      const data = serialize(form, { hash: true, empty: true })
+      console.log(data)
+      // {username: 'itheima007', password: '7654321'}
+      const { username, password } = data
+
+      // 1.2 获取用户名和密码
+      // const username = document.querySelector('.username').value
+      // const password = document.querySelector('.password').value
+      console.log(username, password)
+
+      // 1.3 判断长度
+      if (username.length < 8) {
+        alertFn('用户名必须大于等于8位', false)
+        console.log('用户名必须大于等于8位')
+        return // 阻止代码继续执行
+      }
+      if (password.length < 6) {
+        alertFn('密码必须大于等于6位', false)
+        console.log('密码必须大于等于6位')
+        return // 阻止代码继续执行
+      }
+
+      // 1.4 基于axios提交用户名和密码
+      // console.log('提交数据到服务器')
+      axios({
+        url: 'http://hmajax.itheima.net/api/login',
+        method: 'POST',
+        data: {
+          username,
+          password
+        }
+      }).then(result => {
+        alertFn(result.data.message, true)
+        console.log(result)
+        console.log(result.data.message)
+      }).catch(error => {
+        alertFn(error.response.data.message, false)
+        console.log(error)
+        console.log(error.response.data.message)
+      })
+    })
+  </script>
+</body>
+
+</html>
+```
 
 
 
@@ -1588,7 +2290,1468 @@ xhr.send();
 
 ## 今日作业(必完成)
 
-参考作业文件夹的md要求
+## 客观题
+
+### 小结
+
+1、什么是 AJAX（ ）？
+
+A、浏览器与浏览器通信数据的方式
+
+B、浏览器与服务器通信的技术
+
+C、本机电脑和其他电脑交互数据的方式
+
+D、就是 axios 库
+
+<details>
+<summary>答案</summary>
+<ul>
+<li>B、浏览器与服务器通信的技术
+</li>
+</ul>
+</details>
+
+2、AJAX 和 axios 关系（ ）？
+
+A、AJAX 就是 axios
+
+B、axios 和 AJAX 没关系
+
+C、AJAX 是对 axios 进行了封装
+
+D、AJAX 是浏览器通过 XMLHttpRequest 对象与服务器通信，axios 是第三方库对原生 XMLHttpRequest 相关代码进行封装，使用更简单
+
+<details>
+<summary>答案</summary>
+<ul>
+<li>D、AJAX 是浏览器通过 XMLHttpRequest 对象与服务器通信，axios 是第三方库对原生 XMLHttpRequest 相关代码进行封装，使用更简单
+</li>
+</ul>
+</details>
+
+3、以下哪个不是 url 组成部分（ ）？
+
+A、协议
+
+B、域名
+
+C、地址
+
+D、资源路径
+
+<details>
+<summary>答案</summary>
+<ul>
+<li>C、地址
+</li>
+</ul>
+    url组成有很多部分，最重要的是协议，域名和资源路径
+</details>
+
+4、axios 传参要求用查询参数，选择哪个配置项（ ）？
+
+A、url
+
+B、params
+
+C、data
+
+D、method
+
+<details>
+<summary>答案</summary>
+<ul>
+<li>B、params
+</li>
+</ul>
+axios的配置项params对应查询参数（query），而配置项data对应请求体（body）
+</details>
+
+5、axios 传参要求用请求体， 选择哪个配置项（ ）？
+
+A、data
+
+B、params
+
+C、url
+
+D、method
+
+<details>
+<summary>答案</summary>
+<ul>
+<li>A、data</li>
+</ul>
+    axios的配置项params对应查询参数（query），而配置项data对应请求体（body）
+</details>
+
+6、以下哪个不是 AJAX 请求的方式（ ）？
+
+A、GET
+
+B、POST
+
+C、DELETE
+
+D、PUATC
+
+<details>
+<summary>答案</summary>
+<ul>
+<li>D、PUATC</li>
+</ul>
+Ajax请求的方式有GET、POST、DELETE、PUT、PATCH
+</details>
+
+7、axios 接收错误结果的方法叫（ ）？
+
+A、then
+
+B、catch
+
+C、url
+
+D、data
+
+<details>
+<summary>答案</summary>
+<ul>
+<li>B、catch</li>
+</ul>
+axios函数调用后，原地的对象可以继续调用then/catch方法并传入函数体，接受成功/失败的结果
+</details>
+
+8、以下哪个是浏览器发给服务器的（ ）？
+
+A、请求报文
+
+B、响应报文
+
+C、响应状态码
+
+D、响应体
+
+<details>
+<summary>答案</summary>
+<ul>
+<li>A、请求报文
+</li>
+</ul>
+</details>
+
+9、服务器返回数据的动作叫（ ）？
+
+A、响应
+
+B、请求
+
+C、axios
+
+D、请求报文
+
+<details>
+<summary>答案</summary>
+<ul>
+<li>A、响应
+</li>
+</ul>
+</details>
+
+10、以下哪个是 http 响应状态码（ ）？
+
+A、49000
+
+B、200
+
+C、10000
+
+D、699
+
+<details>
+<summary>答案</summary>
+<ul>
+<li>B、200
+</li>
+</ul>
+http 响应状态码标记本次请求和相应是否成功，一般由3位数字组成，有1XX，2XX，3XX，4XX，5XX
+</details>
+
+
+
+## 主观题
+
+### 作业1 - 微信聊天
+
+目标：完成如下聊天效果
+
+要求：
+
+1. 点击发送和敲击回车键，都能发送聊天消息
+2. 把自己和对方消息都展示到页面上
+3. 当聊天消息出现滚动条时，始终让最后一条消息出现在视口范围内
+
+接口文档：https://apifox.com/apidoc/shared-1b0dd84f-faa8-435d-b355-5a8a329e34a8/api-82668104
+
+效果如下：配套标签和样式在文件夹内
+
+![homework_chat](images/homework_chat.gif)
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>聊天机器人</title>
+  <!-- 字体图标 -->
+  <link rel="stylesheet" href="https://at.alicdn.com/t/c/font_3736758_vxpb728fcyh.css">
+  <!-- 初始化样式 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset.css@2.0.2/reset.min.css">
+  <!-- 公共 -->
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .container {
+      width: 100%;
+      height: 100%;
+      background-color: #f5f4f4;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+  </style>
+  <!-- 头部 -->
+  <style>
+    .top {
+      width: 100%;
+      height: 44px;
+      padding: 15px 7px 12px 21px;
+      background-color: #f5f4f4;
+      display: flex;
+      justify-content: space-between;
+      position: fixed;
+      top: 0;
+      left: 0;
+    }
+  </style>
+  <!-- 好友名字 -->
+  <style>
+    .friend_name {
+      width: 100%;
+      height: 44px;
+      padding: 14px 19px 14px;
+      background-color: #f5f4f4;
+      text-align: center;
+      position: fixed;
+      top: 44px;
+      left: 0;
+    }
+
+    .friend_name img {
+      width: 10px;
+      height: 16px;
+      position: absolute;
+      left: 19px;
+    }
+  </style>
+  <!-- 聊天区域 -->
+  <style>
+    .chat {
+      width: 100%;
+      /* 顶部留出88px的2个头部导航的高度 */
+      /* 底部留出89px内边距让出固定在底部的对话框-防止遮挡 */
+      /* 再多留出10px, 最后一条消息距离底部 */
+      padding: 88px 20px 99px;
+      flex: 1;
+      overflow-y: scroll;
+    }
+
+    /* 隐藏滚动条 */
+    .chat::-webkit-scrollbar {
+      display: none;
+    }
+
+    .chat ul {
+      padding-top: 20px;
+    }
+
+    .chat img {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+    }
+
+    .chat li {
+      display: flex;
+      align-items: top;
+    }
+
+    .chat li~li {
+      /* 除了第一个li, 选择所有的兄弟li标签 */
+      margin-top: 20px;
+    }
+
+    .chat .right {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .left span {
+      margin-left: 10px;
+      border-radius: 1px 10px 1px 10px;
+      display: inline-block;
+      padding: 12px 16px;
+      background-image: linear-gradient(180deg, #B1E393 0%, #50D287 100%);
+      box-shadow: 2px 2px 10px 0px rgba(201, 201, 201, 0.1);
+      color: #FFFFFF;
+    }
+
+    .right span {
+      margin-right: 10px;
+      border-radius: 1px 10px 1px 10px;
+      display: inline-block;
+      padding: 12px 16px;
+      background: #FFFFFF;
+      border: 1px solid rgba(247, 247, 247, 1);
+      color: #000000;
+    }
+  </style>
+  <!-- 底部区域(发送消息) -->
+  <style>
+    .bottom_div {
+      width: 100%;
+      height: 89px;
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      background: #FFFFFF;
+      box-shadow: 0px -5px 7px 0px rgba(168, 168, 168, 0.05);
+      border-radius: 25px 25px 0px 0px;
+      padding: 15px 15px 0px 15px;
+    }
+
+    /* 外框盒子 */
+    .send_box {
+      display: flex;
+    }
+
+    .send_box img {
+      width: 34px;
+      height: 34px;
+    }
+
+    /* 输入框背景 */
+    .input_bg {
+      height: 35px;
+      background: #f3f3f3;
+      border-radius: 50px;
+      padding-left: 17px;
+      flex: 1;
+      margin-right: 15px;
+      /* 让input宽度高度 */
+      display: flex;
+    }
+
+    .input_bg input {
+      border: 0;
+      outline: 0;
+      background-color: transparent;
+      display: inline-block;
+      width: 100%;
+    }
+
+
+
+    /* 修改输入框默认占位文字
+        webkit内核, firefox18-, firfox19+, 其他
+        */
+    .input_bg input::-webkit-input-placeholder,
+    .input_bg input:-moz-placeholder,
+    .input_bg input::-moz-placeholder,
+    .input_bg input:-ms-input-placeholder {
+      font-family: PingFangSC-Regular;
+      font-size: 26px;
+      color: #C7C7C7;
+      letter-spacing: 0;
+      font-weight: 400;
+    }
+
+    /* 底部黑色小条 */
+    .black_border {
+      margin-top: 10px;
+      height: 34px;
+      text-align: center;
+    }
+
+    .black_border span {
+      display: inline-block;
+      background-color: #000;
+      width: 105px;
+      height: 4px;
+      border-radius: 50px;
+    }
+  </style>
+  <!-- PC端单独适配成移动大小 -->
+  <style>
+    /* PC端居中显示手机 */
+    @media screen and (min-width: 1200px) {
+      .container {
+        width: 375px;
+        margin: 0 auto;
+        border: 1px solid black;
+        /* 让fixed固定定位标签参照当前标签 */
+        transform: translate(0px);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <!-- 头部 -->
+    <div class="top">
+      <span>9:41</span>
+      <div class="icon">
+        <i class="iconfont icon-xinhao"></i>
+        <i class="iconfont icon-xinhao1"></i>
+        <i class="iconfont icon-electricity-full"></i>
+      </div>
+    </div>
+    <!-- 好友名字 -->
+    <div class="friend_name">
+      <img src="./assets/arrow-left.png" alt="">
+      <span>使劲夸夸</span>
+    </div>
+    <!-- 聊天区域 -->
+    <div class="chat">
+      <ul class="chat_list">
+        <!-- 他的消息 -->
+        <li class="left">
+          <img src="./assets/you.png" alt="">
+          <span>小宝贝</span>
+        </li>
+        <!-- 我的消息 -->
+        <li class="right">
+          <span>干啥</span>
+          <img src="./assets/me.png" alt="">
+        </li>
+      </ul>
+    </div>
+    <!-- 底部固定 -->
+    <div class="bottom_div">
+      <!-- 发送消息 -->
+      <div class="send_box">
+        <div class="input_bg">
+          <input class="chat_input" type="text" placeholder="说点什么吧">
+        </div>
+        <img class="send_img" src="./assets/send.png" alt="">
+      </div>
+      <!-- 底部黑条 -->
+      <div class="black_border">
+        <span></span>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    // 获取机器人回答消息 - 接口地址: http://hmajax.itheima.net/api/robot
+    // 查询参数名: spoken
+    // 查询参数值: 我说的消息
+  </script>
+</body>
+
+</html>
+```
+
+完整代码
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>01.聊天机器人</title>
+  <!-- 字体图标 -->
+  <link rel="stylesheet" href="https://at.alicdn.com/t/c/font_3736758_vxpb728fcyh.css">
+  <!-- 初始化样式 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset.css@2.0.2/reset.min.css">
+  <!-- 公共 -->
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .container {
+      width: 100%;
+      height: 100%;
+      background-color: #f5f4f4;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+  </style>
+  <!-- 头部 -->
+  <style>
+    .top {
+      width: 100%;
+      height: 44px;
+      padding: 15px 7px 12px 21px;
+      background-color: #f5f4f4;
+      display: flex;
+      justify-content: space-between;
+      position: fixed;
+      top: 0;
+      left: 0;
+    }
+  </style>
+  <!-- 好友名字 -->
+  <style>
+    .friend_name {
+      width: 100%;
+      height: 44px;
+      padding: 14px 19px 14px;
+      background-color: #f5f4f4;
+      text-align: center;
+      position: fixed;
+      top: 44px;
+      left: 0;
+    }
+
+    .friend_name img {
+      width: 10px;
+      height: 16px;
+      position: absolute;
+      left: 19px;
+    }
+  </style>
+  <!-- 聊天区域 -->
+  <style>
+    .chat {
+      width: 100%;
+      /* 顶部留出88px的2个头部导航的高度 */
+      /* 底部留出89px内边距让出固定在底部的对话框-防止遮挡 */
+      /* 再多留出10px, 最后一条消息距离底部 */
+      padding: 88px 20px 99px;
+      flex: 1;
+      overflow-y: scroll;
+    }
+
+    /* 隐藏滚动条 */
+    .chat::-webkit-scrollbar {
+      display: none;
+    }
+
+    .chat ul {
+      padding-top: 20px;
+    }
+
+    .chat img {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+    }
+
+    .chat li {
+      display: flex;
+      align-items: top;
+    }
+
+    .chat li~li {
+      /* 除了第一个li, 选择所有的兄弟li标签 */
+      margin-top: 20px;
+    }
+
+    .chat .right {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .left span {
+      margin-left: 10px;
+      border-radius: 1px 10px 1px 10px;
+      display: inline-block;
+      padding: 12px 16px;
+      background-image: linear-gradient(180deg, #B1E393 0%, #50D287 100%);
+      box-shadow: 2px 2px 10px 0px rgba(201, 201, 201, 0.1);
+      color: #FFFFFF;
+    }
+
+    .right span {
+      margin-right: 10px;
+      border-radius: 1px 10px 1px 10px;
+      display: inline-block;
+      padding: 12px 16px;
+      background: #FFFFFF;
+      border: 1px solid rgba(247, 247, 247, 1);
+      color: #000000;
+    }
+  </style>
+  <!-- 底部区域(发送消息) -->
+  <style>
+    .bottom_div {
+      width: 100%;
+      height: 89px;
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      background: #FFFFFF;
+      box-shadow: 0px -5px 7px 0px rgba(168, 168, 168, 0.05);
+      border-radius: 25px 25px 0px 0px;
+      padding: 15px 15px 0px 15px;
+    }
+
+    /* 外框盒子 */
+    .send_box {
+      display: flex;
+    }
+
+    .send_box img {
+      width: 34px;
+      height: 34px;
+    }
+
+    /* 输入框背景 */
+    .input_bg {
+      height: 35px;
+      background: #f3f3f3;
+      border-radius: 50px;
+      padding-left: 17px;
+      flex: 1;
+      margin-right: 15px;
+      /* 让input宽度高度 */
+      display: flex;
+    }
+
+    .input_bg input {
+      border: 0;
+      outline: 0;
+      background-color: transparent;
+      display: inline-block;
+      width: 100%;
+    }
+
+
+
+    /* 修改输入框默认占位文字
+        webkit内核, firefox18-, firfox19+, 其他
+        */
+    .input_bg input::-webkit-input-placeholder,
+    .input_bg input:-moz-placeholder,
+    .input_bg input::-moz-placeholder,
+    .input_bg input:-ms-input-placeholder {
+      font-family: PingFangSC-Regular;
+      font-size: 26px;
+      color: #C7C7C7;
+      letter-spacing: 0;
+      font-weight: 400;
+    }
+
+    /* 底部黑色小条 */
+    .black_border {
+      margin-top: 10px;
+      height: 34px;
+      text-align: center;
+    }
+
+    .black_border span {
+      display: inline-block;
+      background-color: #000;
+      width: 105px;
+      height: 4px;
+      border-radius: 50px;
+    }
+  </style>
+  <!-- PC端单独适配成移动大小 -->
+  <style>
+    /* PC端居中显示手机 */
+    @media screen and (min-width: 1200px) {
+      .container {
+        width: 375px;
+        margin: 0 auto;
+        border: 1px solid black;
+        /* 让fixed固定定位标签参照当前标签 */
+        transform: translate(0px);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <!-- 头部 -->
+    <div class="top">
+      <span>9:41</span>
+      <div class="icon">
+        <i class="iconfont icon-xinhao"></i>
+        <i class="iconfont icon-xinhao1"></i>
+        <i class="iconfont icon-electricity-full"></i>
+      </div>
+    </div>
+    <!-- 好友名字 -->
+    <div class="friend_name">
+      <img src="./assets/arrow-left.png" alt="">
+      <span>使劲夸夸</span>
+    </div>
+    <!-- 聊天区域 -->
+    <div class="chat">
+      <ul class="chat_list">
+        <!-- 他的消息 -->
+        <li class="left">
+          <img src="./assets/you.png" alt="">
+          <span>小宝贝</span>
+        </li>
+        <!-- 我的消息 -->
+        <li class="right">
+          <span>干啥</span>
+          <img src="./assets/me.png" alt="">
+        </li>
+      </ul>
+    </div>
+    <!-- 底部固定 -->
+    <div class="bottom_div">
+      <!-- 发送消息 -->
+      <div class="send_box">
+        <div class="input_bg">
+          <input class="chat_input" type="text" placeholder="说点什么吧">
+        </div>
+        <img class="send_img" src="./assets/send.png" alt="">
+      </div>
+      <!-- 底部黑条 -->
+      <div class="black_border">
+        <span></span>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    // 获取机器人回答消息 - 接口地址: http://hmajax.itheima.net/api/robot
+    // 查询参数名: spoken
+    // 查询参数值: 我说的消息
+
+    // 聊天区域div
+    let chatDiv = document.querySelector('.chat')
+    // 聊天容器ul
+    let chatUL = document.querySelector('.chat_list')
+    // 发送消息input
+    let sendInput = document.querySelector('.chat_input')
+
+    // 聊天逻辑函数
+    let chatFn = () => {
+      // 2. 获取输入框内容-并显示到页面上
+      let sendText = sendInput.value
+      chatUL.innerHTML += `<li class="right">
+          <span>${sendText}</span>
+          <img src="./assets/me.png" alt="">
+        </li>`
+      // 清空输入框内容
+      sendInput.value = ''
+      // 让滚动条始终在底部
+      chatDiv.scrollTop = chatDiv.scrollHeight
+      // 3. 调用接口, 获取机器人返回消息
+      axios({
+        url: 'http://hmajax.itheima.net/api/robot',
+        params: {
+          spoken: sendText
+        }
+      }).then(result => {
+        // 4. 把机器人消息设置到页面上
+        chatUL.innerHTML += `<li class="left">
+          <img src="./assets/you.png" alt="">
+          <span>${result.data.data.info.text}</span>
+        </li>`
+        // 让滚动条始终在底部
+        chatDiv.scrollTop = chatDiv.scrollHeight
+        //scrollTop 属性:表示滚动条在垂直方向上的偏移量。
+ 		//设置为 chatDiv.scrollTop = ... 可以控制滚动条的位置。
+        //scrollHeight 属性:返回目标元素的内容高度（包括不可见部分，如溢出内容）。
+		//将 scrollTop 设为 scrollHeight 的值会将滚动条移动到最底部。
+      })
+    }
+
+    // 1. 发送消息-绑定点击事件
+    document.querySelector('.send_img').addEventListener('click', chatFn)
+
+    // 优化-集成回车-发送消息
+    document.querySelector('.chat_input').addEventListener('keyup', e => {
+      if (e.keyCode === 13) {
+        chatFn()
+      }
+    })
+
+  </script>
+</body>
+
+</html>
+```
+
+
+
+### 作业2 - 必要商城搜索
+
+目标：完成如下搜索效果
+
+要求：
+
+1. 输入要搜索的关键字，点击放大镜搜索匹配商品
+
+接口文档：https://apifox.com/apidoc/shared-1b0dd84f-faa8-435d-b355-5a8a329e34a8/api-82668101
+
+效果如下：配套标签和样式在文件夹内
+
+![必要商城搜索](images/%E5%BF%85%E8%A6%81%E5%95%86%E5%9F%8E%E6%90%9C%E7%B4%A2.gif)
+
+模板代码
+
+```html
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<title>必要商城_大牌品质 工厂价格</title>
+	<link href="http://static.biyao.com/pc/favicon.ico" rel="shortcut icon" type="image/x-icon">
+	<link href="./lib/common.css" rel="stylesheet" type="text/css">
+	<link href="./lib/new.main.css" rel="stylesheet" type="text/css">
+	<link href="./lib/elementUI.css" rel="stylesheet" type="text/css">
+	<link href="./lib/global.css" rel="stylesheet" type="text/css">
+	<link href="./lib/iprHeader.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" type="text/css" href="./lib/new.category.css">
+</head>
+
+<body id="pagebody">
+	<div class="header header-index"></div>
+	<!-- 导航栏 -->
+	<div class="nav nav-index">
+		<div class="clearfix">
+			<a href="http://www.biyao.com/home/index.html" class="nav-logo"><img src="./lib/logo.png" height="51"></a>
+			<div class="nav-category">
+				<p><span>全部分类</span><i></i></p>
+				<div>
+					<ul class="nav-list">
+						<li class="nav-main">
+							<p><ahref="http://www.biyao.com/classify/category.html?categoryId=621">咖啡</a>
+								<span>/</span>
+								<ahref="http://www.biyao.com/classify/category.html?categoryId=627">饮食</a>
+								<ahref="http://www.biyao.com/classify/category.html?categoryId=621">咖啡</a>
+								<span>/</span>
+								<ahref="http://www.biyao.com/classify/category.html?categoryId=691">正餐</a>
+							</p>
+						</li>
+						<li class="nav-main">
+							<p><a href="http://www.biyao.com/classify/category.html?categoryId=279">男装</a>
+								<span>/</span>
+								<a href="http://www.biyao.com/classify/category.html?categoryId=294">女装</a>
+								<span>/</span>
+								<a href="http://www.biyao.com/classify/category.html?categoryId=35"> 鞋靴</a>
+							</p>
+						</li>
+						<li class="nav-main">
+							<p><a href="http://www.biyao.com/classify/category.html?categoryId=122">眼镜</a>
+								<span>/</span>
+								<ahref="http://www.biyao.com/classify/category.html?categoryId=339">内衣配饰</a>
+								<span>/</span>
+								<ahref="http://www.biyao.com/classify/category.html?categoryId=39"> 运动</a>
+							</p>
+						</li>
+						<li class="nav-main">
+							<p><a href="http://www.biyao.com/classify/category.html?categoryId=119">美妆</a>
+								<span>/</span>
+								<ahref="http://www.biyao.com/classify/category.html?categoryId=724">个护</a>
+								<span>/</span>
+								<ahref="http://www.biyao.com/classify/category.html?categoryId=391"> 母婴</a>
+							</p>
+						</li>
+
+						<li class="nav-main">
+							<p>
+								<ahref="http://www.biyao.com/classify/category.html?categoryId=652">生鲜直供</a>
+								<span>/</span>
+								<ahref="http://www.biyao.com/classify/category.html?categoryId=51">餐厨</a>
+								<span>/</span>
+								<ahref="http://www.biyao.com/classify/category.html?categoryId=334">电器</a>
+							</p>
+						</li>
+
+						<li class="nav-main">
+							<p><ahref="http://www.biyao.com/classify/category.html?categoryId=153">箱包</a>
+								<span>/</span>
+								<ahref="http://www.biyao.com/classify/category.html?categoryId=223">数码办公</a>
+								<span>/</span>
+								<ahref="http://www.biyao.com/classify/category.html?categoryId=429">汽配</a>
+							</p>
+						</li>
+
+						<li class="nav-main">
+							<p>
+								<a href="http://www.biyao.com/classify/category.html?categoryId=355">家纺</a>
+								<span>/</span>
+								<ahref="http://www.biyao.com/classify/category.html?categoryId=10">家具</a>
+								<span>/</span>
+								<ahref="http://www.biyao.com/classify/category.html?categoryId=369">家装</a>
+							</p>
+						</li>
+
+						<li class="nav-main">
+							<p>
+								<a href="http://www.biyao.com/classify/category.html?categoryId=546"> 健康保健</a>
+								<span>/</span>
+								<a href="http://www.biyao.com/classify/category.html?categoryId=685"> 宠物</a>
+								<span>/</span>
+								<a href="http://www.biyao.com/classify/category.html?categoryId=816"> 礼品</a></p>
+						</li>
+
+					</ul>
+				</div>
+			</div>
+			<div class="nav-search">
+				<p><input type="text" id="searchInp" placeholder="请输入要搜索的商品"><span id="searchButton"></span></p>
+				<ul style="">
+					<li>行李箱</li>
+					<li>洗面奶</li>
+					<li>枕头</li>
+					<li>袜子男夏季</li>
+					<li>防晒霜</li>
+					<li>洗发水</li>
+					<li>伞</li>
+					<li>香水</li>
+					<li>眼霜</li>
+					<li>精华</li>
+				</ul>
+			</div>
+			<div class="nav-tab">
+				<ul>
+					<li><a href="http://www.biyao.com/home/index.html">首页</a></li>
+					<li><a href="http://www.biyao.com/classify/newProduct.html">每日上新</a></li>
+					<li class="border-l"></li>
+					<li class="nav-tab-last">
+						<div class="hover_text">
+							了解必要
+							<div class="hover_code gzh"><span>关注必要微信公众号<br>了解你想了解的一切<br>小必姐在此发福利哦</span>
+							</div>
+						</div>
+					</li>
+					<li class="nav-tab-last" id="appDownload">下载必要APP</li>
+					<li class="border-l"></li>
+					<li class="nav-tab-last">
+						<div class="hover_text">
+							我的必要
+							<div class="hover_code app"><span> 扫码下载必要app <br> 手机用户独享海量权益</span>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<!-- 右边栏 -->
+	<ul class="rightBar" style="display: block;">
+
+
+		<li class="toggle"></li>
+		<li class="rightBar-xcx-code toggle novice">
+			<div class="coupon_red">
+				<div class="tis">
+					迎新福利<br>
+					微信扫码即得
+				</div>
+				<div class="rightBar-title">
+					15元
+				</div>
+				<div class="count-down" data-time="7200000" id="count-down"></div>
+			</div>
+			<div class="rightBar-ercode"></div>
+		</li>
+
+		<li class="rightBar-top" style="display: none;"></li>
+	</ul>
+	<!-- 分享弹框 -->
+	<div class="shareCon">
+		<div>
+			<p>分享<b></b></p>
+			<div class="share-main">
+				<dl>
+					<dt><img class="share-code" src="./lib/ewm.jpg"></dt>
+					<dd>扫一扫，分享给好友！</dd>
+				</dl>
+			</div>
+		</div>
+	</div>
+
+	<!-- 搜索商品列表 -->
+	<ul class="category-container">
+		<li>
+			<ul class="supplier-recommen category-list clearfix">
+				<!-- 每件搜索商品 -->
+				<!-- <li>
+					<a><i><imgsrc="./lib/CghkFmIuDbOAUFjRAADsxoYlvAQ019_360x360.jpg"></i>
+						<div class="supplier">祖玛珑同原料制造商</div>
+						<div class="title">【会呼吸的洗发水】风铃草</div>
+						<div class="priceBox">
+							<div class="price" price="88"><span	style="color: #F7A701; font-size: 12px; padding-left: 2px;">￥<span		style="font-size:18px;">88</span></span></div>
+							<div class="mack"><span	style="color:#FB4C81;background:#FFFFFF; border-color:#FB4C81">一起拼</span><span	style="color:#FFFFFF;background:#AB7FD1; border-color:#AB7FD1">精选</span></div>
+						</div>
+						<div class="evaluate">653条好评</div>
+					</a>
+				</li> -->
+			</ul>
+		</li>
+	</ul>
+	<script type="text/javascript" src="./lib/jquery-1.8.3.js.下载"></script>
+	<script type="text/javascript" src="./lib/jquery.cookie.js.下载"></script>
+	<script type="text/javascript" src="./lib/md5.js.下载"></script>
+	<script type="text/javascript" src="./lib/masterCommon.js.下载"></script>
+	<script type="text/javascript" src="./lib/jquery.extention.js.下载"></script>
+	<script type="text/javascript" src="./lib/common.js.下载"></script>
+	<script type="text/javascript" src="./lib/qs.min.js.下载"></script>
+	<script type="text/javascript" src="./lib/vue.min.js.下载"></script>
+	<script type="text/javascript" src="./lib/elementUI.min.js.下载"></script>
+	<script type="text/javascript" src="./lib/utils.js.下载"></script>
+	<script src="./lib/smcp.min.js.下载"></script>
+	<script src="./lib/dialog.js.下载"></script>
+	<script src="./lib/md5.js(1).下载"></script>
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+	<script>
+		// 目标: 点击搜索按钮(放大镜), 根据关键词搜索商品并铺设列表
+	</script>
+</body>
+
+</html>
+```
+
+正确代码：
+
+```html
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<title>必要商城_大牌品质 工厂价格</title>
+	<link href="http://static.biyao.com/pc/favicon.ico" rel="shortcut icon" type="image/x-icon">
+	<link href="./lib/common.css" rel="stylesheet" type="text/css">
+	<link href="./lib/new.main.css" rel="stylesheet" type="text/css">
+	<link href="./lib/elementUI.css" rel="stylesheet" type="text/css">
+	<link href="./lib/global.css" rel="stylesheet" type="text/css">
+	<link href="./lib/iprHeader.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" type="text/css" href="./lib/new.category.css">
+</head>
+
+<body id="pagebody">
+	<div class="header header-index"></div>
+	<!-- 导航栏 -->
+	<div class="nav nav-index">
+		<div class="clearfix">
+			<a href="http://www.biyao.com/home/index.html" class="nav-logo"><img src="./lib/logo.png" height="51"></a>
+			<div class="nav-category">
+				<p><span>全部分类</span><i></i></p>
+				<div>
+					<ul class="nav-list">
+						<li class="nav-main">
+							<p><ahref="http://www.biyao.com/classify/category.html?categoryId=621">咖啡</a>
+								<span>/</span>
+								<ahref="http://www.biyao.com/classify/category.html?categoryId=627">饮食</a>
+								<ahref="http://www.biyao.com/classify/category.html?categoryId=621">咖啡</a>
+								<span>/</span>
+								<ahref="http://www.biyao.com/classify/category.html?categoryId=691">正餐</a>
+							</p>
+						</li>
+						<li class="nav-main">
+							<p><a href="http://www.biyao.com/classify/category.html?categoryId=279">男装</a>
+								<span>/</span>
+								<a href="http://www.biyao.com/classify/category.html?categoryId=294">女装</a>
+								<span>/</span>
+								<a href="http://www.biyao.com/classify/category.html?categoryId=35"> 鞋靴</a>
+							</p>
+						</li>
+						<li class="nav-main">
+							<p><a href="http://www.biyao.com/classify/category.html?categoryId=122">眼镜</a>
+								<span>/</span>
+								<ahref="http://www.biyao.com/classify/category.html?categoryId=339">内衣配饰</a>
+								<span>/</span>
+								<ahref="http://www.biyao.com/classify/category.html?categoryId=39"> 运动</a>
+							</p>
+						</li>
+						<li class="nav-main">
+							<p><a href="http://www.biyao.com/classify/category.html?categoryId=119">美妆</a>
+								<span>/</span>
+								<ahref="http://www.biyao.com/classify/category.html?categoryId=724">个护</a>
+								<span>/</span>
+								<ahref="http://www.biyao.com/classify/category.html?categoryId=391"> 母婴</a>
+							</p>
+						</li>
+
+						<li class="nav-main">
+							<p>
+								<ahref="http://www.biyao.com/classify/category.html?categoryId=652">生鲜直供</a>
+								<span>/</span>
+								<ahref="http://www.biyao.com/classify/category.html?categoryId=51">餐厨</a>
+								<span>/</span>
+								<ahref="http://www.biyao.com/classify/category.html?categoryId=334">电器</a>
+							</p>
+						</li>
+
+						<li class="nav-main">
+							<p><ahref="http://www.biyao.com/classify/category.html?categoryId=153">箱包</a>
+								<span>/</span>
+								<ahref="http://www.biyao.com/classify/category.html?categoryId=223">数码办公</a>
+								<span>/</span>
+								<ahref="http://www.biyao.com/classify/category.html?categoryId=429">汽配</a>
+							</p>
+						</li>
+
+						<li class="nav-main">
+							<p>
+								<a href="http://www.biyao.com/classify/category.html?categoryId=355">家纺</a>
+								<span>/</span>
+								<ahref="http://www.biyao.com/classify/category.html?categoryId=10">家具</a>
+								<span>/</span>
+								<ahref="http://www.biyao.com/classify/category.html?categoryId=369">家装</a>
+							</p>
+						</li>
+
+						<li class="nav-main">
+							<p>
+								<a href="http://www.biyao.com/classify/category.html?categoryId=546"> 健康保健</a>
+								<span>/</span>
+								<a href="http://www.biyao.com/classify/category.html?categoryId=685"> 宠物</a>
+								<span>/</span>
+								<a href="http://www.biyao.com/classify/category.html?categoryId=816"> 礼品</a></p>
+						</li>
+
+					</ul>
+				</div>
+			</div>
+			<div class="nav-search">
+				<p><input type="text" id="searchInp" placeholder="请输入要搜索的商品"><span id="searchButton"></span></p>
+				<ul style="">
+					<li>行李箱</li>
+					<li>洗面奶</li>
+					<li>枕头</li>
+					<li>袜子男夏季</li>
+					<li>防晒霜</li>
+					<li>洗发水</li>
+					<li>伞</li>
+					<li>香水</li>
+					<li>眼霜</li>
+					<li>精华</li>
+				</ul>
+			</div>
+			<div class="nav-tab">
+				<ul>
+					<li><a href="http://www.biyao.com/home/index.html">首页</a></li>
+					<li><a href="http://www.biyao.com/classify/newProduct.html">每日上新</a></li>
+					<li class="border-l"></li>
+					<li class="nav-tab-last">
+						<div class="hover_text">
+							了解必要
+							<div class="hover_code gzh"><span>关注必要微信公众号<br>了解你想了解的一切<br>小必姐在此发福利哦</span>
+							</div>
+						</div>
+					</li>
+					<li class="nav-tab-last" id="appDownload">下载必要APP</li>
+					<li class="border-l"></li>
+					<li class="nav-tab-last">
+						<div class="hover_text">
+							我的必要
+							<div class="hover_code app"><span> 扫码下载必要app <br> 手机用户独享海量权益</span>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<!-- 右边栏 -->
+	<ul class="rightBar" style="display: block;">
+
+
+		<li class="toggle"></li>
+		<li class="rightBar-xcx-code toggle novice">
+			<div class="coupon_red">
+				<div class="tis">
+					迎新福利<br>
+					微信扫码即得
+				</div>
+				<div class="rightBar-title">
+					15元
+				</div>
+				<div class="count-down" data-time="7200000" id="count-down"></div>
+			</div>
+			<div class="rightBar-ercode"></div>
+		</li>
+
+		<li class="rightBar-top" style="display: none;"></li>
+	</ul>
+	<!-- 分享弹框 -->
+	<div class="shareCon">
+		<div>
+			<p>分享<b></b></p>
+			<div class="share-main">
+				<dl>
+					<dt><img class="share-code" src="./lib/ewm.jpg"></dt>
+					<dd>扫一扫，分享给好友！</dd>
+				</dl>
+			</div>
+		</div>
+	</div>
+
+	<!-- 搜索商品列表 -->
+	<ul class="category-container">
+		<li>
+			<ul class="supplier-recommen category-list clearfix">
+				<!-- 每件搜索商品 -->
+				<!-- <li>
+					<a><i><imgsrc="./lib/CghkFmIuDbOAUFjRAADsxoYlvAQ019_360x360.jpg"></i>
+						<div class="supplier">祖玛珑同原料制造商</div>
+						<div class="title">【会呼吸的洗发水】风铃草</div>
+						<div class="priceBox">
+							<div class="price" price="88"><span	style="color: #F7A701; font-size: 12px; padding-left: 2px;">￥<span		style="font-size:18px;">88</span></span></div>
+							<div class="mack"><span	style="color:#FB4C81;background:#FFFFFF; border-color:#FB4C81">一起拼</span><span	style="color:#FFFFFF;background:#AB7FD1; border-color:#AB7FD1">精选</span></div>
+						</div>
+						<div class="evaluate">653条好评</div>
+					</a>
+				</li> -->
+			</ul>
+		</li>
+	</ul>
+	<script type="text/javascript" src="./lib/jquery-1.8.3.js.下载"></script>
+	<script type="text/javascript" src="./lib/jquery.cookie.js.下载"></script>
+	<script type="text/javascript" src="./lib/md5.js.下载"></script>
+	<script type="text/javascript" src="./lib/masterCommon.js.下载"></script>
+	<script type="text/javascript" src="./lib/jquery.extention.js.下载"></script>
+	<script type="text/javascript" src="./lib/common.js.下载"></script>
+	<script type="text/javascript" src="./lib/qs.min.js.下载"></script>
+	<script type="text/javascript" src="./lib/vue.min.js.下载"></script>
+	<script type="text/javascript" src="./lib/elementUI.min.js.下载"></script>
+	<script type="text/javascript" src="./lib/utils.js.下载"></script>
+	<script src="./lib/smcp.min.js.下载"></script>
+	<script src="./lib/dialog.js.下载"></script>
+	<script src="./lib/md5.js(1).下载"></script>
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+	<script>
+		// 目标: 点击搜索按钮(放大镜), 根据关键词搜索商品并铺设列表
+		// 1. 读标签, 找到相关标签
+		// 2. 搜索按钮->点击事件
+		document.querySelector('#searchButton').addEventListener('click', e => {
+			// 3. 获取输入框内容
+			let searchText = document.querySelector('#searchInp').value
+			// 4. 查看接口文档(其他可用接口->必要商城->获取-搜索结果列表)
+			axios({
+				url: 'https://hmajax.itheima.net/api-s/searchGoodsList',
+				method: 'GET',
+				params: {
+					searchText: searchText,
+					page: 1,
+					everyNum: 16
+					// 其他2个(接口不要求必须传, 使用后台默认设置的值即可, 也可以自己视需求而定传什么)
+				}
+			}).then(result => {
+				console.log(result);
+				// 5. 把结果铺设到页面上
+				let ul = document.querySelector('.category-list')
+				ul.innerHTML = result.data.list.data.map(obj => `<li>
+					<a><i><img
+								src="${obj.imageUrl}"></i>
+						<div class="supplier">xxxx制造商</div>
+						<div class="title">${obj.goodsName}</div>
+						<div class="priceBox">
+							<div class="price" price="${obj.goodsPrice}"><span
+									style="color: #F7A701; font-size: 12px; padding-left: 2px;">￥<span
+										style="font-size:18px;">${obj.goodsPrice}</span></span></div>
+							<div class="mack"><span
+									style="color:#FB4C81;background:#FFFFFF; border-color:#FB4C81">一起拼</span><span
+									style="color:#FFFFFF;background:#AB7FD1; border-color:#AB7FD1">精选</span></div>
+						</div>
+						<div class="evaluate">${obj.evalNum}条好评</div>
+					</a>
+				</li>`).join('')
+			})
+		})
+	</script>
+</body>
+
+</html>
+```
+
+
+
+## 面试题
+
+### 1. GET 和 POST 请求方法的区别？
+
+1. GET和POST请求方式无区别, 本质都是一次HTTP请求(TCP链接), 而HTTP请求报文中都包含请求行, 请求头, 请求体，我们可以在相应位置携带值给服务器
+
+2. 图解: ![img](images/1665631819952-57c52b31-b574-4e25-8c2a-b3a989c2523e.png)
+
+   
+
+3. 但是[GET或HEAD请求方式, 浏览器会忽略请求体](https://xhr.spec.whatwg.org/#the-send()-method), 但不代表GET/HEAD方式无法发送请求体, 使用apifox等接口调试工具是可以携带请求体的
+
+4. 非要说区别有如下几点
+
+   1. 浏览器回退的时候, GET不会重新提交, 而POST会重新提交表单
+   2. GET会被浏览器主动缓存, POST不会
+   3. 再就是url上传查询参数和请求体传参的区别了(实际上不是GET和POST区别了)
+      * url上只能进行url编码, 而请求体里支持多种编码格式
+      * url上的参数会保留在浏览器历史记录里, 而请求体不会被保留, 除非用代码设置
+
+
+
+
+### 2. 原生Ajax的原理?
+
+> axios库是对原生Ajax的XMLHttpRequest相关语法的封装
+>
+> AJAX 原理是 XMLHttpRequest 相关语法
+>
+> 而原生JS代码参考如下文档
+
+[点我看答案](https://lamphc.github.io/fe-up/#/JavaScript/ajax?id=%e9%9d%a2%e8%af%95%e5%ae%98%ef%bc%9aajax%e5%8e%9f%e7%90%86%e6%98%af%e4%bb%80%e4%b9%88%ef%bc%9f%e5%a6%82%e4%bd%95%e5%ae%9e%e7%8e%b0%ef%bc%9f)
+
+
+
+### 3. 箭头函数和function函数区别?
+
+箭头函数常用做回调函数使用, 它无自己的this, 无arguments对象, 不能被new调用
+
+
+
+### 4. 一个页面从输入 URL 到页面加载显示完成，这个过程中都发生了什么
+
+1. 浏览器查找域名对应的 IP 地址(DNS 查询：浏览器缓存->系统缓存->路由器缓存->ISPDNS 缓存->根域名服务器) 
+2. 浏览器向 Web 服务器发送一个 HTTP 请求（TCP 三次握手） 
+3. （如果服务器设置了重定向）服务器 301 重定向（从 HTTP://example.com 重定向到 HTTP://www.example.com）
+4. 浏览器跟踪重定向地址，请求另一个带 www 的网址 
+5. 服务器处理请求（通过路由读取资源） 
+6. 服务器返回一个 HTTP 响应（报头中把 Content-type 设置为 'text/html'）
+7. 浏览器进 DOM 树构建
+8. 浏览器发送请求获取嵌在 HTML 中的资源（如图片、音频、视频、CSS、JS 等）
+9. 浏览器显示完成页面 
+10. 浏览器发送异步请求
+
+
+
+### 5. 面试题2. DOM 事件流与事件委托
+
+
+
+#### 1 事件流
+
+**事件流**：⼜称为事件传播，是⻚⾯中接收事件的顺序。DOM2级事件规定的事件流包括了3个阶段：
+
+- 事件捕获阶段（capture phase）
+- 处于⽬标阶段（target phase）
+- 事件冒泡阶段（bubbling phase）
+
+**事件捕获（Event Capturing）**
+
+事件开始由较为不具体的节点接收后，然后开始逐级向下传播到最具体的元素上。
+
+事件捕获的最大作用在于：事件在到达预定⽬标之前就可以捕获到它。
+
+如果仍以上面那段 HTML 代码为例，当点击按钮后，在事件捕获的过程中，document 对象会首先接收到这个 `click` 事件，然后再沿着 DOM 树依次向下，直到 `<button>`。具体顺序如下：
+
+1. document 对象
+2. html 元素
+3. body 元素
+4. button 元素
+
+
+
+**事件冒泡（Event Bubbling）**
+
+事件开始由最具体的元素（⽂档中嵌套层次最深的那个节点）接收到后，开始逐级向上传播到较为不具体的节点。
+
+```HTML
+<html>
+  
+  <head> 
+    <title>Document</title> 
+  </head>
+  
+  <body> 
+    <button>按钮</button> 
+  </body> 
+  
+</html>
+```
+
+如果点击了上面页面代码中的 `<button>` 按钮，那么该 `click` 点击事件会沿着 DOM 树向上逐级传播，在途经的每个节点上都会发生，具体顺序如下：
+
+1. button 元素
+2. body 元素
+3. html 元素
+4. document 对象
+
+
+
+#### 2 事件委托
+
+事件委托: 利用了事件冒泡的机制，在较上层位置的元素上添加一个事件监听函数，来管理该元素及其所有子孙元素上的某一类的所有事件。
+
+**示例**
+
+```HTML
+<ul id="list">
+    <li>111</li>
+    <li>222</li>
+    <li>333</li>
+    <li>444</li>
+    <li>555</li>
+</ul>
+
+<script type="text/javascript">
+    // ⽗元素 
+    var list = document.getElementById('list');
+
+    // 为⽗元素绑定事件，委托管理它的所有⼦元素li的点击事件 
+    list.onclick = function (event) {
+        var currentTarget = event.target;
+        if (currentTarget.tagName.toLowerCase() === 'li') {
+            alert(currentTarget.innerText)
+        }
+    }
+</script>
+```
+
+> 适用场景：在绑定大量事件的时候，可以选择事件委托
+
+**优点**
+
+- 事件委托可以减少事件注册数量，节省内存占⽤!
+- 当新增⼦元素时，⽆需再次做事件绑定，因此非常适合动态添加元素   (vue解析模板时, 会对新创建的元素, 额外进行绑定的)
+
+```
+思维导图-语雀地址:https://www.yuque.com/u21437924/hwabky/mw2mcig1x6afv1h5?singleDoc#
+```
 
 
 
