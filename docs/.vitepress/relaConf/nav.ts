@@ -61,6 +61,12 @@ export const navbar: DefaultTheme.NavItem[] = [
     text: '前端',
         items: [
             { text: 'Day01_AJAX入门', link: '/frontEnd/ajax/Day01_AJAX入门.md' },
+            { text: 'Day02_AJAX综合案例', link: '/frontEnd/ajax/Day02_AJAX综合案例.md' },
+            { text: 'Day03_AJAX原理', link: '/frontEnd/ajax/Day03_AJAX原理.md' },
+            { text: 'Day04_AJAX进阶', link: '/frontEnd/ajax/Day04_AJAX进阶.md' },
+
+            
+            
 
 
             

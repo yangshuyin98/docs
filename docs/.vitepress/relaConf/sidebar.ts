@@ -13,9 +13,11 @@ export const sidebar: DefaultTheme.Sidebar = {
   '/frontEnd/': [
     { text: 'Day01_AJAX入门', link: '/frontEnd/ajax/Day01_AJAX入门.md' },
     { text: 'Day02_AJAX综合案例', link: '/frontEnd/ajax/Day02_AJAX综合案例.md' },
+    { text: 'Day03_AJAX原理', link: '/frontEnd/ajax/Day03_AJAX原理.md' },
+    { text: 'Day04_AJAX进阶', link: '/frontEnd/ajax/Day04_AJAX进阶.md' },
 
 
-    
+
     { text: 'vue', link: '/frontEnd/vue/vue' },
     { text: 'JavaScript', link: '/frontEnd/JavaScript/JavaScript' },
     { text: '2024年前端学习路线图', link: '/frontEnd/else/2024年前端学习路线图.md' },
@@ -26,7 +28,7 @@ export const sidebar: DefaultTheme.Sidebar = {
     { text: '05_ev_api_server', link: '/frontEnd/Node.js/05_ev_api_server' },
     { text: '06_ev_api_server', link: '/frontEnd/Node.js/06_ev_api_server' },
 
-    
+
 
     { text: 'else', link: '/frontEnd/else/else.md' },
   ],
@@ -41,7 +43,7 @@ export const sidebar: DefaultTheme.Sidebar = {
 
 
     { text: '22讲 set puts expr for循环', link: '/CAE/22讲set puts expr for循环.md' },
-    
+
 
   ],
 
@@ -69,8 +71,8 @@ export const sidebar: DefaultTheme.Sidebar = {
   '/notes/': [
     { text: 'git常用命令', link: '/notes/git常用命令' },
     { text: 'GitHub', link: '/notes/GitHub上删除项目中的个别文件' },
-    { text: '常用Markdown', link: '/notes/常用Markdown语法' },   
-    { text: '下载和安装Pandoc_Windows版本', link: '/notes/下载和安装Pandoc_Windows版本' },    
+    { text: '常用Markdown', link: '/notes/常用Markdown语法' },
+    { text: '下载和安装Pandoc_Windows版本', link: '/notes/下载和安装Pandoc_Windows版本' },
     { text: '安装git', link: '/notes/安装git' },
     { text: 'note', link: '/notes/note' },
     { text: 'Pandoc命令', link: '/notes/Pandoc命令' },
@@ -80,7 +82,7 @@ export const sidebar: DefaultTheme.Sidebar = {
     { text: '箭头函数', link: '/notes/箭头函数' },
 
 
-    
+
   ],
 
   '/ollama/': [
@@ -88,10 +90,10 @@ export const sidebar: DefaultTheme.Sidebar = {
     { text: 'Cherry Studio知识库', link: '/ollama/Cherry Studio知识库' },
     { text: 'InternLM2书生浦语', link: '/ollama/InternLM2书生浦语' },
     { text: 'Llama 3.1 综合指南', link: '/ollama/Llama 3.1 综合指南' },
-    { text: '从零到一，深入浅出大语言模型的奇妙世界',link: '/ollama/从零到一，深入浅出大语言模型的奇妙世界' },
-    { text: 'Prompt提示词优化原则',link: '/ollama/Prompt提示词优化原则' },
-   
-    
+    { text: '从零到一，深入浅出大语言模型的奇妙世界', link: '/ollama/从零到一，深入浅出大语言模型的奇妙世界' },
+    { text: 'Prompt提示词优化原则', link: '/ollama/Prompt提示词优化原则' },
+
+
   ],
 
   '/vitepress/zh/guide/': { base: '/vitepress/zh/guide/', items: sidebarGuide() },
@@ -105,16 +107,16 @@ export const sidebar: DefaultTheme.Sidebar = {
     { text: 'VitePress+Github Pages详细v1.6.3', link: '/vitepress/部署/VitePress+Github Pages详细v1.6.3' },
     { text: 'VitePress部署', link: '/vitepress/部署/VitePress部署' },
     { text: 'VitePress部署v1.6.3', link: '/vitepress/部署/VitePress部署v1.6.3' },
-    { text: 'VitePress从0到1', link: '/vitepress/部署/VitePress从0到1' },  
+    { text: 'VitePress从0到1', link: '/vitepress/部署/VitePress从0到1' },
 
 
 
   ],
   '/vuepress/': [
-    { text: 'A_Node.js安装',     link: '/vuepress/A_Node.js安装.md'},
-    { text: 'B_npm镜像站',       link: '/vuepress/B_npm镜像站'},
-    { text: 'C_vuepress@1.9.10', link:' /vuepress/C_vuepress@1.9.10'},
-    { text: '什么是敏感信息',      link:' /vuepress/什么是敏感信息'},
+    { text: 'A_Node.js安装', link: '/vuepress/A_Node.js安装.md' },
+    { text: 'B_npm镜像站', link: '/vuepress/B_npm镜像站' },
+    { text: 'C_vuepress@1.9.10', link: ' /vuepress/C_vuepress@1.9.10' },
+    { text: '什么是敏感信息', link: ' /vuepress/什么是敏感信息' },
 
 
   ],
