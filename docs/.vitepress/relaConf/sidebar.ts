@@ -12,7 +12,7 @@ export const sidebar: DefaultTheme.Sidebar = {
 
   '/frontEnd/': [
     { text: 'Day01_AJAX入门', link: '/frontEnd/ajax/Day01_AJAX入门.md' },
-    { text: 'Day02_AJAX的GET请求', link: '/frontEnd/ajax/Day02_AJAX的GET请求.md' },
+    { text: 'Day02_AJAX综合案例', link: '/frontEnd/ajax/Day02_AJAX综合案例.md' },
 
 
     
