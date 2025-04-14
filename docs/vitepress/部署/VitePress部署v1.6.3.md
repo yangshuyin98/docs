@@ -97,7 +97,7 @@ git add .
 git add -A
 git commit -m "first commit"
 git branch -M main
-git remote add origin https://github.com/yangshuyin98/blogs.git
+git remote add origin https://github.com
 git push -u origin main
 ```
 
@@ -126,7 +126,12 @@ Skip this and set up a workflow yourself →
 ##### 7.设置工作流
 
 重命名并设置deploy.yml脚本
-脚本文件：参考的vitepress官方文档：https://vitepress.dev/guide/deploy#github-pages
+脚本文件：参考的vitepress官方文档：
+
+```
+https://vitepress.dev/guide/deploy#github-pages
+```
+
 **这里发现参考资料里面的node包有问题,换成我们的
 
 
