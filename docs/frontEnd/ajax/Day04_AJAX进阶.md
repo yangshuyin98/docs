@@ -79,10 +79,18 @@
 
 ### 讲解
 
-1. [同步代码]([https://developer.mozilla.org/zh-CN/docs/Learn/JavaScript/Asynchronous/Introducing#%E5%90%8C%E6%AD%A5%E7%BC%96%E7%A8%8B](https://developer.mozilla.org/zh-CN/docs/Learn/JavaScript/Asynchronous/Introducing))：逐行执行，需原地等待结果后，才继续向下执行
+1. [同步代码]：逐行执行，需原地等待结果后，才继续向下执行
+
+   ```js
+   ([https://developer.mozilla.org/zh-CN/docs/Learn/JavaScript/Asynchronous/Introducing#%E5%90%8C%E6%AD%A5%E7%BC%96%E7%A8%8B](https://developer.mozilla.org/zh-CN/docs/Learn/JavaScript/Asynchronous/Introducing))
+   ```
 
 
-2. [异步代码](https://developer.mozilla.org/zh-CN/docs/Learn/JavaScript/Asynchronous/Introducing)：调用后耗时，不阻塞代码继续执行（不必原地等待），在将来完成后触发回调函数传递结果
+2. [异步代码]：调用后耗时，不阻塞代码继续执行（不必原地等待），在将来完成后触发回调函数传递结果
+
+   ```js   
+   (https://developer.mozilla.org/zh-CN/docs/Learn/JavaScript/Asynchronous/Introducing)
+   ```
 
 3. 回答代码打印顺序：发现异步代码接收结果，使用的都是回调函数
 
